@@ -9,14 +9,19 @@ export default function Apropos() {
         <Head>
           <title>À propos</title>
         </Head>
-        <h1>A propos</h1>
+        <h1>À propos</h1>
 
         <Image
           src="/images/logo-villes-territoires-cyclables.png" // Route of the image file
-          height={144} // Desired size with correct aspect ratio
-          width={144} // Desired size with correct aspect ratio
+          height={100} // Desired size with correct aspect ratio
+          width={80} // Desired size with correct aspect ratio
           alt="Your Name"
         />
+        <p>Blablabla</p>
+        <h2>D'où viennent les données</h2>
+        <p>Blablabla</p>
+        <h2>A propos de ce site</h2>
+        <p>Le code est open source, FabMob</p>
       </div>
     </Layout>
   );

@@ -60,6 +60,11 @@ export default function Layout({ children, home }) {
         </div>
       )}
       <main>{children}</main>
+      <footer>
+        <Link href="/a-propos">
+          <a>À propos</a>
+        </Link>
+      </footer>
     </div>
   );
 }
