@@ -3,6 +3,12 @@ import Image from "next/image";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
+import styled from "styled-components";
+
+const Title = styled.h1`
+  font-size: 50px;
+  color: ${({ theme }) => theme.colors.primary};
+`;
 
 const name = "Cyclopolis";
 export const siteTitle =
@@ -37,7 +43,7 @@ export default function Layout({ children, home }) {
               width={80}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <Title>{name}</Title>
           </div>
         ) : (
           <>
