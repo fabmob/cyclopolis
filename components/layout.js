@@ -28,17 +28,17 @@ export default function Layout({ children, home }) {
       </Head>
       <header className={styles.header}>
         {home ? (
-          <>
+          <div>
             <Image
               priority
               src="/images/logo.svg"
               className={utilStyles.borderCircle}
-              height={144}
-              width={144}
+              height={80}
+              width={80}
               alt={name}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
+          </div>
         ) : (
           <>
             <Link href="/">
@@ -47,8 +47,8 @@ export default function Layout({ children, home }) {
                   priority
                   src="/images/logo.svg"
                   className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
+                  height={40}
+                  width={40}
                   alt={name}
                 />
               </a>
