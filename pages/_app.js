@@ -28,6 +28,13 @@ img {
   max-width: 100%;
   display: block;
 }
+ul {
+
+padding: 0; 
+
+list-style-type: none
+
+}
 `;
 
 const theme = {

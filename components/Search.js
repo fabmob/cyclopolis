@@ -15,7 +15,11 @@ export default function ({ data }) {
   let validInput = input.length > 2;
 
   const searchResults = validInput ? fuse.search(input) : [];
-  const searchResultShown = (input ? searchResults : data).slice(0, 15);
+
+  const searchResultShown = (validInput
+    ? searchResults.map((el) => el.item)
+    : data
+  ).slice(0, 15);
 
   useEffect(() => setFuse(new Fuse(data, options)), []);
 
@@ -26,12 +30,15 @@ export default function ({ data }) {
           border: 1px solid dark-blue;
           border-radius: 0.3rem;
           padding: 0.1rem 0.6rem;
-          font-size: 150%;
+          font-size: 100%;
           border-style: solid;
           margin-left: 1rem;
+          max-width: 70%;
+          display: inline;
         }
       `}
     >
+      🔎 &nbsp;
       <input
         value={input}
         placeholder="Une ville française"
@@ -41,17 +48,15 @@ export default function ({ data }) {
         }}
       />
       {validInput && !searchResultShown.length && "Rien trouvé :("}
-      {validInput && (
-        <ul>
-          {searchResultShown.map(({ item: city }) => (
-            <Link href={"/villes/" + city.region}>
-              <a>
-                <Item data={city} input={input} />
-              </a>
-            </Link>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {searchResultShown.map((city) => (
+          <Link href={"/villes/" + city.region}>
+            <a>
+              <Item data={city} input={input} />
+            </a>
+          </Link>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -63,13 +68,15 @@ const Item = ({ input, data }) =>
       css={`
         box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
           0 1px 2px rgba(41, 117, 209, 0.24);
-        width: 16rem;
         background: #fdfcff;
         padding: 0.6rem 1rem;
         margin: 1rem;
         list-style-type: none;
 
         border-radius: 0.6rem;
+        h3 {
+          margin: 0.2rem;
+        }
       `}
     >
       <h3>
@@ -83,6 +90,5 @@ const Item = ({ input, data }) =>
           textToHighlight={data.region}
         />
       </h3>
-      <span> {data["region"]}</span>
     </li>
   );
