@@ -1,12 +1,16 @@
 import Layout from "../../components/layout";
-import cities from "../../cities.json";
+import cyclopolisData from "../../cyclopolisData.csv";
+import Segments from "./Segments";
+
+const formatInputNumber = (string) => (+string.replace(",", ".")).toFixed(1);
 
 export default function Ville({ data }) {
   return (
     <Layout>
-      {data.name}
+      {data.region}
       <br />
-      {data.score}
+      <div>📏 {formatInputNumber(data.meandistance_km)} km</div>
+      <Segments data={data} />
     </Layout>
   );
 }
@@ -19,7 +23,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   console.log("etstatic", params);
-  const data = cities.find((city) => city.name === params.name);
+  const data = cyclopolisData.find((city) => city.region === params.name);
   return {
     props: {
       data,
@@ -28,10 +32,10 @@ export async function getStaticProps({ params }) {
 }
 
 export function getAllCityNames() {
-  return cities.map(({ name }) => {
+  return cyclopolisData.map(({ region }) => {
     return {
       params: {
-        name,
+        name: region,
       },
     };
   });

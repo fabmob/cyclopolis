@@ -2,7 +2,8 @@ import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 
-import cities from "../cities.json";
+import data from "../cyclopolisData.csv";
+
 import Link from "next/link";
 
 export default function Home({ data }) {
@@ -18,12 +19,10 @@ export default function Home({ data }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Les territoires</h2>
         <ul className={utilStyles.list}>
-          {data.map(({ name, score }) => (
-            <Link href={"/villes/" + name}>
-              <li className={utilStyles.listItem} key={name}>
-                {name}
-                <br />
-                {score}
+          {data.map(({ region }) => (
+            <Link href={"/villes/" + region}>
+              <li className={utilStyles.listItem} key={region}>
+                {region}
               </li>
             </Link>
           ))}
@@ -36,7 +35,7 @@ export default function Home({ data }) {
 export async function getStaticProps() {
   return {
     props: {
-      data: cities,
+      data,
     },
   };
 }
