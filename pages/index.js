@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout, { siteDescription } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 
 import data from "../cyclopolisData.csv";
@@ -10,10 +10,10 @@ export default function Home({ data }) {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{siteDescription}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>L'observatoire des territoires cyclables</p>
+        <p css="text-align: center">{siteDescription}</p>
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
