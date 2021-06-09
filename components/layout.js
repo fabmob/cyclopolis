@@ -4,8 +4,9 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
-const name = "Your Name";
-export const siteTitle = "Next.js Sample Website";
+const name = "Cyclopolis";
+export const siteTitle =
+  "L'observatoire de l'usage du vélo dans les collectivités françaises";
 
 export default function Layout({ children, home }) {
   return (
@@ -30,7 +31,7 @@ export default function Layout({ children, home }) {
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src="/images/logo.svg"
               className={utilStyles.borderCircle}
               height={144}
               width={144}
@@ -44,7 +45,7 @@ export default function Layout({ children, home }) {
               <a>
                 <Image
                   priority
-                  src="/images/profile.jpg"
+                  src="/images/logo.svg"
                   className={utilStyles.borderCircle}
                   height={108}
                   width={108}
