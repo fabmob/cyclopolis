@@ -1,12 +1,11 @@
 import Head from "next/head";
 import Layout, { siteDescription } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
-
+import Search from "../components/Search";
 import data from "../cyclopolisData.csv";
 
-import Link from "next/link";
-
 export default function Home({ data }) {
+  console.log("DATA°", data);
   return (
     <Layout home>
       <Head>
@@ -18,17 +17,7 @@ export default function Home({ data }) {
       {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Les territoires</h2>
-        <ul className={utilStyles.list}>
-          {data.map(({ region }) => (
-            <Link href={"/villes/" + region}>
-              <a>
-                <li className={utilStyles.listItem} key={region}>
-                  {region}
-                </li>
-              </a>
-            </Link>
-          ))}
-        </ul>
+        <Search data={data} />
       </section>
     </Layout>
   );
