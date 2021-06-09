@@ -21,9 +21,11 @@ export default function Home({ data }) {
         <ul className={utilStyles.list}>
           {data.map(({ region }) => (
             <Link href={"/villes/" + region}>
-              <li className={utilStyles.listItem} key={region}>
-                {region}
-              </li>
+              <a>
+                <li className={utilStyles.listItem} key={region}>
+                  {region}
+                </li>
+              </a>
             </Link>
           ))}
         </ul>
