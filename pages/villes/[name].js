@@ -1,6 +1,6 @@
 import Layout from "../../components/layout";
 import cyclopolisData from "../../cyclopolisData.csv";
-import Segments from "./Segments";
+import Segments from "../../components/Segments";
 
 const formatInputNumber = (string) => (+string.replace(",", ".")).toFixed(1);
 
