@@ -2,6 +2,7 @@
 // This source was taken from the @next/mdx plugin source:
 // https://github.com/vercel/next.js/tree/canary/packages/next-mdx
 module.exports = {
+  target: "serverless",
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.csv/,
