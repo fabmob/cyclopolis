@@ -54,7 +54,6 @@ export async function getStaticProps() {
 
 const Carte = ({ outreMer = false, setGeo }) => (
   <div
-    className="carte"
     css={`
       path {
         stroke: #000000;

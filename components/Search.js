@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Highlighter from "react-highlight-words";
 import Fuse from "fuse.js";
 import Link from "next/link";
+import CarteDepartement from "./CarteDepartement";
 
 const options = {
   keys: ["region"],
@@ -72,10 +73,16 @@ const Item = ({ input, data }) =>
         padding: 0.6rem 1rem;
         margin: 1rem;
         list-style-type: none;
-
         border-radius: 0.6rem;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        > * {
+          margin: 0 1rem;
+        }
       `}
     >
+      <CarteDepartement ville={data.region} />
       <span>
         <Highlighter
           highlightStyle={{
