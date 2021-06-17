@@ -7,9 +7,11 @@ const formatInputNumber = (string) => (+string.replace(",", ".")).toFixed(1);
 export default function Ville({ data }) {
   return (
     <Layout>
-      {data.region}
+      <h1>{data.region}</h1>
       <br />
       <div>📏 {formatInputNumber(data.meandistance_km)} km</div>
+
+      <h2>Les segments les plus fréquentés</h2>
       <Segments data={data} />
     </Layout>
   );
