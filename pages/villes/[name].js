@@ -14,6 +14,11 @@ const dataMeta = {
     unit: "km",
   },
   mean_speed_mean: { label: "Vitesse moyenne", icon: "🐰", unit: "km/h" },
+  stop_time_mean_minutes: {
+    label: "Temps d'arrêt moyen",
+    icon: "✋️",
+    unit: "minutes",
+  },
 };
 
 export default function Ville({ data }) {
