@@ -5,9 +5,17 @@ import Search from "../components/Search";
 import data from "../cyclopolisData.csv";
 import geoData from "../geoData";
 import { useState } from "react";
+import correspondanceGeo from "../correspondanceGéographique.csv";
+
+console.log(correspondanceGeo);
 
 export default function Home({ data }) {
   const [geo, setGeo] = useState(null);
+  const citiesFound = !geo
+    ? []
+    : correspondanceGeo.filter(
+        ({ ville, région, département }) => +département === +geo.departement
+      );
   return (
     <Layout home>
       <Head>
@@ -18,9 +26,14 @@ export default function Home({ data }) {
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
       {geo && (
-        <p>
-          Sélectionné : {geo.region} {geo.departement}
-        </p>
+        <>
+          <p>
+            Sélectionné : {geo.region} {geo.departement}
+          </p>
+          {citiesFound.length > 0 && (
+            <p>Ville correspondante : {citiesFound.map((c) => c.ville)}</p>
+          )}
+        </>
       )}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <Carte setGeo={setGeo} />
