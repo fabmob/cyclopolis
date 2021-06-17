@@ -4,12 +4,40 @@ import Segments from "../../components/Segments";
 
 const formatInputNumber = (string) => (+string.replace(",", ".")).toFixed(1);
 
+const dataMeta = {
+  meandistance_km: {
+    label: "Distance moyenne par jour",
+    icon: "📏",
+    unit: "km",
+  },
+  mean_speed_mean: { label: "Vitesse moyenne", icon: "🐰", unit: "km/h" },
+};
+
 export default function Ville({ data }) {
   return (
     <Layout>
       <h1>{data.region}</h1>
       <br />
-      <div>📏 {formatInputNumber(data.meandistance_km)} km</div>
+      {Object.entries(dataMeta).map(([key, { label, icon, unit }]) => (
+        <div
+          css={`
+            display: flex;
+            justify-content: start;
+            align-items: center;
+          `}
+        >
+          <div css="font-size: 200%; margin: 0 .6rem">{icon}</div>
+          <div>
+            <h2>{label} </h2>
+
+            <div>
+              <span css="font-size: 200%">{formatInputNumber(data[key])}</span>
+              &nbsp;
+              {unit}
+            </div>
+          </div>
+        </div>
+      ))}
 
       <h2>Les segments les plus fréquentés</h2>
       <Segments data={data} city={data.region} />
