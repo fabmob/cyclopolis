@@ -30,6 +30,7 @@ export async function getStaticProps() {
   };
 }
 
+// Un grand merci à https://blog.enguehard.info/carte-de-france-regions-departements-en-svg/
 const Carte = ({ outreMer = false }) => (
   <div
     className="carte"
