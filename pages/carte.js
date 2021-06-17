@@ -7,6 +7,7 @@ import geoData from "../geoData";
 import { useState } from "react";
 import correspondanceGeo from "../correspondanceGéographique.csv";
 import { Menu } from "./index.js";
+import Link from "next/link";
 
 console.log(correspondanceGeo);
 
@@ -33,7 +34,12 @@ export default function Home({ data }) {
             Sélectionné : {geo.region} {geo.departement}
           </p>
           {citiesFound.length > 0 && (
-            <p>Ville correspondante : {citiesFound.map((c) => c.ville)}</p>
+            <p>
+              Ville correspondante :{" "}
+              {citiesFound.map((c) => (
+                <Link href={`/villes/${c.ville}`}>{c.ville}</Link>
+              ))}
+            </p>
           )}
         </>
       )}
