@@ -5,22 +5,27 @@ export default ({ data, city }) => {
 
   const medals = { 1: "🥇", 2: "🥈", 3: "🥉" };
   return (
-    <ul>
+    <ul
+      css={`
+        display: flex;
+        flex-direction: column;
+      `}
+    >
       {segments.map(([, v], i) => (
         <a href={`https://www.openstreetmap.org/search?query=${v}, ${city}`}>
           <li
             key={v}
             css={`
-              box-shadow: rgba(41, 117, 209, 0.15) 0px 2px 4px -1px,
-                rgba(41, 117, 209, 0.14) 0px 4px 5px 0px,
-                rgba(41, 117, 209, 0.12) 0px 1px 10px 0px;
-              margin: 0.4rem 0;
+              display: inline-block;
+              box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
+                0 1px 2px rgb(41 117 209 / 24%);
+              margin: 0.8rem 0;
               border-radius: 0.5rem;
-              padding: 0 0.2rem;
+              padding: 0.1rem 1rem;
             `}
           >
             {
-              <span css="width: 2rem; display: inline-block; text-align: center">
+              <span css=" display: inline-block; text-align: center">
                 {medals[i + 1]}
               </span>
             }
