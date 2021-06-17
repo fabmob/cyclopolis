@@ -68,6 +68,10 @@ const Carte = ({ outreMer = false, setGeo }) => (
       g path:hover {
         fill: #86eee0;
       }
+
+      path.exists {
+        fill: #86eee0;
+      }
     `}
   >
     <svg
@@ -89,7 +93,16 @@ const Carte = ({ outreMer = false, setGeo }) => (
             <path
               data-nom={departement.nom}
               data-numerodepartement={departement.numeroDepartement}
-              className={`region-${region.codeInsee} departement departement-${departement.codeInsee} departement-${departement.nom}`}
+              className={`region-${region.codeInsee} departement departement-${
+                departement.codeInsee
+              } departement-${departement.nom} ${
+                correspondanceGeo.find(
+                  ({ ville, région, département }) =>
+                    +departement.numeroDepartement === +département
+                )
+                  ? "exists"
+                  : ""
+              }`}
               d={departement.d}
               onClick={() =>
                 setGeo({
