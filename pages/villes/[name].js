@@ -12,7 +12,7 @@ export default function Ville({ data }) {
       <div>📏 {formatInputNumber(data.meandistance_km)} km</div>
 
       <h2>Les segments les plus fréquentés</h2>
-      <Segments data={data} />
+      <Segments data={data} city={data.region} />
     </Layout>
   );
 }
