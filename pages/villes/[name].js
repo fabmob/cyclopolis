@@ -9,7 +9,7 @@ const formatInputNumber = (string) => (+string.replace(",", ".")).toFixed(1);
 
 const dataMeta = {
   meandistance_km: {
-    label: "Distance moyenne par jour",
+    label: "Distance moyenne / jour",
     icon: "📏",
     unit: "km",
   },
@@ -44,26 +44,46 @@ export default function Ville({ data }) {
         {wikidata?.pic && <CityImage src={wikidata.pic.value} />}
       </header>
       <br />
-      {Object.entries(dataMeta).map(([key, { label, icon, unit }]) => (
-        <div
-          css={`
-            display: flex;
-            justify-content: start;
-            align-items: center;
-          `}
-        >
-          <div css="font-size: 200%; margin: 0 .6rem">{icon}</div>
-          <div>
-            <h2>{label} </h2>
-
+      <ul
+        css={`
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        `}
+      >
+        {Object.entries(dataMeta).map(([key, { label, icon, unit }]) => (
+          <li
+            css={`
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              h2 {
+                text-transform: uppercase;
+                font-weight: 300;
+                margin: 0.4rem;
+                font-size: 100%;
+              }
+              max-width: 14rem;
+              box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
+                0 1px 2px rgb(41 117 209 / 24%);
+              margin: 0.6rem;
+            `}
+          >
+            <div css="font-size: 280%; margin: 0 .6rem">{icon}</div>
             <div>
-              <span css="font-size: 200%">{formatInputNumber(data[key])}</span>
-              &nbsp;
-              {unit}
+              <h2>{label} </h2>
+
+              <div>
+                <span css="font-size: 200%">
+                  {formatInputNumber(data[key])}
+                </span>
+                &nbsp;
+                {unit}
+              </div>
             </div>
-          </div>
-        </div>
-      ))}
+          </li>
+        ))}
+      </ul>
 
       <h2>Les segments les plus fréquentés</h2>
       <Segments data={data} city={data.region} />
