@@ -1,6 +1,9 @@
+import { useState, useEffect } from "react";
 import Layout from "../../components/layout";
 import cyclopolisData from "../../cyclopolisData.csv";
 import Segments from "../../components/Segments";
+import getCityData from "../../components/wikidata";
+import styled from "styled-components";
 
 const formatInputNumber = (string) => (+string.replace(",", ".")).toFixed(1);
 
@@ -14,9 +17,20 @@ const dataMeta = {
 };
 
 export default function Ville({ data }) {
+  const [wikidata, setWikidata] = useState(null);
+
+  console.log(wikidata);
+
+  useEffect(() => {
+    getCityData(data.region).then((json) =>
+      setWikidata(json?.results?.bindings[0])
+    );
+  }, [data.region]);
+
   return (
     <Layout>
       <h1>{data.region}</h1>
+      <div>{wikidata?.pic && <CityImage src={wikidata.pic.value} />}</div>
       <br />
       {Object.entries(dataMeta).map(([key, { label, icon, unit }]) => (
         <div
@@ -70,3 +84,7 @@ export function getAllCityNames() {
     };
   });
 }
+
+const CityImage = styled.img`
+  max-width: 8rem;
+`;
