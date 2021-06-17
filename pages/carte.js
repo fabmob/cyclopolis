@@ -4,9 +4,10 @@ import utilStyles from "../styles/utils.module.css";
 import Search from "../components/Search";
 import data from "../cyclopolisData.csv";
 import geoData from "../geoData";
+import { useState } from "react";
 
 export default function Home({ data }) {
-  console.log("DATA°", data);
+  const [geo, setGeo] = useState(null);
   return (
     <Layout home>
       <Head>
@@ -16,8 +17,13 @@ export default function Home({ data }) {
         <p css="text-align: center">{siteDescription}</p>
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
+      {geo && (
+        <p>
+          Sélectionné : {geo.region} {geo.departement}
+        </p>
+      )}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <Carte />
+        <Carte setGeo={setGeo} />
       </section>
     </Layout>
   );
@@ -31,7 +37,7 @@ export async function getStaticProps() {
   };
 }
 
-const Carte = ({ outreMer = false }) => (
+const Carte = ({ outreMer = false, setGeo }) => (
   <div
     className="carte"
     css={`
@@ -61,26 +67,25 @@ const Carte = ({ outreMer = false }) => (
       xmlSpace="preserve"
     >
       {geoData.map((region) => (
-        <g>
-          <a target="_blank" xlinkHref="region01.html">
-            <g
-              className={"region region-" + region.codeInsee}
-              data-nom={region.nom}
-              data-code_insee={region.codeInsee}
-            >
-              {region.departements.map((departement) => (
-                <path
-                  data-nom={departement.nom}
-                  data-numerodepartement={departement.numeroDepartement}
-                  className={`region-${region.codeInsee} departement departement-${departement.codeInsee} departement-${departement.nom}`}
-                  d={departement.d}
-                  onClick={() =>
-                    setGeo(region.codeInsee, departement.numeroDepartement)
-                  }
-                ></path>
-              ))}
-            </g>
-          </a>
+        <g
+          className={"region region-" + region.codeInsee}
+          data-nom={region.nom}
+          data-code_insee={region.codeInsee}
+        >
+          {region.departements.map((departement) => (
+            <path
+              data-nom={departement.nom}
+              data-numerodepartement={departement.numeroDepartement}
+              className={`region-${region.codeInsee} departement departement-${departement.codeInsee} departement-${departement.nom}`}
+              d={departement.d}
+              onClick={() =>
+                setGeo({
+                  region: region.codeInsee,
+                  departement: departement.numeroDepartement,
+                })
+              }
+            ></path>
+          ))}
         </g>
       ))}
     </svg>
