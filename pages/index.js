@@ -52,6 +52,7 @@ export const Menu = () => (
     css={`
       display: flex;
       justify-content: center;
+      margin: 1rem 0;
     `}
   >
     <TabButton>
