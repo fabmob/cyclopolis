@@ -8,7 +8,6 @@ const options = {
   keys: ["region"],
 };
 export default function ({ data }) {
-  console.log("DATA", data);
   const [input, setInput] = useState("");
   const [fuse, setFuse] = useState(null);
   let [ing, setSearching] = useState(true);
@@ -62,37 +61,36 @@ export default function ({ data }) {
   );
 }
 
-const Item = ({ input, data }) =>
-  console.log(data) || (
-    <li
-      key={data["region"]}
-      css={`
-        box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
-          0 1px 2px rgba(41, 117, 209, 0.24);
-        background: #fdfcff;
-        padding: 0.6rem 1rem;
-        margin: 1rem;
-        list-style-type: none;
-        border-radius: 0.6rem;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        > * {
-          margin: 0 1rem;
-        }
-      `}
-    >
-      <CarteDepartement ville={data.region} />
-      <span>
-        <Highlighter
-          highlightStyle={{
-            background: "#88c13e",
-            color: "white",
-            fontWeight: 400,
-          }}
-          searchWords={input.split(" ")}
-          textToHighlight={data.region}
-        />
-      </span>
-    </li>
-  );
+const Item = ({ input, data }) => (
+  <li
+    key={data["region"]}
+    css={`
+      box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
+        0 1px 2px rgba(41, 117, 209, 0.24);
+      background: #fdfcff;
+      padding: 0.6rem 1rem;
+      margin: 1rem;
+      list-style-type: none;
+      border-radius: 0.6rem;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      > * {
+        margin: 0 1rem;
+      }
+    `}
+  >
+    <CarteDepartement ville={data.region} />
+    <span>
+      <Highlighter
+        highlightStyle={{
+          background: "#88c13e",
+          color: "white",
+          fontWeight: 400,
+        }}
+        searchWords={input.split(" ")}
+        textToHighlight={data.region}
+      />
+    </span>
+  </li>
+);
