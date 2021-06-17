@@ -24,8 +24,6 @@ const dataMeta = {
 export default function Ville({ data }) {
   const [wikidata, setWikidata] = useState(null);
 
-  console.log(wikidata);
-
   useEffect(() => {
     getCityData(data.region).then((json) =>
       setWikidata(json?.results?.bindings[0])
@@ -34,8 +32,17 @@ export default function Ville({ data }) {
 
   return (
     <Layout>
-      <h1>{data.region}</h1>
-      <div>{wikidata?.pic && <CityImage src={wikidata.pic.value} />}</div>
+      <header
+        css={`
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-evenly;
+        `}
+      >
+        <h1>{data.region}</h1>
+        {wikidata?.pic && <CityImage src={wikidata.pic.value} />}
+      </header>
       <br />
       {Object.entries(dataMeta).map(([key, { label, icon, unit }]) => (
         <div
@@ -91,5 +98,5 @@ export function getAllCityNames() {
 }
 
 const CityImage = styled.img`
-  max-width: 8rem;
+  max-height: 6rem;
 `;

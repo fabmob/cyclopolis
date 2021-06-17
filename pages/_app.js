@@ -35,6 +35,7 @@ padding: 0;
 list-style-type: none
 
 }
+h1 {margin: .6rem 0 1rem}
 `;
 
 const theme = {
