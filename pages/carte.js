@@ -6,6 +6,7 @@ import data from "../cyclopolisData.csv";
 import geoData from "../geoData";
 import { useState } from "react";
 import correspondanceGeo from "../correspondanceGéographique.csv";
+import { Menu } from "./index.js";
 
 console.log(correspondanceGeo);
 
@@ -24,6 +25,7 @@ export default function Home({ data }) {
       <section className={utilStyles.headingMd}>
         <p css="text-align: center">{siteDescription}</p>
       </section>
+      <Menu />
       {/* Add this <section> tag below the existing <section> tag */}
       {geo && (
         <>

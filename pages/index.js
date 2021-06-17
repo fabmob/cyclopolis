@@ -3,6 +3,22 @@ import Layout, { siteDescription } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import Search from "../components/Search";
 import data from "../cyclopolisData.csv";
+import Link from "next/link";
+import styled from "styled-components";
+
+const TabButton = styled.button`
+  background: rgb(0, 112, 243);
+  box-shadow: rgb(0 118 255 / 39%) 0px 4px 14px 0px;
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.4rem;
+  border: none;
+  font-size: 100%;
+  margin: 0.4rem;
+  a {
+    color: inherit;
+  }
+`;
 
 export default function Home({ data }) {
   console.log("DATA°", data);
@@ -15,8 +31,8 @@ export default function Home({ data }) {
         <p css="text-align: center">{siteDescription}</p>
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
+      <Menu />
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Les territoires</h2>
         <Search data={data} />
       </section>
     </Layout>
@@ -30,3 +46,19 @@ export async function getStaticProps() {
     },
   };
 }
+
+export const Menu = () => (
+  <div
+    css={`
+      display: flex;
+      justify-content: center;
+    `}
+  >
+    <TabButton>
+      <Link href="/">Vue liste</Link>
+    </TabButton>
+    <TabButton>
+      <Link href="/carte">Vue carte</Link>
+    </TabButton>
+  </div>
+);

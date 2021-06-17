@@ -74,12 +74,9 @@ const Item = ({ input, data }) =>
         list-style-type: none;
 
         border-radius: 0.6rem;
-        h3 {
-          margin: 0.2rem;
-        }
       `}
     >
-      <h3>
+      <span>
         <Highlighter
           highlightStyle={{
             background: "#88c13e",
@@ -89,6 +86,6 @@ const Item = ({ input, data }) =>
           searchWords={input.split(" ")}
           textToHighlight={data.region}
         />
-      </h3>
+      </span>
     </li>
   );
