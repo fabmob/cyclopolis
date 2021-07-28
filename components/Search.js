@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Highlighter from "react-highlight-words";
 import correspondanceGéographique from "../correspondanceGéographique.csv";
 import geoData from "../geoData";
+import { Carte } from "../pages/carte";
 import CarteDepartement from "./CarteDepartement";
 
 const options = {
@@ -85,8 +86,18 @@ const Region = ({ data, searchResultShown, input }) => {
   if (!filteredResults.length) return null;
 
   return (
-    <li key={data.codeInsee}>
-      <h3>{data.nom}</h3>
+    <li key={data.codeInsee} css="margin-bottom: 2rem">
+      <div
+        css={`
+          display: flex;
+          align-items: center;
+        `}
+      >
+        <div css="width: 4rem">
+          <Carte showRegion={data.codeInsee} />
+        </div>
+        <h3>{data.nom}</h3>
+      </div>
       <ul>
         {data.departements.map((d) => (
           <li key={d.codeInsee}>
@@ -128,23 +139,24 @@ const Departement = ({
     >
       <div
         css={`
-          display: flex;
-          flex-direction: column;
-          align-items: center;
           width: 10rem;
           h4 {
-            font-weight: normal;
+            font-weight: 500;
+            color: #444;
             text-transform: uppercase;
           }
         `}
       >
         <h4>{data.nom}</h4>
-        <CarteDepartement
-          {...{
-            codeRegion: codeRegion,
-            codeDepartement: data.numeroDepartement,
-          }}
-        />
+
+        {false && (
+          <CarteDepartement
+            {...{
+              codeRegion: codeRegion,
+              codeDepartement: data.numeroDepartement,
+            }}
+          />
+        )}
       </div>
       <ul>
         {filteredResults.map((city) => (

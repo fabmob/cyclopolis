@@ -76,7 +76,11 @@ export async function getStaticProps() {
   };
 }
 
-const Carte = ({ outreMer = false, setGeo }) => (
+export const Carte = ({
+  outreMer = false,
+  setGeo = () => null,
+  showRegion,
+}) => (
   <div
     css={`
       path {
@@ -97,6 +101,9 @@ const Carte = ({ outreMer = false, setGeo }) => (
       path.exists {
         fill: #86eee0;
       }
+      g.spotlight path {
+        fill: #003573;
+      }
     `}
   >
     <svg
@@ -110,7 +117,11 @@ const Carte = ({ outreMer = false, setGeo }) => (
     >
       {geoData.map((region) => (
         <g
-          className={"region region-" + region.codeInsee}
+          className={
+            "region region-" +
+            region.codeInsee +
+            (showRegion == region.codeInsee ? ` spotlight` : "")
+          }
           data-nom={region.nom}
           data-code_insee={region.codeInsee}
         >
@@ -121,6 +132,7 @@ const Carte = ({ outreMer = false, setGeo }) => (
               className={`region-${region.codeInsee} departement departement-${
                 departement.codeInsee
               } departement-${departement.nom} ${
+                !showRegion &&
                 correspondanceGeo.find(
                   ({ ville, région, département }) =>
                     +departement.numeroDepartement === +département
