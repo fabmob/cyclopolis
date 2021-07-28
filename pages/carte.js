@@ -9,7 +9,19 @@ import correspondanceGeo from "../correspondanceGéographique.csv";
 import { Menu } from "./index.js";
 import Link from "next/link";
 
-console.log(correspondanceGeo);
+const departementLabel = (codeDepartement, codeRegion) => {
+  console.log(codeDepartement, codeRegion);
+  const region = geoData.find((r) => r.codeInsee == codeRegion);
+
+  if (!region) return {};
+
+  return {
+    region: region.nom,
+    departement: region.departements.find(
+      (d) => d.numeroDepartement === codeDepartement
+    ).nom,
+  };
+};
 
 export default function Home({ data }) {
   const [geo, setGeo] = useState(null);
@@ -18,6 +30,11 @@ export default function Home({ data }) {
     : correspondanceGeo.filter(
         ({ ville, région, département }) => +département === +geo.departement
       );
+
+  const plural = citiesFound && citiesFound.length > 1 ? "s" : "";
+  const { region, departement } = geo
+    ? departementLabel(geo.departement, geo.region)
+    : {};
   return (
     <Layout home>
       <Head>
@@ -31,11 +48,12 @@ export default function Home({ data }) {
       {geo && (
         <>
           <p>
-            Sélectionné : {geo.region} {geo.departement}
+            <strong>{region}</strong> <div>{departement}</div>
           </p>
+          {!citiesFound.length && <p>Pas de données pour ce département.</p>}
           {citiesFound.length > 0 && (
             <p>
-              Ville correspondante :{" "}
+              Ville{plural} trouvée{plural} :{" "}
               {citiesFound.map((c) => (
                 <Link href={`/villes/${c.ville}`}>{c.ville}</Link>
               ))}
