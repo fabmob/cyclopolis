@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import Highlighter from "react-highlight-words";
 import Fuse from "fuse.js";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import Highlighter from "react-highlight-words";
+import correspondanceGéographique from "../correspondanceGéographique.csv";
+import geoData from "../geoData";
 import CarteDepartement from "./CarteDepartement";
 
 const options = {
@@ -22,6 +24,8 @@ export default function ({ data }) {
   ).slice(0, 15);
 
   useEffect(() => setFuse(new Fuse(data, options)), []);
+
+  console.log(searchResultShown);
 
   return (
     <div
@@ -49,17 +53,52 @@ export default function ({ data }) {
       />
       {validInput && !searchResultShown.length && "Rien trouvé :("}
       <ul>
-        {searchResultShown.map((city) => (
-          <Link href={"/villes/" + city.region}>
-            <a>
-              <Item data={city} input={input} />
-            </a>
-          </Link>
+        {geoData.map((region) => (
+          <Region
+            {...{
+              searchResultShown,
+              data: region,
+              input,
+              key: region.codeInsee,
+            }}
+          />
         ))}
       </ul>
     </div>
   );
 }
+
+const Region = ({ data, searchResultShown, input }) => {
+  const regionResults = searchResultShown.filter((el) => {
+    const cityName = el.region;
+
+    const { région, département } = correspondanceGéographique.find(
+      (c) => c.ville === cityName
+    );
+
+    return région == data.codeInsee;
+  });
+  if (!regionResults.length) return null;
+
+  console.log("RR", regionResults);
+
+  return (
+    <li key={data.codeInsee}>
+      <h3>{data.nom}</h3>
+      <ul>
+        {regionResults.map((city) => (
+          <li key={city}>
+            <Link href={"/villes/" + city.region}>
+              <a>
+                <Item data={city} input={input} />
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+};
 
 const Item = ({ input, data }) => (
   <li

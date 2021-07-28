@@ -595,7 +595,7 @@ export default [
     ],
   },
   {
-    nom: "Provence-Alpes-Côte d&#39;Azur",
+    nom: "Provence-Alpes-Côte d'Azur",
     codeInsee: "93",
     departements: [
       {
