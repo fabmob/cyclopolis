@@ -53,16 +53,18 @@ export default function ({ data }) {
       />
       {validInput && !searchResultShown.length && "Rien trouvé :("}
       <ul>
-        {geoData.map((region) => (
-          <Region
-            {...{
-              searchResultShown,
-              data: region,
-              input,
-              key: region.codeInsee,
-            }}
-          />
-        ))}
+        {geoData
+          .sort((a, b) => b.nom < a.nom)
+          .map((region) => (
+            <Region
+              {...{
+                searchResultShown,
+                data: region,
+                input,
+                key: region.codeInsee,
+              }}
+            />
+          ))}
       </ul>
     </div>
   );
