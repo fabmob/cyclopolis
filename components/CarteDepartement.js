@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import correspondanceGéographique from "../correspondanceGéographique.csv";
 import geoData from "../geoData";
-export default ({ ville }) => {
-  const { région, département } = correspondanceGéographique.find(
-      (c) => c.ville === ville
-    ),
+
+export default ({ ville, codeDepartement, codeRegion }) => {
+  const { région, département } =
+      codeDepartement && codeRegion
+        ? { région: codeRegion, département: codeDepartement }
+        : correspondanceGéographique.find((c) => c.ville === ville),
     d = geoData
       .find((r) => r.codeInsee === région + "")
       .departements.find((d) => d.numeroDepartement === "" + département).d;

@@ -21,7 +21,14 @@ export default function ({ data }) {
   const searchResultShown = (validInput
     ? searchResults.map((el) => el.item)
     : data
-  ).slice(0, 15);
+  )
+    .slice(0, 15)
+    .map((el) => {
+      const { région, département } = correspondanceGéographique.find(
+        (c) => c.ville === el.region
+      );
+      return { ...el, codeRegion: région, codeDepartement: département };
+    });
 
   useEffect(() => setFuse(new Fuse(data, options)), []);
 
@@ -71,24 +78,76 @@ export default function ({ data }) {
 }
 
 const Region = ({ data, searchResultShown, input }) => {
-  const regionResults = searchResultShown.filter((el) => {
-    const cityName = el.region;
-
-    const { région, département } = correspondanceGéographique.find(
-      (c) => c.ville === cityName
-    );
-
-    return région == data.codeInsee;
-  });
-  if (!regionResults.length) return null;
-
-  console.log("RR", regionResults);
+  const filteredResults = searchResultShown.filter(
+    (el) => el.codeRegion == data.codeInsee
+  );
+  console.log("FR", filteredResults);
+  if (!filteredResults.length) return null;
 
   return (
     <li key={data.codeInsee}>
       <h3>{data.nom}</h3>
       <ul>
-        {regionResults.map((city) => (
+        {data.departements.map((d) => (
+          <li key={d.codeInsee}>
+            <Departement
+              {...{
+                filteredResults,
+                data: d,
+                input,
+                key: d.numeroDepartement,
+                codeRegion: data.codeInsee,
+              }}
+            />
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+};
+
+const Departement = ({
+  data,
+  filteredResults: rawResults,
+  input,
+  codeRegion,
+}) => {
+  const filteredResults = rawResults.filter(
+    (el) => el.codeDepartement == data.numeroDepartement
+  );
+  if (!filteredResults.length) return null;
+
+  return (
+    <li
+      key={data.numeroDepartement}
+      css={`
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      `}
+    >
+      <div
+        css={`
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 10rem;
+          h4 {
+            font-weight: normal;
+            text-transform: uppercase;
+          }
+        `}
+      >
+        <h4>{data.nom}</h4>
+        <CarteDepartement
+          {...{
+            codeRegion: codeRegion,
+            codeDepartement: data.numeroDepartement,
+          }}
+        />
+      </div>
+      <ul>
+        {filteredResults.map((city) => (
           <li key={city}>
             <Link href={"/villes/" + city.region}>
               <a>
@@ -119,9 +178,9 @@ const Item = ({ input, data }) => (
       > * {
         margin: 0 1rem;
       }
+      width: 16rem;
     `}
   >
-    <CarteDepartement ville={data.region} />
     <span>
       <Highlighter
         highlightStyle={{
