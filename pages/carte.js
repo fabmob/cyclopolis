@@ -79,17 +79,26 @@ export async function getStaticProps() {
 export const Carte = ({
   outreMer = false,
   setGeo = () => null,
-  showRegion,
+  showRegion = false,
 }) => (
   <div
     css={`
       path {
+        ${showRegion
+          ? `
+stroke: #86aae0;
+stroke-opacity: 1;
+fill: #86aae0;
+stroke-width: 2px;
+`
+          : `
         stroke: #000000;
         stroke-width: 1px;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-opacity: 0.25;
         fill: #86aae0;
+		`}
       }
       g:hover path {
         fill: #86cce0;
