@@ -11,7 +11,7 @@ const Title = styled.h1`
   margin: 0.2rem;
 `;
 
-const name = "Comment ça roule";
+const name = "Comment ça roule ?";
 export const siteDescription =
   "Découvrez les chiffres du vélo dans les métropoles françaises.";
 
@@ -42,7 +42,7 @@ export default function Layout({ children, home }) {
           >
             <Image
               priority
-              src="/images/logo.svg"
+              src="/images/commentçaroule.svg"
               className={utilStyles.borderCircle}
               height={home ? 80 : 40}
               width={home ? 80 : 40}
