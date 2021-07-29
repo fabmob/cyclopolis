@@ -23,6 +23,7 @@ const dataMeta = {
 
 export default function Ville({ data }) {
   const [wikidata, setWikidata] = useState(null);
+  console.log(wikidata);
 
   useEffect(() => {
     getCityData(data.region).then((json) =>
@@ -42,6 +43,9 @@ export default function Ville({ data }) {
       >
         <h1>{data.region}</h1>
         {wikidata?.pic && <CityImage src={wikidata.pic.value} />}
+        {wikidata?.population && (
+          <p>{(+wikidata.population.value).toLocaleString()} hab.</p>
+        )}
       </header>
       <br />
       <ul

@@ -1,8 +1,9 @@
 const endpointUrl = "https://query.wikidata.org/sparql";
 const getQuery = (cityName) => `#defaultView:ImageGrid
-SELECT distinct ?item ?itemLabel ?itemDescription ?pic WHERE{  
+SELECT distinct ?item ?itemLabel ?itemDescription ?pic ?population WHERE{  
   ?item ?label "${cityName}"@fr;
-   wdt:P18 ?pic.
+   wdt:P18 ?pic;
+   wdt:P1082 ?population.
   ?article schema:about ?item .
   ?article schema:inLanguage "en" .
   ?article schema:isPartOf <https://en.wikipedia.org/>. 
