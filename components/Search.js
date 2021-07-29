@@ -93,7 +93,7 @@ const Region = ({ data, searchResultShown, input }) => {
           align-items: center;
         `}
       >
-        <div css="width: 4rem">
+        <div css="width: 3rem; margin-right: .6rem">
           <Carte showRegion={data.codeInsee} />
         </div>
         <h3>{data.nom}</h3>
@@ -144,6 +144,8 @@ const Departement = ({
             font-weight: 500;
             color: #444;
             text-transform: uppercase;
+            margin: 0.4rem;
+            font-size: 90%;
           }
         `}
       >
@@ -180,8 +182,8 @@ const Item = ({ input, data }) => (
       box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
         0 1px 2px rgba(41, 117, 209, 0.24);
       background: #fdfcff;
-      padding: 0.6rem 1rem;
-      margin: 1rem;
+      padding: 0.6rem 0.1rem;
+      margin: 0.3rem;
       list-style-type: none;
       border-radius: 0.6rem;
       display: flex;
