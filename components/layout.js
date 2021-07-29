@@ -11,9 +11,9 @@ const Title = styled.h1`
   margin: 0.2rem;
 `;
 
-const name = "Cyclopolis";
+const name = "Comment ça roule";
 export const siteDescription =
-  "L'observatoire de l'usage du vélo dans les collectivités françaises";
+  "Découvrez les chiffres du vélo dans les métropoles françaises.";
 
 export default function Layout({ children, home }) {
   return (
