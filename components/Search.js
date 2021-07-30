@@ -33,8 +33,6 @@ export default function ({ data }) {
 
   useEffect(() => setFuse(new Fuse(data, options)), []);
 
-  console.log(searchResultShown);
-
   return (
     <div
       css={`
@@ -82,7 +80,6 @@ const Region = ({ data, searchResultShown, input }) => {
   const filteredResults = searchResultShown.filter(
     (el) => el.codeRegion == data.codeInsee
   );
-  console.log("FR", filteredResults);
   if (!filteredResults.length) return null;
 
   return (

@@ -22,7 +22,6 @@ export const TabButton = styled.button`
 `;
 
 export default function Home({ data }) {
-  console.log("DATA°", data);
   return (
     <Layout home>
       <Head>
