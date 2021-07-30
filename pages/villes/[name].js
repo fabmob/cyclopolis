@@ -90,12 +90,24 @@ export default function Ville({ data }) {
                     font-size: 100%;
                   }
                   max-width: 14rem;
+                  @media (max-width: 800px) {
+                    max-width: 8rem;
+                    h2 {
+                      font-size: 90%;
+                      text-align: center;
+                    }
+                    .emoji {
+                      font-size: 150%;
+                    }
+                  }
                   box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
                     0 1px 2px rgb(41 117 209 / 24%);
                   margin: 0.6rem;
                 `}
               >
-                <div css="font-size: 200%; margin: 0 .6rem">{icon}</div>
+                <div className="emoji" css="font-size: 200%; margin: 0 .6rem">
+                  {icon}
+                </div>
                 <h2>{label} </h2>
 
                 <div>
