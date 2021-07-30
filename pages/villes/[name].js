@@ -25,9 +25,9 @@ const dataMeta = {
     icon: "📏",
     unit: "km",
   },
-  mean_speed_mean: { label: "Vitesse moyenne", icon: "🐰", unit: "km/h" },
+  mean_speed_mean: { label: "Vitesse moyenne", icon: "🏇", unit: "km/h" },
   stop_time_mean_minutes: {
-    label: "Temps d'arrêt moyen",
+    label: "Temps d'arrêt / km",
     icon: "✋️",
     unit: "minutes",
   },
@@ -75,8 +75,9 @@ export default function Ville({ data }) {
               <li
                 css={`
                   display: flex;
-                  justify-content: start;
+                  justify-content: center;
                   align-items: center;
+                  flex-wrap: wrap;
                   h2 {
                     text-transform: uppercase;
                     font-weight: 300;
@@ -89,15 +90,13 @@ export default function Ville({ data }) {
                   margin: 0.6rem;
                 `}
               >
-                <div css="font-size: 280%; margin: 0 .6rem">{icon}</div>
-                <div>
-                  <h2>{label} </h2>
+                <div css="font-size: 200%; margin: 0 .6rem">{icon}</div>
+                <h2>{label} </h2>
 
-                  <div>
-                    <span css="font-size: 200%">{number}</span>
-                    &nbsp;
-                    {unit}
-                  </div>
+                <div>
+                  <span css="font-size: 200%">{number}</span>
+                  &nbsp;
+                  {unit}
                 </div>
               </li>
             );
