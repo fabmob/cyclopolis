@@ -13,7 +13,7 @@ const frenchNumber = (number) =>
 const formatInputNumber = (string, unit) => {
   const number = +string.replace(",", ".");
 
-  if (unit === "minutes") {
+  if (unit === "minutes" && number <= 1) {
     return [frenchNumber(number * 60), "secondes"];
   }
   return [frenchNumber(number), unit];
@@ -21,7 +21,7 @@ const formatInputNumber = (string, unit) => {
 
 const dataMeta = {
   meandistance_km: {
-    label: "Distance moyenne / jour",
+    label: "Distance / jour",
     icon: "📏",
     unit: "km",
   },
@@ -29,6 +29,11 @@ const dataMeta = {
   stop_time_mean_minutes: {
     label: "Temps d'arrêt / km",
     icon: "✋️",
+    unit: "minutes",
+  },
+  travel_time_mean_minutes: {
+    label: "Durée d'un trajet",
+    icon: "⌚️",
     unit: "minutes",
   },
 };
