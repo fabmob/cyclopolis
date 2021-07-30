@@ -5,7 +5,19 @@ import Segments from "../../components/Segments";
 import getCityData from "../../components/wikidata";
 import styled from "styled-components";
 
-const formatInputNumber = (string) => (+string.replace(",", ".")).toFixed(1);
+const frenchNumber = (number) =>
+  number.toLocaleString("fr-FR", {
+    maximumSignificantDigits: 2,
+  });
+
+const formatInputNumber = (string, unit) => {
+  const number = +string.replace(",", ".");
+
+  if (unit === "minutes") {
+    return [frenchNumber(number * 60), "secondes"];
+  }
+  return [frenchNumber(number), unit];
+};
 
 const dataMeta = {
   meandistance_km: {
@@ -55,38 +67,42 @@ export default function Ville({ data }) {
           justify-content: center;
         `}
       >
-        {Object.entries(dataMeta).map(([key, { label, icon, unit }]) => (
-          <li
-            css={`
-              display: flex;
-              justify-content: start;
-              align-items: center;
-              h2 {
-                text-transform: uppercase;
-                font-weight: 300;
-                margin: 0.4rem;
-                font-size: 100%;
-              }
-              max-width: 14rem;
-              box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
-                0 1px 2px rgb(41 117 209 / 24%);
-              margin: 0.6rem;
-            `}
-          >
-            <div css="font-size: 280%; margin: 0 .6rem">{icon}</div>
-            <div>
-              <h2>{label} </h2>
+        {Object.entries(dataMeta).map(
+          ([key, { label, icon, unit: unitRaw }]) => {
+            const [number, unit] = formatInputNumber(data[key], unitRaw);
 
-              <div>
-                <span css="font-size: 200%">
-                  {formatInputNumber(data[key])}
-                </span>
-                &nbsp;
-                {unit}
-              </div>
-            </div>
-          </li>
-        ))}
+            return (
+              <li
+                css={`
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  h2 {
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    margin: 0.4rem;
+                    font-size: 100%;
+                  }
+                  max-width: 14rem;
+                  box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
+                    0 1px 2px rgb(41 117 209 / 24%);
+                  margin: 0.6rem;
+                `}
+              >
+                <div css="font-size: 280%; margin: 0 .6rem">{icon}</div>
+                <div>
+                  <h2>{label} </h2>
+
+                  <div>
+                    <span css="font-size: 200%">{number}</span>
+                    &nbsp;
+                    {unit}
+                  </div>
+                </div>
+              </li>
+            );
+          }
+        )}
       </ul>
 
       <h2>Les segments les plus fréquentés</h2>
