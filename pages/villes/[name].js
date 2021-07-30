@@ -4,14 +4,16 @@ import cyclopolisData from "../../cyclopolisData.csv";
 import Segments from "../../components/Segments";
 import getCityData from "../../components/wikidata";
 import styled from "styled-components";
+import Context from "./Context";
 
 const frenchNumber = (number) =>
   number.toLocaleString("fr-FR", {
     maximumSignificantDigits: 2,
   });
 
+export const rawToNumber = (string) => +string.replace(",", ".");
 const formatInputNumber = (string, unit) => {
-  const number = +string.replace(",", ".");
+  const number = rawToNumber(string);
 
   if (unit === "minutes" && number <= 1) {
     return [frenchNumber(number * 60), "secondes"];
@@ -83,6 +85,8 @@ export default function Ville({ data }) {
                   justify-content: center;
                   align-items: center;
                   flex-wrap: wrap;
+                  position: relative;
+                  padding-bottom: 1rem;
                   h2 {
                     text-transform: uppercase;
                     font-weight: 300;
@@ -115,6 +119,7 @@ export default function Ville({ data }) {
                   &nbsp;
                   {unit}
                 </div>
+                <Context {...{ value: data[key], metric: key }} />
               </li>
             );
           }
