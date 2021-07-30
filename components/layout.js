@@ -9,6 +9,7 @@ const Title = styled.h1`
   font-size: ${({ size }) => size || "250%"};
   color: ${({ theme }) => theme.colors.primary};
   margin: 0.2rem;
+  white-space: nowrap;
 `;
 
 const name = "Comment ça roule ?";
@@ -48,7 +49,7 @@ export default function Layout({ children, home }) {
               width={home ? 80 : 40}
               alt={name}
             />
-            <Title size={!home && "180%"}>{name}</Title>
+            <Title size={"160%"}>{name}</Title>
           </div>
         </Link>
       </header>

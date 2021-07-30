@@ -192,7 +192,7 @@ const Item = ({ input, data }) => (
       > * {
         margin: 0 1rem;
       }
-      width: 16rem;
+      width: 12rem;
     `}
   >
     <span>
