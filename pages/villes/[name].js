@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../../components/layout";
-import cyclopolisData from "../../cyclopolisData.csv";
 import Segments from "../../components/Segments";
 import getCityData from "../../components/wikidata";
-import styled from "styled-components";
+import cyclopolisData from "../../cyclopolisData.csv";
 import Context from "./Context";
+import Header from "./Header";
 
 const frenchNumber = (number) =>
   number.toLocaleString("fr-FR", {
@@ -52,20 +52,7 @@ export default function Ville({ data }) {
 
   return (
     <Layout>
-      <header
-        css={`
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          justify-content: space-evenly;
-        `}
-      >
-        <h1>{data.region}</h1>
-        {wikidata?.pic && <CityImage src={wikidata.pic.value} />}
-        {wikidata?.population && (
-          <p>{(+wikidata.population.value).toLocaleString()} hab.</p>
-        )}
-      </header>
+      <Header name={data.region} wikidata={wikidata} />
       <br />
       <ul
         css={`
@@ -157,7 +144,3 @@ export function getAllCityNames() {
     };
   });
 }
-
-const CityImage = styled.img`
-  max-height: 6rem;
-`;
