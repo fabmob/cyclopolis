@@ -1,5 +1,5 @@
-import cyclopolisData from "../../cyclopolisData.csv";
-import { rawToNumber } from "./[name]";
+import cyclopolisData from "../cyclopolisData.csv";
+import { rawToNumber } from "../pages/villes/[name]";
 const Context = ({ value, metric }) => {
   const data = cyclopolisData.map((o) => rawToNumber(o[metric])),
     min = Math.min(...data),

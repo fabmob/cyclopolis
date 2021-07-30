@@ -3,8 +3,8 @@ import Layout from "../../components/layout";
 import Segments from "../../components/Segments";
 import getCityData from "../../components/wikidata";
 import cyclopolisData from "../../cyclopolisData.csv";
-import Context from "./Context";
-import Header from "./Header";
+import Context from "../../components/Context";
+import Header from "../../components/Header";
 
 const frenchNumber = (number) =>
   number.toLocaleString("fr-FR", {
