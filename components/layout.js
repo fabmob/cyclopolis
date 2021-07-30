@@ -39,6 +39,7 @@ export default function Layout({ children, home }) {
           <div
             css={`
               display: flex;
+              align-items: center;
             `}
           >
             <Image
