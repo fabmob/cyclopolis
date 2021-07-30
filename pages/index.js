@@ -6,7 +6,7 @@ import data from "../cyclopolisData.csv";
 import Link from "next/link";
 import styled from "styled-components";
 
-const TabButton = styled.button`
+export const TabButton = styled.button`
   background: rgb(0, 112, 243);
   box-shadow: rgb(0 118 255 / 39%) 0px 4px 14px 0px;
   color: white;
@@ -18,6 +18,7 @@ const TabButton = styled.button`
   a {
     color: inherit;
   }
+  cursor: pointer;
 `;
 
 export default function Home({ data }) {
