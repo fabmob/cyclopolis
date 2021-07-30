@@ -62,7 +62,7 @@ export default function ({ data }) {
       {validInput && !searchResultShown.length && "Rien trouvé :("}
       <ul>
         {geoData
-          .sort((a, b) => b.nom < a.nom)
+          .sort((a, b) => (b.nom > a.nom ? -1 : 1))
           .map((region) => (
             <Region
               {...{
