@@ -130,7 +130,7 @@ const Departement = ({
       key={data.numeroDepartement}
       css={`
         display: flex;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
       `}
     >
