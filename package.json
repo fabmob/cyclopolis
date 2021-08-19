@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@svgr/webpack": "^5.5.0",
     "babel-plugin-styled-components": "^1.12.0",
     "fuse.js": "^6.4.6",
     "next": "^10.0.0",
