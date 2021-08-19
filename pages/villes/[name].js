@@ -5,6 +5,7 @@ import getCityData from "../../components/wikidata";
 import cyclopolisData from "../../cyclopolisData.csv";
 import Context from "../../components/Context";
 import Header from "../../components/Header";
+import Link from "next/link";
 
 const frenchNumber = (number) =>
   number.toLocaleString("fr-FR", {
@@ -21,7 +22,7 @@ const formatInputNumber = (string, unit) => {
   return [frenchNumber(number), unit];
 };
 
-const dataMeta = {
+export const dataMeta = {
   meandistance_km: {
     label: "Distance / jour",
     icon: "📏",
@@ -66,48 +67,55 @@ export default function Ville({ data }) {
             const [number, unit] = formatInputNumber(data[key], unitRaw);
 
             return (
-              <li
-                css={`
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  flex-wrap: wrap;
-                  position: relative;
-                  padding-bottom: 1rem;
-                  h2 {
-                    text-transform: uppercase;
-                    font-weight: 300;
-                    margin: 0.4rem;
-                    font-size: 100%;
-                  }
-                  max-width: 14rem;
-                  @media (max-width: 800px) {
-                    max-width: 8rem;
-                    h2 {
-                      font-size: 90%;
-                      text-align: center;
-                    }
-                    .emoji {
-                      font-size: 150%;
-                    }
-                  }
-                  box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
-                    0 1px 2px rgb(41 117 209 / 24%);
-                  margin: 0.6rem;
-                `}
-              >
-                <div className="emoji" css="font-size: 200%; margin: 0 .6rem">
-                  {icon}
-                </div>
-                <h2>{label} </h2>
+              <Link href={"/indicateurs/" + key}>
+                <a title="Comparer avec d'autres villes">
+                  <li
+                    css={`
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      flex-wrap: wrap;
+                      position: relative;
+                      padding-bottom: 1rem;
+                      h2 {
+                        text-transform: uppercase;
+                        font-weight: 300;
+                        margin: 0.4rem;
+                        font-size: 100%;
+                      }
+                      max-width: 14rem;
+                      @media (max-width: 800px) {
+                        max-width: 8rem;
+                        h2 {
+                          font-size: 90%;
+                          text-align: center;
+                        }
+                        .emoji {
+                          font-size: 150%;
+                        }
+                      }
+                      box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
+                        0 1px 2px rgb(41 117 209 / 24%);
+                      margin: 0.6rem;
+                    `}
+                  >
+                    <div
+                      className="emoji"
+                      css="font-size: 200%; margin: 0 .6rem"
+                    >
+                      {icon}
+                    </div>
+                    <h2>{label} </h2>
 
-                <div>
-                  <span css="font-size: 200%">{number}</span>
-                  &nbsp;
-                  {unit}
-                </div>
-                <Context {...{ value: data[key], metric: key }} />
-              </li>
+                    <div>
+                      <span css="font-size: 200%">{number}</span>
+                      &nbsp;
+                      {unit}
+                    </div>
+                    <Context {...{ value: data[key], metric: key }} />
+                  </li>
+                </a>
+              </Link>
             );
           }
         )}
