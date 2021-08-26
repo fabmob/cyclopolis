@@ -67,8 +67,8 @@ export default function Search({ data }) {
                 searchResultShown,
                 data: region,
                 input,
-                key: region.codeInsee,
               }}
+              key={region.codeInsee}
             />
           ))}
       </ul>
