@@ -1,20 +1,21 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
-import styled from "styled-components";
+import Head from 'next/head'
+import Image from 'next/image'
+import styles from './layout.module.css'
+import utilStyles from '../styles/utils.module.css'
+import Link from 'next/link'
+import styled from 'styled-components'
+import Logo from '../public/images/commentçaroule.svg'
 
 const Title = styled.h1`
-  font-size: ${({ size }) => size || "250%"};
+  font-size: ${({ size }) => size || '250%'};
   color: ${({ theme }) => theme.colors.primary};
   margin: 0.2rem;
   white-space: nowrap;
-`;
+`
 
-const name = "Comment ça roule ?";
+const name = 'Comment ça roule ?'
 export const siteDescription =
-  "Découvrez les chiffres du vélo dans les métropoles françaises.";
+  'Découvrez les chiffres du vélo dans les métropoles françaises.'
 
 export default function Layout({ children, home }) {
   return (
@@ -42,15 +43,8 @@ export default function Layout({ children, home }) {
               align-items: center;
             `}
           >
-            <Image
-              priority
-              src="/images/commentçaroule.svg"
-              className={utilStyles.borderCircle}
-              height={home ? 80 : 40}
-              width={home ? 80 : 40}
-              alt={name}
-            />
-            <Title size={"160%"}>{name}</Title>
+            <img css="width:4rem" src="/images/commentçaroule.svg" alt={name} />
+            <Title size={'160%'}>{name}</Title>
           </div>
         </Link>
       </header>
@@ -80,5 +74,5 @@ export default function Layout({ children, home }) {
         </Link>
       </footer>
     </div>
-  );
+  )
 }
