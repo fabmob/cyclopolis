@@ -1,23 +1,23 @@
-import Fuse from "fuse.js";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import Highlighter from "react-highlight-words";
-import correspondanceGéographique from "../correspondanceGéographique.csv";
-import geoData from "../geoData";
-import { Carte } from "../pages/carte";
-import CarteDepartement from "./CarteDepartement";
+import Fuse from 'fuse.js'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+import Highlighter from 'react-highlight-words'
+import correspondanceGéographique from '../correspondanceGéographique.csv'
+import geoData from '../geoData'
+import { Carte } from '../pages/carte'
+import CarteDepartement from './CarteDepartement'
 
 const options = {
-  keys: ["region"],
-};
-export default function ({ data }) {
-  const [input, setInput] = useState("");
-  const [fuse, setFuse] = useState(null);
-  let [ing, setSearching] = useState(true);
+  keys: ['region'],
+}
+export default function Search({ data }) {
+  const [input, setInput] = useState('')
+  const [fuse, setFuse] = useState(null)
+  let [ing, setSearching] = useState(true)
 
-  let validInput = input.length > 2;
+  let validInput = input.length > 2
 
-  const searchResults = validInput ? fuse.search(input) : [];
+  const searchResults = validInput ? fuse.search(input) : []
 
   const searchResultShown = (validInput
     ? searchResults.map((el) => el.item)
@@ -27,11 +27,11 @@ export default function ({ data }) {
     .map((el) => {
       const { région, département } = correspondanceGéographique.find(
         (c) => c.ville === el.region
-      );
-      return { ...el, codeRegion: région, codeDepartement: département };
-    });
+      )
+      return { ...el, codeRegion: région, codeDepartement: département }
+    })
 
-  useEffect(() => setFuse(new Fuse(data, options)), []);
+  useEffect(() => setFuse(new Fuse(data, options)), [])
 
   return (
     <div
@@ -53,11 +53,11 @@ export default function ({ data }) {
         value={input}
         placeholder="Une ville française"
         onChange={(e) => {
-          let input = e.target.value;
-          setInput(input);
+          let input = e.target.value
+          setInput(input)
         }}
       />
-      {validInput && !searchResultShown.length && "Rien trouvé :("}
+      {validInput && !searchResultShown.length && 'Rien trouvé :('}
       <ul>
         {geoData
           .sort((a, b) => (b.nom > a.nom ? -1 : 1))
@@ -73,14 +73,14 @@ export default function ({ data }) {
           ))}
       </ul>
     </div>
-  );
+  )
 }
 
 const Region = ({ data, searchResultShown, input }) => {
   const filteredResults = searchResultShown.filter(
     (el) => el.codeRegion == data.codeInsee
-  );
-  if (!filteredResults.length) return null;
+  )
+  if (!filteredResults.length) return null
 
   return (
     <li key={data.codeInsee} css="margin-bottom: 2rem">
@@ -111,8 +111,8 @@ const Region = ({ data, searchResultShown, input }) => {
         ))}
       </ul>
     </li>
-  );
-};
+  )
+}
 
 const Departement = ({
   data,
@@ -122,8 +122,8 @@ const Departement = ({
 }) => {
   const filteredResults = rawResults.filter(
     (el) => el.codeDepartement == data.numeroDepartement
-  );
-  if (!filteredResults.length) return null;
+  )
+  if (!filteredResults.length) return null
 
   return (
     <li
@@ -160,7 +160,7 @@ const Departement = ({
       <ul>
         {filteredResults.map((city) => (
           <li key={city}>
-            <Link href={"/villes/" + city.region}>
+            <Link href={'/villes/' + city.region}>
               <a>
                 <Item data={city} input={input} />
               </a>
@@ -169,12 +169,12 @@ const Departement = ({
         ))}
       </ul>
     </li>
-  );
-};
+  )
+}
 
 const Item = ({ input, data }) => (
   <li
-    key={data["region"]}
+    key={data['region']}
     css={`
       box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
         0 1px 2px rgba(41, 117, 209, 0.24);
@@ -195,13 +195,13 @@ const Item = ({ input, data }) => (
     <span>
       <Highlighter
         highlightStyle={{
-          background: "#88c13e",
-          color: "white",
+          background: '#88c13e',
+          color: 'white',
           fontWeight: 400,
         }}
-        searchWords={input.split(" ")}
+        searchWords={input.split(' ')}
         textToHighlight={data.region}
       />
     </span>
   </li>
-);
+)
