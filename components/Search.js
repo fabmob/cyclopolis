@@ -45,7 +45,7 @@ export default function Search({ data }) {
         }
       `}
     >
-      <div css="display: block; align-items: center">
+      <div css="display: flex; align-items: center; justify-content: center">
         <Emoji e="🔎" /> &nbsp;
         <input
           value={input}
@@ -79,7 +79,6 @@ const Region = ({ data, searchResultShown, input }) => {
   const filteredResults = searchResultShown.filter(
     (el) => el.codeRegion == data.codeInsee
   )
-  console.log(data.codeInsee, filteredResults, searchResultShown)
   if (!filteredResults.length) return null
 
   return (
@@ -116,68 +115,8 @@ const Region = ({ data, searchResultShown, input }) => {
   )
 }
 
-const Departement = ({
-  data,
-  filteredResults: rawResults,
-  input,
-  codeRegion,
-}) => {
-  const filteredResults = rawResults.filter(
-    (el) => el.codeDepartement == data.numeroDepartement
-  )
-  if (!filteredResults.length) return null
-
-  console.log(data.departements)
-
-  return (
-    <li
-      key={data.numeroDepartement}
-      css={`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      `}
-    >
-      <div
-        css={`
-          width: 10rem;
-          h4 {
-            font-weight: 500;
-            color: #444;
-            text-transform: uppercase;
-            margin: 0.4rem;
-            font-size: 90%;
-          }
-        `}
-      >
-        <h4>{data.nom}</h4>
-
-        {false && (
-          <CarteDepartement
-            {...{
-              codeRegion: codeRegion,
-              codeDepartement: data.numeroDepartement,
-            }}
-          />
-        )}
-      </div>
-      <ul>
-        {filteredResults.map((city) => (
-          <li key={city}>
-            <Link href={'/villes/' + city.area}>
-              <a>
-                <Item data={city} input={input} />
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </li>
-  )
-}
-
 const Item = ({ input, data, departement }) => (
-  <li
+  <div
     key={data['region']}
     css={`
       box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
@@ -193,7 +132,8 @@ const Item = ({ input, data, departement }) => (
       > * {
         margin: 0 1rem;
       }
-      width: 22rem;
+      width: 20rem;
+      max-width: 100%;
 
       h4 {
         font-weight: 500;
@@ -217,5 +157,5 @@ const Item = ({ input, data, departement }) => (
       />
       {departement && <h4>{departement && departement.nom}</h4>}
     </span>
-  </li>
+  </div>
 )
