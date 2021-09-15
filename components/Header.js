@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import correspondanceMétropoleVille from '../correspondanceMétropoleVille'
 
 const toThumb = (url) => {
   const paths = url.split('FilePath/')
@@ -59,7 +60,7 @@ const Header = ({ name, wikidata, data }) => {
         `}
       >
         {population && <p>{(+population).toLocaleString()} hab.</p>}
-        {wikidata?.area && (
+        {wikidata?.area && !correspondanceMétropoleVille[data.area] && (
           <p>{(+wikidata.area.value).toLocaleString()} km².</p>
         )}
       </div>

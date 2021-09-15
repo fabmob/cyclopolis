@@ -1,3 +1,5 @@
+import correspondanceMétropoleVille from '../correspondanceMétropoleVille'
+
 const endpointUrl = 'https://query.wikidata.org/sparql'
 const getQuery = (cityName) => `#defaultView:ImageGrid
 SELECT distinct ?item ?itemLabel ?itemDescription ?pic ?population ?area WHERE{  
@@ -13,7 +15,10 @@ SELECT distinct ?item ?itemLabel ?itemDescription ?pic ?population ?area WHERE{
  `
 
 export default (cityName) => {
-  const query = getQuery(cityName)
+  const correspondance = correspondanceMétropoleVille[cityName]
+  const queryCity = correspondance || cityName
+
+  const query = getQuery(queryCity)
 
   const fullUrl = endpointUrl + '?query=' + encodeURIComponent(query)
   const headers = { Accept: 'application/sparql-results+json' }
