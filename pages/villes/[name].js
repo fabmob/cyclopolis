@@ -125,7 +125,7 @@ export default function Ville({ data }) {
       </ul>
 
       <h2>Les segments les plus fréquentés</h2>
-      <Segments data={data} city={data.region} />
+      <Segments data={data} city={data.area} />
     </Layout>
   )
 }
