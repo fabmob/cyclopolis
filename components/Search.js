@@ -5,6 +5,7 @@ import Highlighter from 'react-highlight-words'
 import geoData from '../geoData'
 import { Carte } from '../pages/carte'
 import CarteDepartement from './CarteDepartement'
+import Emoji from '../components/Emoji'
 
 export const getRegionCode = (string) => string.split(' - ')[0]
 
@@ -44,15 +45,17 @@ export default function Search({ data }) {
         }
       `}
     >
-      🔎 &nbsp;
-      <input
-        value={input}
-        placeholder="Une ville française"
-        onChange={(e) => {
-          let input = e.target.value
-          setInput(input)
-        }}
-      />
+      <div css="display: block; align-items: center">
+        <Emoji e="🔎" /> &nbsp;
+        <input
+          value={input}
+          placeholder="Une ville française"
+          onChange={(e) => {
+            let input = e.target.value
+            setInput(input)
+          }}
+        />
+      </div>
       {validInput && !searchResultShown.length && 'Rien trouvé :('}
       <ul>
         {geoData
