@@ -1,19 +1,19 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const toThumb = (url) => {
-  const paths = url.split("FilePath/");
-  const fileName = paths[1];
-  const decoded = decodeURIComponent(fileName).replaceAll(" ", "_");
-  const hash = MD5(unescape(encodeURIComponent(decoded)));
-  console.log(decoded, hash);
+  const paths = url.split('FilePath/')
+  const fileName = paths[1]
+  const decoded = decodeURIComponent(fileName).replaceAll(' ', '_')
+  const hash = MD5(unescape(encodeURIComponent(decoded)))
+  console.log(decoded, hash)
 
-  return `https://upload.wikimedia.org/wikipedia/commons/thumb/${hash[0]}/${hash[0]}${hash[1]}/${decoded}/700px-${fileName}`;
-};
+  return `https://upload.wikimedia.org/wikipedia/commons/thumb/${hash[0]}/${hash[0]}${hash[1]}/${decoded}/700px-${fileName}`
+}
 
 const Header = ({ name, wikidata }) => {
-  const imageURL = wikidata?.pic.value;
-  const thumbURL = imageURL && toThumb(imageURL);
-  console.log(thumbURL);
+  const imageURL = wikidata?.pic.value
+  const thumbURL = imageURL && toThumb(imageURL)
+  console.log(thumbURL)
   return (
     <header
       css={`
@@ -41,12 +41,31 @@ const Header = ({ name, wikidata }) => {
     >
       {wikidata?.pic && <CityImage src={thumbURL} />}
       <h1>{name}</h1>
-      {false && wikidata?.population && (
-        <p>{(+wikidata.population.value).toLocaleString()} hab.</p>
-      )}
+      <div>
+        {wikidata?.population && (
+          <div
+            css={`
+              p {
+                padding: 0 0.6rem;
+                margin: 0;
+              }
+              position: absolute;
+              top: 0;
+              right: 0;
+              position: absolute;
+              z-index: 1;
+              background: #00000085;
+              color: white;
+            `}
+          >
+            <p>{(+wikidata.population.value).toLocaleString()} hab.</p>
+            <p>{(+wikidata.area.value).toLocaleString()} km².</p>
+          </div>
+        )}
+      </div>
     </header>
-  );
-};
+  )
+}
 const CityImage = styled.img`
   width: 100%;
   position: absolute;
@@ -55,32 +74,32 @@ const CityImage = styled.img`
   @media (max-width: 800px) {
     max-height: 6rem;
   }
-`;
+`
 
-export default Header;
+export default Header
 
 var MD5 = function (d) {
-  var r = M(V(Y(X(d), 8 * d.length)));
-  return r.toLowerCase();
-};
+  var r = M(V(Y(X(d), 8 * d.length)))
+  return r.toLowerCase()
+}
 function M(d) {
-  for (var _, m = "0123456789ABCDEF", f = "", r = 0; r < d.length; r++)
-    (_ = d.charCodeAt(r)), (f += m.charAt((_ >>> 4) & 15) + m.charAt(15 & _));
-  return f;
+  for (var _, m = '0123456789ABCDEF', f = '', r = 0; r < d.length; r++)
+    (_ = d.charCodeAt(r)), (f += m.charAt((_ >>> 4) & 15) + m.charAt(15 & _))
+  return f
 }
 function X(d) {
-  for (var _ = Array(d.length >> 2), m = 0; m < _.length; m++) _[m] = 0;
+  for (var _ = Array(d.length >> 2), m = 0; m < _.length; m++) _[m] = 0
   for (m = 0; m < 8 * d.length; m += 8)
-    _[m >> 5] |= (255 & d.charCodeAt(m / 8)) << m % 32;
-  return _;
+    _[m >> 5] |= (255 & d.charCodeAt(m / 8)) << m % 32
+  return _
 }
 function V(d) {
-  for (var _ = "", m = 0; m < 32 * d.length; m += 8)
-    _ += String.fromCharCode((d[m >> 5] >>> m % 32) & 255);
-  return _;
+  for (var _ = '', m = 0; m < 32 * d.length; m += 8)
+    _ += String.fromCharCode((d[m >> 5] >>> m % 32) & 255)
+  return _
 }
 function Y(d, _) {
-  (d[_ >> 5] |= 128 << _ % 32), (d[14 + (((_ + 64) >>> 9) << 4)] = _);
+  ;(d[_ >> 5] |= 128 << _ % 32), (d[14 + (((_ + 64) >>> 9) << 4)] = _)
   for (
     var m = 1732584193, f = -271733879, r = -1732584194, i = 271733878, n = 0;
     n < d.length;
@@ -89,8 +108,8 @@ function Y(d, _) {
     var h = m,
       t = f,
       g = r,
-      e = i;
-    (f = md5_ii(
+      e = i
+    ;(f = md5_ii(
       (f = md5_ii(
         (f = md5_ii(
           (f = md5_ii(
@@ -518,29 +537,29 @@ function Y(d, _) {
       (m = safe_add(m, h)),
       (f = safe_add(f, t)),
       (r = safe_add(r, g)),
-      (i = safe_add(i, e));
+      (i = safe_add(i, e))
   }
-  return Array(m, f, r, i);
+  return Array(m, f, r, i)
 }
 function md5_cmn(d, _, m, f, r, i) {
-  return safe_add(bit_rol(safe_add(safe_add(_, d), safe_add(f, i)), r), m);
+  return safe_add(bit_rol(safe_add(safe_add(_, d), safe_add(f, i)), r), m)
 }
 function md5_ff(d, _, m, f, r, i, n) {
-  return md5_cmn((_ & m) | (~_ & f), d, _, r, i, n);
+  return md5_cmn((_ & m) | (~_ & f), d, _, r, i, n)
 }
 function md5_gg(d, _, m, f, r, i, n) {
-  return md5_cmn((_ & f) | (m & ~f), d, _, r, i, n);
+  return md5_cmn((_ & f) | (m & ~f), d, _, r, i, n)
 }
 function md5_hh(d, _, m, f, r, i, n) {
-  return md5_cmn(_ ^ m ^ f, d, _, r, i, n);
+  return md5_cmn(_ ^ m ^ f, d, _, r, i, n)
 }
 function md5_ii(d, _, m, f, r, i, n) {
-  return md5_cmn(m ^ (_ | ~f), d, _, r, i, n);
+  return md5_cmn(m ^ (_ | ~f), d, _, r, i, n)
 }
 function safe_add(d, _) {
-  var m = (65535 & d) + (65535 & _);
-  return (((d >> 16) + (_ >> 16) + (m >> 16)) << 16) | (65535 & m);
+  var m = (65535 & d) + (65535 & _)
+  return (((d >> 16) + (_ >> 16) + (m >> 16)) << 16) | (65535 & m)
 }
 function bit_rol(d, _) {
-  return (d << _) | (d >>> (32 - _));
+  return (d << _) | (d >>> (32 - _))
 }
