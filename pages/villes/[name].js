@@ -124,6 +124,27 @@ export default function Ville({ data }) {
                     <Emoji e={icon} sizeRem="3" />
                   </div>
                   <h2>{label} </h2>
+                  {key === 'Distance moyenne' && (
+                    <div
+                      css={`
+                        width: 100%;
+                        span {
+                          display: inline-block;
+                          margin: 0 0.4rem;
+                        }
+                      `}
+                    >
+                      <span css="">
+                        <span>L</span>
+                        <span>M</span>
+                        <span>M</span>
+                        <span>J</span>
+                        <span>V</span>
+                      </span>
+                      <span>S</span>
+                      <span>D</span>
+                    </div>
+                  )}
 
                   <div>
                     <span css="font-size: 200%">{number}</span>
