@@ -45,7 +45,11 @@ export default function Layout({ children, home }) {
               cursor: pointer;
             `}
           >
-            <img css="width:4rem" src="/images/commentçaroule.svg" alt={name} />
+            <img
+              css="width:4rem"
+              src="/images/commentçaroule-2.svg"
+              alt={name}
+            />
             <Title size={'160%'}>{name}</Title>
           </div>
         </Link>
