@@ -62,22 +62,13 @@ export default function Layout({ children, home }) {
         </div>
       )}
       <main>{children}</main>
-      <footer>
-        <div
-          css={`
-            display: flex;
-            justify-content: center;
-            margin-top: 6rem;
-            background: linear-gradient(90deg, #0c7ee8 0%, #5fe49b 100%);
-            font-weight: 500;
-            line-height: 2rem;
-            a {
-              color: white;
-            }
-          `}
-        >
-          <a>À propos</a>
-        </div>
+      <footer
+        css={`
+          background: #5f6062;
+          padding: 1rem;
+          color: white;
+        `}
+      >
         <About />
       </footer>
     </div>
