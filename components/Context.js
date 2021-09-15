@@ -16,7 +16,7 @@ const Context = ({ value, metric }) => {
         bottom: 0;
         position: absolute;
 
-        background: linear-gradient(90deg, #0c7ee8 0%, #5fe49b 100%);
+        background: linear-gradient(90deg, white 0%, #ae0917ab 100%);
       `}
     >
       <span
