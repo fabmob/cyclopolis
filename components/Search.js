@@ -95,18 +95,26 @@ const Region = ({ data, searchResultShown, input }) => {
         </div>
         <h3>{data.nom}</h3>
       </div>
-      <ul>
-        {data.departements.map((d) => (
-          <li key={d.codeInsee}>
-            <Departement
-              {...{
-                filteredResults,
-                data: d,
-                input,
-                key: d.numeroDepartement,
-                codeRegion: data.codeInsee,
-              }}
-            />
+      <ul
+        css={`
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        `}
+      >
+        {filteredResults.map((city) => (
+          <li key={city}>
+            <Link href={'/villes/' + city.region}>
+              <a>
+                <Item
+                  data={city}
+                  input={input}
+                  departement={data.departements.find(
+                    (d) => d.numeroDepartement === '' + city.codeDepartement
+                  )}
+                />
+              </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -124,6 +132,8 @@ const Departement = ({
     (el) => el.codeDepartement == data.numeroDepartement
   )
   if (!filteredResults.length) return null
+
+  console.log(data.departements)
 
   return (
     <li
@@ -172,7 +182,7 @@ const Departement = ({
   )
 }
 
-const Item = ({ input, data }) => (
+const Item = ({ input, data, departement }) => (
   <li
     key={data['region']}
     css={`
@@ -189,7 +199,16 @@ const Item = ({ input, data }) => (
       > * {
         margin: 0 1rem;
       }
-      width: 12rem;
+      width: 22rem;
+
+      h4 {
+        font-weight: 500;
+        color: #444;
+        text-transform: uppercase;
+        margin: 0.4rem;
+        font-size: 60%;
+        display: inline;
+      }
     `}
   >
     <span>
@@ -202,6 +221,7 @@ const Item = ({ input, data }) => (
         searchWords={input.split(' ')}
         textToHighlight={data.region}
       />
+      <h4>{departement && departement.nom}</h4>
     </span>
   </li>
 )
