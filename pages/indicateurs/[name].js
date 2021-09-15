@@ -3,7 +3,7 @@ import Context from '../../components/Context'
 import Layout from '../../components/layout'
 import Segments from '../../components/Segments'
 import cyclopolisData from '../../cyclopolisData.csv'
-import { rawToNumber, dataMeta } from '../villes/[name].js'
+import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 import { TabButton } from '../index'
 
 export default function Indicateur({ key, data }) {
@@ -54,23 +54,35 @@ export default function Indicateur({ key, data }) {
                 margin-bottom: 0.2rem;
               `}
             >
-              <span
+              <div
                 css={`
                   position: absolute;
                   left: 0;
+                  width: 100%;
                   height: 1.5rem;
-                  background: #0c7ee8;
-                  display: inline-block;
                   z-index: -1;
-                  width: ${(rawToNumber(valeur) / max) * 80}%;
+                  display: flex;
+                  align-items: center;
                 `}
-              ></span>
+              >
+                <span
+                  css={`
+                    width: ${(rawToNumber(valeur) / max) * 80}%;
+                    display: inline-block;
+                    height: 1.5rem;
+                    background: #0c7ee8;
+                    margin-right: 0.4rem;
+                  `}
+                ></span>
+                <span>{formatInputNumber(valeur)}</span>
+              </div>
 
               <Link href={'/villes/' + ville}>
                 <a>
                   <span
                     css={`
                       margin-left: 0.3rem;
+                      line-height: 1.6rem;
                       color: white;
                     `}
                   >

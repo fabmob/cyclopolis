@@ -1,55 +1,55 @@
-import { useEffect, useState } from "react";
-import Layout from "../../components/layout";
-import Segments from "../../components/Segments";
-import getCityData from "../../components/wikidata";
-import cyclopolisData from "../../cyclopolisData.csv";
-import Context from "../../components/Context";
-import Header from "../../components/Header";
-import Link from "next/link";
+import { useEffect, useState } from 'react'
+import Layout from '../../components/layout'
+import Segments from '../../components/Segments'
+import getCityData from '../../components/wikidata'
+import cyclopolisData from '../../cyclopolisData.csv'
+import Context from '../../components/Context'
+import Header from '../../components/Header'
+import Link from 'next/link'
 
 const frenchNumber = (number) =>
-  number.toLocaleString("fr-FR", {
+  number.toLocaleString('fr-FR', {
     maximumSignificantDigits: 2,
-  });
+  })
 
-export const rawToNumber = (string) => +string.replace(",", ".");
-const formatInputNumber = (string, unit) => {
-  const number = rawToNumber(string);
+export const rawToNumber = (string) => +string.replace(',', '.')
+export const formatInputNumber = (string, unit) => {
+  const number = rawToNumber(string)
 
-  if (unit === "minutes" && number <= 1) {
-    return [frenchNumber(number * 60), "secondes"];
+  if (unit === 'minutes' && number <= 1) {
+    return [frenchNumber(number * 60), 'secondes']
   }
-  return [frenchNumber(number), unit];
-};
+  return [frenchNumber(number), unit]
+}
 
 export const dataMeta = {
   meandistance_km: {
-    label: "Distance / jour",
-    icon: "📏",
-    unit: "km",
+    label: 'Distance / jour',
+    icon: '📏',
+    unit: 'km',
   },
-  mean_speed_mean: { label: "Vitesse moyenne", icon: "🏇", unit: "km/h" },
+  mean_speed_mean: { label: 'Vitesse moyenne', icon: '🏇', unit: 'km/h' },
   stop_time_mean_minutes: {
     label: "Temps d'arrêt / km",
-    icon: "✋️",
-    unit: "minutes",
+    icon: '✋️',
+    unit: 'minutes',
   },
   travel_time_mean_minutes: {
     label: "Durée d'un trajet",
-    icon: "⌚️",
-    unit: "minutes",
+    icon: '⌚️',
+    unit: 'minutes',
   },
-};
+}
 
 export default function Ville({ data }) {
-  const [wikidata, setWikidata] = useState(null);
-  console.log(wikidata);
+  const [wikidata, setWikidata] = useState(null)
+  console.log(wikidata)
 
   useEffect(() => {
     getCityData(data.region).then((json) =>
       setWikidata(json?.results?.bindings[0])
-    );
-  }, [data.region]);
+    )
+  }, [data.region])
 
   return (
     <Layout>
@@ -64,10 +64,10 @@ export default function Ville({ data }) {
       >
         {Object.entries(dataMeta).map(
           ([key, { label, icon, unit: unitRaw }]) => {
-            const [number, unit] = formatInputNumber(data[key], unitRaw);
+            const [number, unit] = formatInputNumber(data[key], unitRaw)
 
             return (
-              <Link href={"/indicateurs/" + key}>
+              <Link href={'/indicateurs/' + key}>
                 <li
                   title="Comparer avec d'autres villes"
                   css={`
@@ -113,7 +113,7 @@ export default function Ville({ data }) {
                   <Context {...{ value: data[key], metric: key }} />
                 </li>
               </Link>
-            );
+            )
           }
         )}
       </ul>
@@ -121,23 +121,23 @@ export default function Ville({ data }) {
       <h2>Les segments les plus fréquentés</h2>
       <Segments data={data} city={data.region} />
     </Layout>
-  );
+  )
 }
 
 export async function getStaticPaths() {
   // Return a list of possible value for id
-  const paths = getAllCityNames();
-  return { paths, fallback: false };
+  const paths = getAllCityNames()
+  return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params }) {
-  console.log("etstatic", params);
-  const data = cyclopolisData.find((city) => city.region === params.name);
+  console.log('etstatic', params)
+  const data = cyclopolisData.find((city) => city.region === params.name)
   return {
     props: {
       data,
     },
-  };
+  }
 }
 
 export function getAllCityNames() {
@@ -146,6 +146,6 @@ export function getAllCityNames() {
       params: {
         name: region,
       },
-    };
-  });
+    }
+  })
 }
