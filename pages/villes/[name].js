@@ -71,7 +71,7 @@ export default function Ville({ data }) {
         css={`
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          justify-content: space-evenly;
         `}
       >
         {Object.entries(dataMeta).map(
@@ -97,10 +97,16 @@ export default function Ville({ data }) {
                       font-size: 100%;
                     }
                     max-width: 14rem;
+                    h2 {
+                      max-width: 8rem;
+                      text-align: right;
+                    }
                     @media (max-width: 800px) {
                       max-width: 8rem;
                       h2 {
                         font-size: 90%;
+                        text-align: center;
+                        max-width: auto;
                         text-align: center;
                       }
                       .emoji {
@@ -109,7 +115,7 @@ export default function Ville({ data }) {
                     }
                     box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
                       0 1px 2px rgba(209, 41, 41, 0.24);
-                    margin: 0.6rem;
+                    margin: 0.6rem 0;
                   `}
                 >
                   <div className="emoji" css=" margin: 0 .6rem;">
