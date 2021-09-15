@@ -12,7 +12,8 @@ const frenchNumber = (number) =>
     maximumSignificantDigits: 2,
   })
 
-export const rawToNumber = (string) => +string.replace(',', '.')
+export const rawToNumber = (string) =>
+  typeof string === 'string' ? +string.replace(',', '.') : string
 export const formatInputNumber = (string, unit) => {
   const number = rawToNumber(string)
 
@@ -23,18 +24,22 @@ export const formatInputNumber = (string, unit) => {
 }
 
 export const dataMeta = {
-  meandistance_km: {
+  'Distance moyenne [km]': {
     label: 'Distance / jour',
     icon: '📏',
     unit: 'km',
   },
-  mean_speed_mean: { label: 'Vitesse moyenne', icon: '🏇', unit: 'km/h' },
-  stop_time_mean_minutes: {
+  'Vitesse moyenne [km/h]': {
+    label: 'Vitesse moyenne',
+    icon: '🏇',
+    unit: 'km/h',
+  },
+  "Durée d'arrêt moyenne par km [s]": {
     label: "Temps d'arrêt / km",
     icon: '✋️',
-    unit: 'minutes',
+    unit: 'secondes',
   },
-  travel_time_mean_minutes: {
+  'Durée moyen du trajet [min]': {
     label: "Durée d'un trajet",
     icon: '⌚️',
     unit: 'minutes',
@@ -46,14 +51,14 @@ export default function Ville({ data }) {
   console.log(wikidata)
 
   useEffect(() => {
-    getCityData(data.region).then((json) =>
+    getCityData(data.area).then((json) =>
       setWikidata(json?.results?.bindings[0])
     )
-  }, [data.region])
+  }, [data.area])
 
   return (
     <Layout>
-      <Header name={data.region} wikidata={wikidata} />
+      <Header name={data.area} wikidata={wikidata} />
       <br />
       <ul
         css={`
@@ -64,6 +69,7 @@ export default function Ville({ data }) {
       >
         {Object.entries(dataMeta).map(
           ([key, { label, icon, unit: unitRaw }]) => {
+            console.log('YTOYO', data[key])
             const [number, unit] = formatInputNumber(data[key], unitRaw)
 
             return (
@@ -132,7 +138,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   console.log('etstatic', params)
-  const data = cyclopolisData.find((city) => city.region === params.name)
+  const data = cyclopolisData.find((city) => city.area === params.name)
   return {
     props: {
       data,
@@ -141,10 +147,10 @@ export async function getStaticProps({ params }) {
 }
 
 export function getAllCityNames() {
-  return cyclopolisData.map(({ region }) => {
+  return cyclopolisData.map(({ area }) => {
     return {
       params: {
-        name: region,
+        name: area,
       },
     }
   })

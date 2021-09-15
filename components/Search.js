@@ -2,13 +2,14 @@ import Fuse from 'fuse.js'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
-import correspondanceGéographique from '../correspondanceGéographique.csv'
 import geoData from '../geoData'
 import { Carte } from '../pages/carte'
 import CarteDepartement from './CarteDepartement'
 
+const getRegionCode = (string) => string.split(' - ')[0]
+
 const options = {
-  keys: ['region'],
+  keys: ['area'],
 }
 export default function Search({ data }) {
   const [input, setInput] = useState('')
@@ -22,14 +23,9 @@ export default function Search({ data }) {
   const searchResultShown = (validInput
     ? searchResults.map((el) => el.item)
     : data
-  )
-    .slice(0, 15)
-    .map((el) => {
-      const { région, département } = correspondanceGéographique.find(
-        (c) => c.ville === el.region
-      )
-      return { ...el, codeRegion: région, codeDepartement: département }
-    })
+  ).map((el) => {
+    return { ...el, codeRegion: getRegionCode(el['REGION']) }
+  })
 
   useEffect(() => setFuse(new Fuse(data, options)), [])
 
@@ -80,6 +76,7 @@ const Region = ({ data, searchResultShown, input }) => {
   const filteredResults = searchResultShown.filter(
     (el) => el.codeRegion == data.codeInsee
   )
+  console.log(data.codeInsee, filteredResults, searchResultShown)
   if (!filteredResults.length) return null
 
   return (
@@ -104,15 +101,9 @@ const Region = ({ data, searchResultShown, input }) => {
       >
         {filteredResults.map((city) => (
           <li key={city}>
-            <Link href={'/villes/' + city.region}>
+            <Link href={'/villes/' + city.area}>
               <a>
-                <Item
-                  data={city}
-                  input={input}
-                  departement={data.departements.find(
-                    (d) => d.numeroDepartement === '' + city.codeDepartement
-                  )}
-                />
+                <Item data={city} input={input} />
               </a>
             </Link>
           </li>
@@ -170,7 +161,7 @@ const Departement = ({
       <ul>
         {filteredResults.map((city) => (
           <li key={city}>
-            <Link href={'/villes/' + city.region}>
+            <Link href={'/villes/' + city.area}>
               <a>
                 <Item data={city} input={input} />
               </a>
@@ -219,9 +210,9 @@ const Item = ({ input, data, departement }) => (
           fontWeight: 400,
         }}
         searchWords={input.split(' ')}
-        textToHighlight={data.region}
+        textToHighlight={data.area}
       />
-      <h4>{departement && departement.nom}</h4>
+      {departement && <h4>{departement && departement.nom}</h4>}
     </span>
   </li>
 )
