@@ -28,7 +28,7 @@ export default function Home({ data }) {
   const citiesFound = !geo
     ? []
     : correspondanceGeo.filter(
-        ({ ville, région, département }) => +département === +geo.departement
+        ({ ville, région, département }) => +région === +geo.region
       )
 
   const plural = citiesFound && citiesFound.length > 1 ? 's' : ''
@@ -50,13 +50,17 @@ export default function Home({ data }) {
           <p>
             <strong>{region}</strong> <div>{departement}</div>
           </p>
-          {!citiesFound.length && <p>Pas de données pour ce département.</p>}
+          {!citiesFound.length && <p>Pas de données pour cette région.</p>}
           {citiesFound.length > 0 && (
             <p>
               Ville{plural} trouvée{plural} :{' '}
-              {citiesFound.map((c) => (
-                <Link href={`/villes/${c.ville}`}>{c.ville}</Link>
-              ))}
+              <ul>
+                {citiesFound.map((c) => (
+                  <li key={c.ville}>
+                    <Link href={`/villes/${c.ville}`}>{c.ville}</Link>
+                  </li>
+                ))}
+              </ul>
             </p>
           )}
         </>
@@ -101,10 +105,7 @@ stroke-width: 2px;
 		`}
       }
       g:hover path {
-        fill: #86cce0;
-      }
-      g path:hover {
-        fill: #86eee0;
+        fill: #0070f3;
       }
 
       path.exists {
