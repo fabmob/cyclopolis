@@ -38,8 +38,8 @@ const Segments = ({ data, city }) => {
                   }
                   <span
                     css={`
-                      box-shadow: 0 1px 3px rgb(41 117 209 / 12%),
-                        0 1px 2px rgb(41 117 209 / 24%);
+                      box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
+                        0 1px 2px rgba(41, 117, 209, 0.24);
                       margin-left: 0.6rem;
                       border-radius: 0.5rem;
                       padding: 0.1rem 1rem;
