@@ -32,6 +32,18 @@ export const dataMeta = {
     icon: '📏',
     unit: 'km',
   },
+  'Distance moyenne en semaine': {
+    label: 'Distance semaine / jour',
+    icon: '📏',
+    unit: 'km',
+    sub: true,
+  },
+  'Distance moyenne en week-end': {
+    label: 'Distance week-end / jour',
+    icon: '📏',
+    unit: 'km',
+    sub: true,
+  },
   'Vitesse moyenne': {
     label: 'Vitesse moyenne',
     icon: '🏇',
@@ -75,9 +87,11 @@ export default function Ville({ data }) {
           justify-content: space-evenly;
         `}
       >
-        {Object.entries(dataMeta).map((meta) => (
-          <Indicator meta={meta} data={data} />
-        ))}
+        {Object.entries(dataMeta)
+          .filter(([, { sub }]) => !sub)
+          .map((meta) => (
+            <Indicator meta={meta} data={data} />
+          ))}
       </ul>
 
       <h2>Les segments les plus fréquentés</h2>
