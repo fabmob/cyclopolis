@@ -10,10 +10,12 @@ const toThumb = (url) => {
   return `https://upload.wikimedia.org/wikipedia/commons/thumb/${hash[0]}/${hash[0]}${hash[1]}/${decoded}/700px-${fileName}`
 }
 
-const Header = ({ name, wikidata }) => {
+const Header = ({ name, wikidata, data }) => {
   const imageURL = wikidata?.pic.value
   const thumbURL = imageURL && toThumb(imageURL)
   console.log(thumbURL)
+
+  const population = data['Population '] || wikidata?.population?.value
   return (
     <header
       css={`
@@ -41,26 +43,24 @@ const Header = ({ name, wikidata }) => {
     >
       {wikidata?.pic && <CityImage src={thumbURL} />}
       <h1>{name}</h1>
-      <div>
-        {wikidata?.population && (
-          <div
-            css={`
-              p {
-                padding: 0 0.6rem;
-                margin: 0;
-              }
-              position: absolute;
-              bottom: 0;
-              right: 0;
-              position: absolute;
-              z-index: 1;
-              background: #00000085;
-              color: white;
-            `}
-          >
-            <p>{(+wikidata.population.value).toLocaleString()} hab.</p>
-            <p>{(+wikidata.area.value).toLocaleString()} km².</p>
-          </div>
+      <div
+        css={`
+          p {
+            padding: 0 0.6rem;
+            margin: 0;
+          }
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          position: absolute;
+          z-index: 1;
+          background: #00000085;
+          color: white;
+        `}
+      >
+        {population && <p>{(+population).toLocaleString()} hab.</p>}
+        {wikidata?.area && (
+          <p>{(+wikidata.area.value).toLocaleString()} km².</p>
         )}
       </div>
     </header>

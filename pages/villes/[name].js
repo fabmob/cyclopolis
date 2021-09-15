@@ -59,7 +59,7 @@ export default function Ville({ data }) {
 
   return (
     <Layout>
-      <Header name={data.area} wikidata={wikidata} />
+      <Header name={data.area} data={data} wikidata={wikidata} />
       <br />
       <ul
         css={`
