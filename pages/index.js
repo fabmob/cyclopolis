@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout, { siteDescription } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import Search from '../components/Search'
-import data from '../cyclopolisData.csv'
+import data from '../cyclopolisData'
 import Link from 'next/link'
 import styled from 'styled-components'
 

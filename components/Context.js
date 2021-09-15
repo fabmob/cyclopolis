@@ -1,10 +1,13 @@
-import cyclopolisData from "../cyclopolisData.csv";
-import { rawToNumber } from "../pages/villes/[name]";
+import cyclopolisData from '../cyclopolisData'
+
+import { rawToNumber } from '../pages/villes/[name]'
 const Context = ({ value, metric }) => {
   const data = cyclopolisData.map((o) => rawToNumber(o[metric])),
     min = Math.min(...data),
-    max = Math.max(...data);
-  const position = ((max - min) / rawToNumber(value)) * 100;
+    max = Math.max(...data),
+    cursor = rawToNumber(value)
+  const position = ((cursor - min) / (max - min)) * 100
+
   return (
     <div
       css={`
@@ -21,12 +24,13 @@ const Context = ({ value, metric }) => {
           position: absolute;
           left: ${position}%;
           bottom: -0.1rem;
+          font-size: 120%;
         `}
       >
         📍
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default Context;
+export default Context

@@ -70,7 +70,6 @@ export default function Ville({ data }) {
       >
         {Object.entries(dataMeta).map(
           ([key, { label, icon, unit: unitRaw }]) => {
-            console.log('YTOYO', data[key])
             const [number, unit] = formatInputNumber(data[key], unitRaw)
 
             return (
@@ -138,7 +137,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log('etstatic', params)
   const data = cyclopolisData.find((city) => city.area === params.name)
   return {
     props: {
