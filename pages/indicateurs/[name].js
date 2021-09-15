@@ -78,7 +78,7 @@ export default function Indicateur({ key, data }) {
                     width: ${(rawToNumber(valeur) / max) * 80}%;
                     display: inline-block;
                     height: 1.5rem;
-                    background: #0c7ee8;
+                    background: #32337b;
                     margin-right: 0.4rem;
                   `}
                 ></span>
