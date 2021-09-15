@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Context from '../../components/Context'
 import Layout from '../../components/layout'
 import Segments from '../../components/Segments'
-import cyclopolisData from '../../cyclopolisData.csv'
+import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 import { TabButton } from '../index'
 
@@ -88,9 +88,14 @@ export default function Indicateur({ key, data }) {
                       margin-left: 0.3rem;
                       line-height: 1.6rem;
                       color: white;
+                      width: ${(rawToNumber(valeur) / max) * 80}%;
+                      display: inline-block;
+                      overflow: scroll;
+                      white-space: nowrap;
+                      scrollbar-width: none;
                     `}
                   >
-                    {ville}
+                    {simplifyNames(ville)}
                   </span>
                 </a>
               </Link>
