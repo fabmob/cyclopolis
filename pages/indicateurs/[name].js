@@ -32,6 +32,10 @@ export default function Indicateur({ key, data }) {
             line-height: 1.6rem;
             height: 1.8rem;
           }
+          @media (min-width: 800px) {
+            flex-wrap: wrap;
+            height: auto;
+          }
         `}
       >
         {Object.entries(dataMeta).map(([key, { label }]) => (
@@ -109,10 +113,7 @@ export async function getStaticProps({ params }) {
     ([key, data]) => key === params.name
   )
 
-  const values = cyclopolisData.map((city) => [
-    city.region,
-    city[indicateur[0]],
-  ])
+  const values = cyclopolisData.map((city) => [city.area, city[indicateur[0]]])
   return {
     props: {
       data: { values, key: params.name, ...indicateur[1] },

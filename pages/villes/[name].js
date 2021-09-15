@@ -15,6 +15,7 @@ const frenchNumber = (number) =>
 export const rawToNumber = (string) =>
   typeof string === 'string' ? +string.replace(',', '.') : string
 export const formatInputNumber = (string, unit) => {
+  if (string == undefined) return 'N/A'
   const number = rawToNumber(string)
 
   if (unit === 'minutes' && number <= 1) {
@@ -24,22 +25,22 @@ export const formatInputNumber = (string, unit) => {
 }
 
 export const dataMeta = {
-  'Distance moyenne [km]': {
+  'Distance moyenne': {
     label: 'Distance / jour',
     icon: '📏',
     unit: 'km',
   },
-  'Vitesse moyenne [km/h]': {
+  'Vitesse moyenne': {
     label: 'Vitesse moyenne',
     icon: '🏇',
     unit: 'km/h',
   },
-  "Durée d'arrêt moyenne par km [s]": {
+  "Durée d'arrêt moyenne par km": {
     label: "Temps d'arrêt / km",
     icon: '✋️',
     unit: 'secondes',
   },
-  'Durée moyen du trajet [min]': {
+  'Durée moyen du trajet': {
     label: "Durée d'un trajet",
     icon: '⌚️',
     unit: 'minutes',
