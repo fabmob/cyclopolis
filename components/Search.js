@@ -6,7 +6,7 @@ import geoData from '../geoData'
 import { Carte } from '../pages/carte'
 import CarteDepartement from './CarteDepartement'
 
-const getRegionCode = (string) => string.split(' - ')[0]
+export const getRegionCode = (string) => string.split(' - ')[0]
 
 const options = {
   keys: ['area'],

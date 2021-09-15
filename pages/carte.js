@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import Layout, { siteDescription } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import Search from '../components/Search'
-import data from '../cyclopolisData'
+import Search, { getRegionCode } from '../components/Search'
+import data, { simplifyNames } from '../cyclopolisData'
 import geoData from '../geoData'
 import { useState } from 'react'
-import correspondanceGeo from '../correspondanceGéographique.csv'
 import { Menu } from './index.js'
 import Link from 'next/link'
 
@@ -27,9 +26,7 @@ export default function Home({ data }) {
   const [geo, setGeo] = useState(null)
   const citiesFound = !geo
     ? []
-    : correspondanceGeo.filter(
-        ({ ville, région, département }) => +région === +geo.region
-      )
+    : data.filter(({ REGION }) => getRegionCode(REGION) === geo.region)
 
   const plural = citiesFound && citiesFound.length > 1 ? 's' : ''
   const { region, departement } = geo
@@ -48,16 +45,26 @@ export default function Home({ data }) {
       {geo && (
         <>
           <p>
-            <strong>{region}</strong> <div>{departement}</div>
+            <strong>{region}</strong> <small>{departement}</small>
           </p>
           {!citiesFound.length && <p>Pas de données pour cette région.</p>}
           {citiesFound.length > 0 && (
             <p>
               Ville{plural} trouvée{plural} :{' '}
-              <ul>
+              <ul
+                css={`
+                  display: flex;
+                  flex-wrap: wrap;
+                  li {
+                    margin: 0 1rem;
+                  }
+                `}
+              >
                 {citiesFound.map((c) => (
-                  <li key={c.ville}>
-                    <Link href={`/villes/${c.ville}`}>{c.ville}</Link>
+                  <li key={c.area}>
+                    <Link href={`/villes/${c.area}`}>
+                      {simplifyNames(c.area)}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -141,17 +148,7 @@ stroke-width: 2px;
               key={departement.nom}
               data-nom={departement.nom}
               data-numerodepartement={departement.numeroDepartement}
-              className={`region-${region.codeInsee} departement departement-${
-                departement.codeInsee
-              } departement-${departement.nom} ${
-                !showRegion &&
-                correspondanceGeo.find(
-                  ({ ville, région, département }) =>
-                    +departement.numeroDepartement === +département
-                )
-                  ? 'exists'
-                  : ''
-              }`}
+              className={`region-${region.codeInsee} departement departement-${departement.codeInsee} departement-${departement.nom}`}
               d={departement.d}
               onClick={() =>
                 setGeo({
