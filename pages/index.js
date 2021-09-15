@@ -7,10 +7,10 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export const TabButton = styled.button`
-  background: rgb(0, 112, 243);
-  box-shadow: rgb(0 118 255 / 39%) 0px 4px 14px 0px;
+  background: #ae0917;
+  box-shadow: #ae091733 0px 4px 14px 0px;
   color: white;
-  padding: 0.1rem 0.4rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 0.4rem;
   border: none;
   font-size: 100%;
@@ -19,6 +19,7 @@ export const TabButton = styled.button`
     color: inherit;
   }
   cursor: pointer;
+  text-transform: uppercase;
 `
 
 export default function Home({ data }) {
