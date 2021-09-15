@@ -30,7 +30,7 @@ const Header = ({ name, wikidata }) => {
           background: #00000075;
           color: white;
           padding: 0 0.6rem;
-          font-size: 250%;
+          font-size: 200%;
           @media (max-width: 800px) {
             font-size: 180%;
           }
@@ -50,7 +50,7 @@ const Header = ({ name, wikidata }) => {
                 margin: 0;
               }
               position: absolute;
-              top: 0;
+              bottom: 0;
               right: 0;
               position: absolute;
               z-index: 1;
