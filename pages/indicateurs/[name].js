@@ -1,16 +1,47 @@
-import Link from "next/link";
-import Context from "../../components/Context";
-import Layout from "../../components/layout";
-import Segments from "../../components/Segments";
-import cyclopolisData from "../../cyclopolisData.csv";
-import { rawToNumber, dataMeta } from "../villes/[name].js";
+import Link from 'next/link'
+import Context from '../../components/Context'
+import Layout from '../../components/layout'
+import Segments from '../../components/Segments'
+import cyclopolisData from '../../cyclopolisData.csv'
+import { rawToNumber, dataMeta } from '../villes/[name].js'
+import { TabButton } from '../index'
 
 export default function Indicateur({ key, data }) {
-  console.log(data, key);
-  const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)));
+  console.log(data, key)
+  const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
   return (
     <Layout>
       <br />
+      <ul
+        css={`
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          white-space: nowrap;
+          justify-content: normal;
+          height: 3rem;
+          scrollbar-width: none;
+          display: flex;
+          list-style-type: none;
+          -moz-box-pack: center;
+          justify-content: center;
+          padding-left: 1.6rem;
+          li {
+            padding: 0.1rem 0rem;
+            margin: 0.15rem 0.2rem;
+            border-radius: 0.2rem;
+            line-height: 1.6rem;
+            height: 1.8rem;
+          }
+        `}
+      >
+        {Object.entries(dataMeta).map(([key, { label }]) => (
+          <li key={label}>
+            <TabButton>
+              <Link href={'/indicateurs/' + key}>{label}</Link>
+            </TabButton>
+          </li>
+        ))}
+      </ul>
       <h1>{data.label}</h1>
       <ul>
         {data.values
@@ -34,7 +65,7 @@ export default function Indicateur({ key, data }) {
                 `}
               ></span>
 
-              <Link href={"/villes/" + ville}>
+              <Link href={'/villes/' + ville}>
                 <a>
                   <span
                     css={`
@@ -50,30 +81,30 @@ export default function Indicateur({ key, data }) {
           ))}
       </ul>
     </Layout>
-  );
+  )
 }
 
 export async function getStaticPaths() {
   // Return a list of possible value for id
-  const paths = getAllIndicateurs();
-  console.log("PATH", paths);
-  return { paths, fallback: false };
+  const paths = getAllIndicateurs()
+  console.log('PATH', paths)
+  return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params }) {
   const indicateur = Object.entries(dataMeta).find(
     ([key, data]) => key === params.name
-  );
+  )
 
   const values = cyclopolisData.map((city) => [
     city.region,
     city[indicateur[0]],
-  ]);
+  ])
   return {
     props: {
       data: { values, key: params.name, label: indicateur[1].label },
     },
-  };
+  }
 }
 
 export function getAllIndicateurs() {
@@ -82,6 +113,6 @@ export function getAllIndicateurs() {
       params: {
         name,
       },
-    };
-  });
+    }
+  })
 }

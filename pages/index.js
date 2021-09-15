@@ -1,10 +1,10 @@
-import Head from "next/head";
-import Layout, { siteDescription } from "../components/layout";
-import utilStyles from "../styles/utils.module.css";
-import Search from "../components/Search";
-import data from "../cyclopolisData.csv";
-import Link from "next/link";
-import styled from "styled-components";
+import Head from 'next/head'
+import Layout, { siteDescription } from '../components/layout'
+import utilStyles from '../styles/utils.module.css'
+import Search from '../components/Search'
+import data from '../cyclopolisData.csv'
+import Link from 'next/link'
+import styled from 'styled-components'
 
 export const TabButton = styled.button`
   background: rgb(0, 112, 243);
@@ -19,7 +19,7 @@ export const TabButton = styled.button`
     color: inherit;
   }
   cursor: pointer;
-`;
+`
 
 export default function Home({ data }) {
   return (
@@ -36,7 +36,7 @@ export default function Home({ data }) {
         <Search data={data} />
       </section>
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -44,7 +44,7 @@ export async function getStaticProps() {
     props: {
       data,
     },
-  };
+  }
 }
 
 export const Menu = () => (
@@ -61,5 +61,8 @@ export const Menu = () => (
     <TabButton>
       <Link href="/carte">Vue carte</Link>
     </TabButton>
+    <TabButton>
+      <Link href="/indicateurs/mean_speed_mean">Vue indicateurs</Link>
+    </TabButton>
   </div>
-);
+)
