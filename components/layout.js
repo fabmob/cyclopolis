@@ -5,6 +5,7 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Logo from '../public/images/commentçaroule.svg'
+import { About } from '../pages/a-propos'
 
 const Title = styled.h1`
   font-size: ${({ size }) => size || '250%'};
@@ -41,6 +42,7 @@ export default function Layout({ children, home }) {
             css={`
               display: flex;
               align-items: center;
+              cursor: pointer;
             `}
           >
             <img css="width:4rem" src="/images/commentçaroule.svg" alt={name} />
@@ -56,22 +58,23 @@ export default function Layout({ children, home }) {
         </div>
       )}
       <main>{children}</main>
-      <footer
-        css={`
-          display: flex;
-          justify-content: center;
-          margin-top: 6rem;
-          background: linear-gradient(90deg, #0c7ee8 0%, #5fe49b 100%);
-          font-weight: 500;
-          line-height: 2rem;
-          a {
-            color: white;
-          }
-        `}
-      >
-        <Link href="/a-propos">
+      <footer>
+        <div
+          css={`
+            display: flex;
+            justify-content: center;
+            margin-top: 6rem;
+            background: linear-gradient(90deg, #0c7ee8 0%, #5fe49b 100%);
+            font-weight: 500;
+            line-height: 2rem;
+            a {
+              color: white;
+            }
+          `}
+        >
           <a>À propos</a>
-        </Link>
+        </div>
+        <About />
       </footer>
     </div>
   )
