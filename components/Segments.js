@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { TabButton } from "../pages";
+import { useState } from 'react'
+import { TabButton } from '../pages'
+
+import Emoji from '../components/Emoji'
 
 const Segments = ({ data, city }) => {
-  const [more, setMore] = useState(false);
+  const [more, setMore] = useState(false)
   const segments = Object.entries(data).filter(([key]) =>
-    key.includes("classement_")
-  );
+    key.includes('classement_')
+  )
 
-  const medals = { 1: "🥇", 2: "🥈", 3: "🥉" };
+  const medals = { 1: '🥇', 2: '🥈', 3: '🥉' }
   return (
     <div>
       <ul
@@ -31,7 +33,7 @@ const Segments = ({ data, city }) => {
                 >
                   {
                     <span css="display: inline-block; text-align: center; width: 2rem; font-size: 130%">
-                      {medals[i + 1]}
+                      <Emoji e={medals[i + 1]} />
                     </span>
                   }
                   <span
@@ -52,7 +54,7 @@ const Segments = ({ data, city }) => {
       </ul>
       {!more && <TabButton onClick={() => setMore(true)}>Voir plus</TabButton>}
     </div>
-  );
-};
+  )
+}
 
-export default Segments;
+export default Segments

@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import Layout from '../../components/layout'
 import Segments from '../../components/Segments'
 import getCityData from '../../components/wikidata'
-import cyclopolisData from '../../cyclopolisData.csv'
+import cyclopolisData from '../../cyclopolisData'
 import Context from '../../components/Context'
 import Header from '../../components/Header'
 import Link from 'next/link'
+import Emoji from '../../components/Emoji'
 
 const frenchNumber = (number) =>
   number.toLocaleString('fr-FR', {
@@ -37,7 +38,7 @@ export const dataMeta = {
   },
   "Durée d'arrêt moyenne par km": {
     label: "Temps d'arrêt / km",
-    icon: '✋️',
+    icon: '✋',
     unit: 'secondes',
   },
   'Durée moyen du trajet': {
@@ -107,7 +108,7 @@ export default function Ville({ data }) {
                   `}
                 >
                   <div className="emoji" css="font-size: 200%; margin: 0 .6rem">
-                    {icon}
+                    <Emoji e={icon} />
                   </div>
                   <h2>{label} </h2>
 

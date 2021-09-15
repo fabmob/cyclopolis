@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@svgmoji/openmoji": "^3.2.0",
     "@svgr/webpack": "^5.5.0",
     "babel-plugin-styled-components": "^1.13.2",
     "fuse.js": "^6.4.6",
@@ -15,7 +16,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-highlight-words": "^0.17.0",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.1",
+    "svgmoji": "^3.2.0"
   },
   "devDependencies": {
     "csv-loader": "^3.0.3"
