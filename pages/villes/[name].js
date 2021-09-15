@@ -46,6 +46,11 @@ export const dataMeta = {
     icon: '⏱️',
     unit: 'minutes',
   },
+  'Emissions de CO2 économisés': {
+    label: 'CO2 économisé',
+    icon: '🌍️',
+    unit: 'kgCO2',
+  },
 }
 
 export default function Ville({ data }) {
