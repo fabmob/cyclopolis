@@ -62,7 +62,10 @@ export const Menu = () => (
       <Link href="/carte">Vue carte</Link>
     </TabButton>
     <TabButton>
-      <Link href="/indicateurs/mean_speed_mean">Vue indicateurs</Link>
+      <Link href="/indicateurs/Vitesse moyenne">Vue indicateurs</Link>
+    </TabButton>
+    <TabButton>
+      <Link href="/a-propos">À propos</Link>
     </TabButton>
   </div>
 )

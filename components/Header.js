@@ -4,6 +4,7 @@ import correspondanceMétropoleVille from '../correspondanceMétropoleVille'
 const toThumb = (url) => {
   const paths = url.split('FilePath/')
   const fileName = paths[1]
+  console.log(fileName)
   const decoded = decodeURIComponent(fileName).replaceAll(' ', '_')
   const hash = MD5(unescape(encodeURIComponent(decoded)))
   console.log(decoded, hash)
