@@ -43,6 +43,7 @@ export default function Indicateur({ key, data }) {
         ))}
       </ul>
       <h1>{data.label}</h1>
+      <p css="font-style: italic">En {data.unit}</p>
       <ul>
         {data.values
           .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
@@ -102,7 +103,7 @@ export async function getStaticProps({ params }) {
   ])
   return {
     props: {
-      data: { values, key: params.name, label: indicateur[1].label },
+      data: { values, key: params.name, ...indicateur[1] },
     },
   }
 }
