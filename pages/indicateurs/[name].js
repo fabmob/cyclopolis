@@ -46,8 +46,12 @@ export default function Indicateur({ key, data }) {
           </li>
         ))}
       </ul>
-      <h1>{data.label}</h1>
-      <p css="font-style: italic">En {data.unit}</p>
+      <h1>
+        {data.label}
+        <small css="font-size: 60%; margin-left: .6rem; font-weight: normal">
+          En {data.unit}
+        </small>
+      </h1>
       <ul>
         {data.values
           .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
