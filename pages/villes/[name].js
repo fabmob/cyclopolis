@@ -115,6 +115,8 @@ export default function Ville({ data }) {
                     }
                     box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
                       0 1px 2px rgba(209, 41, 41, 0.24);
+                    border: 2px solid black;
+                    border-radius: 0.2rem;
                     margin: 0.6rem 0;
                   `}
                 >
