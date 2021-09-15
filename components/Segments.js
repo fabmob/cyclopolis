@@ -33,7 +33,7 @@ const Segments = ({ data, city }) => {
                 >
                   {
                     <span css="display: inline-block; text-align: center; width: 2rem; font-size: 130%">
-                      <Emoji e={medals[i + 1]} />
+                      <Emoji color e={medals[i + 1]} />
                     </span>
                   }
                   <span

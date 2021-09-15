@@ -43,7 +43,7 @@ export const dataMeta = {
   },
   'Durée moyen du trajet': {
     label: "Durée d'un trajet",
-    icon: '⌚️',
+    icon: '⏱️',
     unit: 'minutes',
   },
 }
@@ -107,8 +107,8 @@ export default function Ville({ data }) {
                     margin: 0.6rem;
                   `}
                 >
-                  <div className="emoji" css="font-size: 200%; margin: 0 .6rem">
-                    <Emoji e={icon} />
+                  <div className="emoji" css=" margin: 0 .6rem;">
+                    <Emoji e={icon} sizeRem="3" />
                   </div>
                   <h2>{label} </h2>
 
