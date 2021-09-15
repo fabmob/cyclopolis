@@ -64,6 +64,7 @@ export default function Layout({ children, home }) {
       <main>{children}</main>
       <footer
         css={`
+          margin-top: 2rem;
           background: #5f6062;
           padding: 1rem;
           color: white;
