@@ -54,6 +54,9 @@ export const Menu = () => (
       display: flex;
       justify-content: center;
       margin: 1rem 0;
+      @media (max-width: 800px) {
+        font-size: 90%;
+      }
     `}
   >
     <TabButton>
