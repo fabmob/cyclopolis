@@ -127,6 +127,24 @@ export default function Ville({ data }) {
 
       <h2>Les segments les plus fréquentés</h2>
       <Segments data={data} city={data.area} />
+      <p>
+        Taux de confiance des données :{' '}
+        <span
+          css={`
+            padding: 0.1rem 0.4rem;
+            background: ${{
+              A: '#2ecc71',
+              B: '#f1c40f',
+              C: '#d35400',
+              D: '#c0392b',
+              E: '#2c3e50',
+            }[data['Taux de confiance ']]};
+            color: white;
+          `}
+        >
+          {data['Taux de confiance ']}
+        </span>
+      </p>
     </Layout>
   )
 }
