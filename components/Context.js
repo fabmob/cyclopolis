@@ -1,4 +1,5 @@
 import cyclopolisData from '../cyclopolisData'
+import Emoji from './Emoji'
 
 import { rawToNumber } from '../pages/villes/[name]'
 const Context = ({ value, metric }) => {
@@ -22,12 +23,11 @@ const Context = ({ value, metric }) => {
       <span
         css={`
           position: absolute;
-          left: ${position}%;
+          left: ${position * 0.9}%;
           bottom: -0.1rem;
-          font-size: 120%;
         `}
       >
-        📍
+        <Emoji e="📍" color />
       </span>
     </div>
   )
