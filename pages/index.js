@@ -13,7 +13,7 @@ export const TabButton = styled.button`
   padding: 0.2rem 0.6rem;
   border-radius: 0.4rem;
   border: none;
-  font-size: 100%;
+  font-size: 90%;
   margin: 0.4rem;
   a {
     color: inherit;

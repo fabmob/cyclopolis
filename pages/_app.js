@@ -1,4 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 html,
@@ -16,7 +16,7 @@ body {
 }
 
 a {
-  color: #0070f3;
+  color: #ae0917;
   text-decoration: none;
 }
 
@@ -36,13 +36,13 @@ list-style-type: none
 
 }
 h1 {margin: .6rem 0 1rem}
-`;
+`
 
 const theme = {
   colors: {
-    primary: "#0070f3",
+    primary: '#0070f3',
   },
-};
+}
 
 export default function App({ Component, pageProps }) {
   return (
@@ -52,5 +52,5 @@ export default function App({ Component, pageProps }) {
         <Component {...pageProps} />
       </ThemeProvider>
     </>
-  );
+  )
 }

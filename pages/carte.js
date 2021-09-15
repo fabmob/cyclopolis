@@ -97,29 +97,29 @@ export const Carte = ({
       path {
         ${showRegion
           ? `
-stroke: #86aae0;
+stroke: #aaa;
 stroke-opacity: 1;
-fill: #86aae0;
+fill: #aaa;
 stroke-width: 2px;
 `
           : `
-        stroke: #000000;
+        stroke: white;
         stroke-width: 1px;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-opacity: 0.25;
-        fill: #86aae0;
+        fill: #aaa;
 		`}
       }
       g:hover path {
-        fill: #0070f3;
+        fill: #ae0917;
       }
 
       path.exists {
         fill: #86eee0;
       }
       g.spotlight path {
-        fill: #003573;
+        fill: #ae0917;
       }
     `}
   >

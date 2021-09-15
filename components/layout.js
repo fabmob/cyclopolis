@@ -9,7 +9,7 @@ import { About } from '../pages/a-propos'
 
 const Title = styled.h1`
   font-size: ${({ size }) => size || '250%'};
-  color: ${({ theme }) => theme.colors.primary};
+  color: #ae0917;
   margin: 0.2rem;
   white-space: nowrap;
 `
