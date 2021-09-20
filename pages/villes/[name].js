@@ -32,14 +32,14 @@ export const formatInputNumber = (string, unit) => {
 }
 
 export const dataMeta = {
-  'Distance moyenne [km]': {
+  distance: {
     label: 'Distance par trajet',
     icon: '📏',
     unit: 'km',
     description:
       "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés avec Geovelo par les utilisateurs de l'application.",
   },
-  'Distance moyenne en semaine [km]': {
+  distance_semaine: {
     label: 'Distance / trajet en semaine',
     icon: '📏',
     unit: 'km',
@@ -47,7 +47,7 @@ export const dataMeta = {
     description:
       "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés en semaine avec Geovelo par les utilisateurs de l'application. ",
   },
-  'Distance moyenne en week-end [km]': {
+  distance_weekend: {
     label: 'Distance / trajet en weekend',
     icon: '📏',
     unit: 'km',
@@ -55,28 +55,28 @@ export const dataMeta = {
     description:
       "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés le week-end avec Geovelo par les utilisateurs de l'application. ",
   },
-  'Vitesse moyenne [km/h]': {
+  vitesse: {
     label: 'Vitesse moyenne',
     icon: '🏇',
     unit: 'km/h',
     description:
       "Cette mesure correspond à la moyenne de l'ensemble des trajets enregistrés par les utilisateurs Geovelo sur le territoire concerné. ",
   },
-  "Durée d'arrêt moyenne par km [s]": {
+  arrêt: {
     label: "Temps d'arrêt / km",
     icon: '✋',
     unit: 'secondes',
     description:
       "Cette valeur indique la durée durant laquelle les cyclistes sont arrêtés pour chaque kilomètre qu'ils parcourent à vélo sur le territoire concerné.",
   },
-  'Durée moyen du trajet [min]': {
+  durée: {
     label: "Durée d'un trajet",
     icon: '⏱️',
     unit: 'minutes',
     description:
       "Cette durée correspond à la durée moyenne des trajets qui sont enregistrés avec l'application Geovelo sur le territoire concerné. ",
   },
-  'Emissions de CO2 économisés [kg]': {
+  co2: {
     label: 'CO2 économisé',
     icon: '🌍️',
     unit: 'kgCO2',
