@@ -8,6 +8,7 @@ import Header from '../../components/Header'
 import Link from 'next/link'
 import Emoji from '../../components/Emoji'
 import Indicator from '../../components/Indicator'
+import correspondanceMétropoleVille from '../../correspondanceMétropoleVille'
 
 const frenchNumber = (number) =>
   number.toLocaleString('fr-FR', {
@@ -99,7 +100,10 @@ export default function Ville({ data }) {
       </ul>
 
       <h2>Les segments les plus fréquentés</h2>
-      <Segments data={data} city={data.area} />
+      <Segments
+        data={data}
+        city={correspondanceMétropoleVille[data.area] || data.area}
+      />
       <p>
         Taux de confiance des données :{' '}
         <span
