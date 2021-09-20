@@ -11,6 +11,7 @@ export const getRegionCode = (string) => string.split(' - ')[0]
 
 const options = {
   keys: ['area'],
+  threshold: 0.4,
 }
 export default function Search({ data }) {
   const [input, setInput] = useState('')
