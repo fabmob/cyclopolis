@@ -111,10 +111,9 @@ export default ({ meta: [key, { label, icon, unit: unitRaw }], data }) => {
           </div>
         )}
 
-        <div>
+        <div css="display: flex; flex-wrap : wrap; align-items: center; justify-content: space-evenly">
           <span css="font-size: 200%">{number}</span>
-          &nbsp;
-          {unit}
+          <span css="margin-left: .4rem">{unit}</span>
         </div>
         <Context {...{ value: data[indicator], metric: indicator }} />
       </li>

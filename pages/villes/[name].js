@@ -23,6 +23,10 @@ export const formatInputNumber = (string, unit) => {
   if (unit === 'minutes' && number <= 1) {
     return [frenchNumber(number * 60), 'secondes']
   }
+
+  if (unit === 'kgCO2' && number > 1000) {
+    return [Math.round(number / 1000), 'tonnes CO2']
+  }
   return [frenchNumber(number), unit]
 }
 
