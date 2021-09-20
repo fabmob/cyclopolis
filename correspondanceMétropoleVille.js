@@ -8,4 +8,6 @@ export default {
   'Strasbourg Eurométropole': 'Strasbourg',
   'Communauté urbaine du Havre Seine Métropole': 'Le Havre',
   'Grenoble Alpes Métropole - La Métro': 'Grenoble',
+  "Communauté urbaine d'Arras": 'Arras',
+  'Tours métropole Val de Loire': 'Tours',
 }
