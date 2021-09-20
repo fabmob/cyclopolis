@@ -118,6 +118,35 @@ export const About = () => (
       l’évolution de l’usage constaté sur chaque territoire.
     </p>
 
+    <h2>Méthodologie</h2>
+
+    <p>
+      Chaque jour, plusieurs milliers de trajets sont enregistrés avec
+      l’application Geovelo. Les trajets enregistrés sont ceux :
+    </p>
+    <ul css="list-style-type: disc; padding-left: 2rem">
+      <li>réalisés avec la fonctionnalité Navigation</li>
+
+      <li>enregistrés manuellement grâce au bouton dédié</li>
+
+      <li>
+        enregistrés automatiquement grâce à la fonctionnalité “détection
+        d’activité”
+      </li>
+    </ul>
+
+    <p>
+      Après anonymisation et agrégation des données issues de ces trajets, et
+      grâce à un travail conjoint avec l’IFPEN, Geovelo met à disposition des
+      collectivités des outils d’analyse sur la mobilité vélo.
+    </p>
+
+    <p>
+      Les indicateurs présentés dans Comment ça roule ? sont donc issus de ces
+      analyses. Plus l’usage de l’application est développé sur un territoire,
+      plus la fiabilité des données présentées sera grande.
+    </p>
+    <h2>Code</h2>
     <p>
       Le code est open source, il est hébergé par la Fabrique des Mobilités sur{' '}
       <a href="https://github.com/fabmob/cyclopolis">Github</a>.
