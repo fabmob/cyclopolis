@@ -29,6 +29,7 @@ export default function Search({ data }) {
   })
 
   useEffect(() => setFuse(new Fuse(data, options)), [])
+  console.log(searchResults)
 
   return (
     <div
@@ -59,7 +60,15 @@ export default function Search({ data }) {
       {validInput && !searchResultShown.length && 'Rien trouvé :('}
       <ul>
         {geoData
-          .sort((a, b) => (b.nom > a.nom ? -1 : 1))
+          .sort(
+            (a, b) =>
+              searchResultShown.findIndex(
+                (r) => getRegionCode(r.REGION) === a.codeInsee
+              ) -
+              searchResultShown.findIndex(
+                (r) => getRegionCode(r.REGION) === b.codeInsee
+              )
+          )
           .map((region) => (
             <Region
               {...{
