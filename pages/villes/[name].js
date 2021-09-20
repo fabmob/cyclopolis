@@ -99,11 +99,15 @@ export default function Ville({ data }) {
           ))}
       </ul>
 
-      <h2>Les segments les plus fréquentés</h2>
-      <Segments
-        data={data}
-        city={correspondanceMétropoleVille[data.area] || data.area}
-      />
+      {false && (
+        <>
+          <h2>Les segments les plus fréquentés</h2>
+          <Segments
+            data={data}
+            city={correspondanceMétropoleVille[data.area] || data.area}
+          />
+        </>
+      )}
       <p>
         Taux de confiance des données :{' '}
         <span
