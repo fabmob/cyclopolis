@@ -8,8 +8,8 @@ export const simplifyNames = (name) =>
     .replace("communauté d'agglo", 'CA')
     .replace("Communauté d'agglo", 'CA')
 
-const filtered = data.filter((el) =>
-  el['Validé par le Club ?'].toLowerCase().includes('oui')
+const filtered = data.filter(
+  (el) => !el['Validé par le Club ?'].toLowerCase().includes('rajouter')
 )
 
 export default filtered

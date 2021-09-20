@@ -6,4 +6,6 @@ export default {
   'Grand Annecy agglomération': 'Annecy',
   'Le Grand Chalon': 'Chalon-sur-Saône',
   'Strasbourg Eurométropole': 'Strasbourg',
+  'Communauté urbaine du Havre Seine Métropole': 'Le Havre',
+  'Grenoble Alpes Métropole - La Métro': 'Grenoble',
 }
