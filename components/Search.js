@@ -57,7 +57,17 @@ export default function Search({ data }) {
           }}
         />
       </div>
-      {validInput && !searchResultShown.length && 'Rien trouvé :('}
+      {validInput && !searchResultShown.length && (
+        <>
+          <p>Votre collectivité n'est pas renseignée. </p>
+          <p>
+            <a href="https://villes-cyclables.org/contactez-nous">
+              Contactez-nous
+            </a>
+            .
+          </p>
+        </>
+      )}
       <ul>
         {geoData
           .sort((a, b) =>

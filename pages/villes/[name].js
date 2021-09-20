@@ -33,18 +33,18 @@ export const formatInputNumber = (string, unit) => {
 
 export const dataMeta = {
   'Distance moyenne': {
-    label: 'Distance / trajet',
+    label: 'Distance par trajet',
     icon: '📏',
     unit: 'km',
   },
   'Distance moyenne en semaine': {
-    label: 'Distance semaine / trajet',
+    label: 'Distance / trajet en semaine',
     icon: '📏',
     unit: 'km',
     sub: true,
   },
   'Distance moyenne en week-end': {
-    label: 'Distance week-end / trajet',
+    label: 'Distance / trajet en weekend',
     icon: '📏',
     unit: 'km',
     sub: true,
