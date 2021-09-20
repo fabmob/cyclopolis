@@ -55,56 +55,59 @@ export default function Indicateur({ key, data }) {
       <ul>
         {data.values
           .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
-          .map(([ville, valeur]) => (
-            <li
-              css={`
-                position: relative;
-                margin-bottom: 0.2rem;
-              `}
-            >
-              <div
+          .map(([ville, valeur]) => {
+            const width = (rawToNumber(valeur) / max) * 80
+            return (
+              <li
                 css={`
-                  position: absolute;
-                  left: 0;
-                  width: 100%;
-                  height: 1.5rem;
-                  z-index: -1;
-                  display: flex;
-                  align-items: center;
+                  position: relative;
+                  margin-bottom: 0.2rem;
                 `}
               >
-                <span
+                <div
                   css={`
-                    width: ${(rawToNumber(valeur) / max) * 80}%;
-                    display: inline-block;
+                    position: absolute;
+                    left: 0;
+                    width: 100%;
                     height: 1.5rem;
-                    background: #32337b;
-                    margin-right: 0.4rem;
+                    z-index: -1;
+                    display: flex;
+                    align-items: center;
                   `}
-                ></span>
-                <span>{formatInputNumber(valeur)}</span>
-              </div>
-
-              <Link href={'/villes/' + ville}>
-                <a>
+                >
                   <span
                     css={`
-                      margin-left: 0.3rem;
-                      line-height: 1.6rem;
-                      color: white;
-                      width: ${(rawToNumber(valeur) / max) * 80}%;
+                      width: ${width}%;
                       display: inline-block;
-                      overflow: scroll;
-                      white-space: nowrap;
-                      scrollbar-width: none;
+                      height: 1.5rem;
+                      background: #32337b;
+                      margin-right: 0.4rem;
                     `}
-                  >
-                    {simplifyNames(ville)}
-                  </span>
-                </a>
-              </Link>
-            </li>
-          ))}
+                  ></span>
+                  <span>{formatInputNumber(valeur)}</span>
+                </div>
+
+                <Link href={'/villes/' + ville}>
+                  <a>
+                    <span
+                      css={`
+                        margin-left: 0.3rem;
+                        line-height: 1.6rem;
+                        color: white;
+                        width: ${width}%;
+                        display: inline-block;
+                        overflow: scroll;
+                        white-space: nowrap;
+                        scrollbar-width: none;
+                      `}
+                    >
+                      {simplifyNames(ville)}
+                    </span>
+                  </a>
+                </Link>
+              </li>
+            )
+          })}
       </ul>
     </Layout>
   )
