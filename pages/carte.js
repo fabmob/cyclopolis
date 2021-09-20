@@ -37,10 +37,13 @@ export default function Home({ data }) {
       <Head>
         <title>{siteDescription}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p css="text-align: center">{siteDescription}</p>
-      </section>
       <Menu />
+      <section className={utilStyles.headingMd}>
+        <p css="text-align: center">
+          Cliquez sur une zone de la carte pour découvrir les villes et
+          territoires concernés.{' '}
+        </p>
+      </section>
       {/* Add this <section> tag below the existing <section> tag */}
       {geo && (
         <>

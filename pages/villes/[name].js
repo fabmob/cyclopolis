@@ -36,38 +36,52 @@ export const dataMeta = {
     label: 'Distance par trajet',
     icon: '📏',
     unit: 'km',
+    description:
+      "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés avec Geovelo par les utilisateurs de l'application.",
   },
   'Distance moyenne en semaine': {
     label: 'Distance / trajet en semaine',
     icon: '📏',
     unit: 'km',
     sub: true,
+    description:
+      "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés en semaine avec Geovelo par les utilisateurs de l'application. ",
   },
   'Distance moyenne en week-end': {
     label: 'Distance / trajet en weekend',
     icon: '📏',
     unit: 'km',
     sub: true,
+    description:
+      "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés le week-end avec Geovelo par les utilisateurs de l'application. ",
   },
   'Vitesse moyenne': {
     label: 'Vitesse moyenne',
     icon: '🏇',
     unit: 'km/h',
+    description:
+      "Cette mesure correspond à la moyenne de l'ensemble des trajets enregistrés par les utilisateurs Geovelo sur le territoire concerné. ",
   },
   "Durée d'arrêt moyenne par km": {
     label: "Temps d'arrêt / km",
     icon: '✋',
     unit: 'secondes',
+    description:
+      "Cette valeur indique la durée durant laquelle les cyclistes sont arrêtés pour chaque kilomètre qu'ils parcourent à vélo sur le territoire concerné.",
   },
   'Durée moyen du trajet': {
     label: "Durée d'un trajet",
     icon: '⏱️',
     unit: 'minutes',
+    description:
+      "Cette durée correspond à la durée moyenne des trajets qui sont enregistrés avec l'application Geovelo sur le territoire concerné. ",
   },
   'Emissions de CO2 économisés': {
     label: 'CO2 économisé',
     icon: '🌍️',
     unit: 'kgCO2',
+    description:
+      "Cet indicateur mesure la quantité de CO2 qui aurait été émise si tous les trajets enregistrés avec l'application Geovelo avaient été réalisés en voiture individuelle plutôt qu'en vélo. ",
   },
 }
 

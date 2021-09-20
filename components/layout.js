@@ -16,7 +16,7 @@ const Title = styled.h1`
 
 const name = 'Comment ça roule ?'
 export const siteDescription =
-  'Découvrez les chiffres du vélo dans les métropoles françaises.'
+  'Découvrez les chiffres de la circulation vélo dans les collectivités du Club des villes et territoires cyclables.'
 
 export default function Layout({ children, home, noAbout }) {
   return (
