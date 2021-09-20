@@ -38,20 +38,23 @@ export const dataMeta = {
     unit: 'km',
     description:
       "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés avec Geovelo par les utilisateurs de l'application.",
+    color: '#6F1E51',
   },
   distance_semaine: {
-    label: 'Distance / trajet en semaine',
+    label: 'Distance en semaine',
     icon: '📏',
     unit: 'km',
     sub: true,
+    color: '#6F1E51',
     description:
       "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés en semaine avec Geovelo par les utilisateurs de l'application. ",
   },
   distance_weekend: {
-    label: 'Distance / trajet en weekend',
+    label: 'Distance en weekend',
     icon: '📏',
     unit: 'km',
     sub: true,
+    color: '#6F1E51',
     description:
       "Cet indicateur reflète la distance moyenne des trajets qui sont enregistrés le week-end avec Geovelo par les utilisateurs de l'application. ",
   },
@@ -59,6 +62,7 @@ export const dataMeta = {
     label: 'Vitesse moyenne',
     icon: '🏇',
     unit: 'km/h',
+    color: '#5758BB',
     description:
       "Cette mesure correspond à la moyenne de l'ensemble des trajets enregistrés par les utilisateurs Geovelo sur le territoire concerné. ",
   },
@@ -66,6 +70,7 @@ export const dataMeta = {
     label: "Temps d'arrêt / km",
     icon: '✋',
     unit: 'secondes',
+    color: '#1B1464',
     description:
       "Cette valeur indique la durée durant laquelle les cyclistes sont arrêtés pour chaque kilomètre qu'ils parcourent à vélo sur le territoire concerné.",
   },
@@ -73,6 +78,7 @@ export const dataMeta = {
     label: "Durée d'un trajet",
     icon: '⏱️',
     unit: 'minutes',
+    color: '#1289A7',
     description:
       "Cette durée correspond à la durée moyenne des trajets qui sont enregistrés avec l'application Geovelo sur le territoire concerné. ",
   },
@@ -80,6 +86,7 @@ export const dataMeta = {
     label: 'CO2 économisé',
     icon: '🌍️',
     unit: 'kgCO2',
+    color: '#006266',
     description:
       "Cet indicateur mesure la quantité de CO2 qui aurait été émise si tous les trajets enregistrés avec l'application Geovelo avaient été réalisés en voiture individuelle plutôt qu'en vélo. ",
   },

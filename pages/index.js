@@ -7,7 +7,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export const TabButton = styled.button`
-  background: #ae0917;
+  background: ${(props) => props.color || '#ae0917'};
   box-shadow: #ae091733 0px 4px 14px 0px;
   color: white;
   padding: 0.2rem 0.6rem;

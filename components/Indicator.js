@@ -4,7 +4,10 @@ import { formatInputNumber } from '../pages/villes/[name]'
 import Context from './Context'
 import { useState } from 'react'
 
-export default ({ meta: [key, { label, icon, unit: unitRaw }], data }) => {
+export default ({
+  meta: [key, { color, label, icon, unit: unitRaw }],
+  data,
+}) => {
   const [indicator, setIndicator] = useState(key)
   const [number, unit] = formatInputNumber(data[indicator], unitRaw)
 
@@ -115,7 +118,9 @@ export default ({ meta: [key, { label, icon, unit: unitRaw }], data }) => {
           <span css="font-size: 200%">{number}</span>
           <span css="margin-left: .4rem">{unit}</span>
         </div>
-        <Context {...{ value: data[indicator], metric: indicator }} />
+        <Context
+          {...{ value: data[indicator], metric: indicator, color: color }}
+        />
       </li>
     </Link>
   )

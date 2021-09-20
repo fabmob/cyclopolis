@@ -38,9 +38,9 @@ export default function Indicateur({ key, data }) {
           }
         `}
       >
-        {Object.entries(dataMeta).map(([key, { label }]) => (
+        {Object.entries(dataMeta).map(([key, { color, label }]) => (
           <li key={label}>
-            <TabButton>
+            <TabButton color={color}>
               <Link href={'/indicateurs/' + key}>{label}</Link>
             </TabButton>
           </li>
@@ -89,7 +89,7 @@ export default function Indicateur({ key, data }) {
                       width: ${width}%;
                       display: inline-block;
                       height: 1.5rem;
-                      background: #32337b;
+                      background: ${data.color};
                       margin-right: 0.4rem;
                     `}
                   ></span>

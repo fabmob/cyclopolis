@@ -2,7 +2,7 @@ import cyclopolisData from '../cyclopolisData'
 import Emoji from './Emoji'
 
 import { rawToNumber } from '../pages/villes/[name]'
-const Context = ({ value, metric }) => {
+const Context = ({ value, metric, color }) => {
   const data = cyclopolisData.map((o) => rawToNumber(o[metric])),
     min = Math.min(...data),
     max = Math.max(...data),
@@ -17,7 +17,7 @@ const Context = ({ value, metric }) => {
         bottom: 0;
         position: absolute;
 
-        background: linear-gradient(90deg, white 0%, #ae0917ab 100%);
+        background: linear-gradient(90deg, white 0%, ${color} 100%);
       `}
     >
       <span
