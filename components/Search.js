@@ -60,14 +60,17 @@ export default function Search({ data }) {
       {validInput && !searchResultShown.length && 'Rien trouvé :('}
       <ul>
         {geoData
-          .sort(
-            (a, b) =>
-              searchResultShown.findIndex(
-                (r) => getRegionCode(r.REGION) === a.codeInsee
-              ) -
-              searchResultShown.findIndex(
-                (r) => getRegionCode(r.REGION) === b.codeInsee
-              )
+          .sort((a, b) =>
+            validInput
+              ? searchResultShown.findIndex(
+                  (r) => getRegionCode(r.REGION) === a.codeInsee
+                ) -
+                searchResultShown.findIndex(
+                  (r) => getRegionCode(r.REGION) === b.codeInsee
+                )
+              : a.nom < b.nom
+              ? -1
+              : 1
           )
           .map((region) => (
             <Region
