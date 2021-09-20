@@ -111,7 +111,7 @@ const Region = ({ data, searchResultShown, input }) => {
         margin-bottom: 2rem;
         box-shadow: 0 1px 3px rgba(77, 21, 21, 0.12),
           0 1px 2px rgba(47, 33, 33, 0.24);
-        background: #eee;
+        background: #eeeeeea3;
         border-radius: 0.6rem;
         padding: 0 0.6rem 1rem;
       `}
