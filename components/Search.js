@@ -105,7 +105,17 @@ const Region = ({ data, searchResultShown, input }) => {
   if (!filteredResults.length) return null
 
   return (
-    <li key={data.codeInsee} css="margin-bottom: 2rem">
+    <li
+      key={data.codeInsee}
+      css={`
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(77, 21, 21, 0.12),
+          0 1px 2px rgba(47, 33, 33, 0.24);
+        background: #eee;
+        border-radius: 0.6rem;
+        padding: 0 0.6rem 1rem;
+      `}
+    >
       <div
         css={`
           display: flex;
@@ -156,7 +166,9 @@ const Item = ({ input, data, departement }) => (
         margin: 0 1rem;
       }
       width: 20rem;
-      max-width: 100%;
+      @media (max-width: 800px) {
+        width: 16rem;
+      }
 
       h4 {
         font-weight: 500;
