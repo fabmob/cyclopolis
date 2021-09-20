@@ -5,4 +5,5 @@ export default {
   'Grand Chambéry': 'Chambéry',
   'Grand Annecy agglomération': 'Annecy',
   'Le Grand Chalon': 'Chalon-sur-Saône',
+  'Strasbourg Eurométropole': 'Strasbourg',
 }
