@@ -2,7 +2,10 @@ import styled from 'styled-components'
 import correspondanceMétropoleVille from '../correspondanceMétropoleVille'
 
 const toThumb = (url) => {
-  const paths = url.split('FilePath/')
+  console.log(url)
+  const paths = url.includes('FilePath/')
+    ? url.split('FilePath/')
+    : url.split('Fichier:')
   const fileName = paths[1]
   console.log(fileName)
   const decoded = decodeURIComponent(fileName).replaceAll(' ', '_')
@@ -13,7 +16,7 @@ const toThumb = (url) => {
 }
 
 const Header = ({ name, wikidata, data }) => {
-  const imageURL = wikidata?.pic.value
+  const imageURL = data['Image'] || wikidata?.pic.value
   const thumbURL = imageURL && toThumb(imageURL)
   console.log(thumbURL)
 
@@ -43,7 +46,7 @@ const Header = ({ name, wikidata, data }) => {
         }
       `}
     >
-      {wikidata?.pic && <CityImage src={thumbURL} />}
+      {imageURL && <CityImage src={thumbURL} />}
       <h1>{name}</h1>
       <div
         css={`
