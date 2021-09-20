@@ -61,17 +61,25 @@ export default function Indicateur({ key, data }) {
             return (
               <li
                 css={`
-                  position: relative;
-                  margin-bottom: 0.2rem;
+                  margin-bottom: 0.6rem;
                 `}
               >
+                <Link href={'/villes/' + ville}>
+                  <a>
+                    <span
+                      css={`
+                        margin-left: 0.3rem;
+                        line-height: 1.2rem;
+                        color: black;
+                        display: inline-block;
+                      `}
+                    >
+                      {simplifyNames(ville)}
+                    </span>
+                  </a>
+                </Link>
                 <div
                   css={`
-                    position: absolute;
-                    left: 0;
-                    width: 100%;
-                    height: 1.5rem;
-                    z-index: -1;
                     display: flex;
                     align-items: center;
                   `}
@@ -87,25 +95,6 @@ export default function Indicateur({ key, data }) {
                   ></span>
                   <span>{formatInputNumber(valeur)}</span>
                 </div>
-
-                <Link href={'/villes/' + ville}>
-                  <a>
-                    <span
-                      css={`
-                        margin-left: 0.3rem;
-                        line-height: 1.6rem;
-                        color: white;
-                        width: ${width}%;
-                        display: inline-block;
-                        overflow: scroll;
-                        white-space: nowrap;
-                        scrollbar-width: none;
-                      `}
-                    >
-                      {simplifyNames(ville)}
-                    </span>
-                  </a>
-                </Link>
               </li>
             )
           })}
