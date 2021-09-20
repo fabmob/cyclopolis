@@ -5,7 +5,7 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Logo from '../public/images/commentçaroule.svg'
-import { About } from '../pages/a-propos'
+import { LittleAbout } from '../pages/a-propos'
 
 const Title = styled.h1`
   font-size: ${({ size }) => size || '250%'};
@@ -18,7 +18,7 @@ const name = 'Comment ça roule ?'
 export const siteDescription =
   'Découvrez les chiffres du vélo dans les métropoles françaises.'
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, noAbout }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -62,16 +62,18 @@ export default function Layout({ children, home }) {
         </div>
       )}
       <main>{children}</main>
-      <footer
-        css={`
-          margin-top: 2rem;
-          background: #5f6062;
-          padding: 1rem;
-          color: white;
-        `}
-      >
-        <About />
-      </footer>
+      {!noAbout && (
+        <footer
+          css={`
+            margin-top: 2rem;
+            background: #5f6062;
+            padding: 1rem;
+            color: white;
+          `}
+        >
+          <LittleAbout />
+        </footer>
+      )}
     </div>
   )
 }
