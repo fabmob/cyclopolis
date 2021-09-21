@@ -139,11 +139,11 @@ export default function Ville({ data }) {
               C: '#d35400',
               D: '#c0392b',
               E: '#2c3e50',
-            }[data['Taux de confiance ']]};
+            }[data['Taux de confiance']]};
             color: white;
           `}
         >
-          {data['Taux de confiance ']}
+          {data['Taux de confiance']}
         </span>
       </p>
     </Layout>
