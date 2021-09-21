@@ -10,4 +10,5 @@ export default {
   'Grenoble Alpes Métropole - La Métro': 'Grenoble',
   "Communauté urbaine d'Arras": 'Arras',
   'Tours métropole Val de Loire': 'Tours',
+  'Bordeaux Métropole': 'Bordeaux',
 }

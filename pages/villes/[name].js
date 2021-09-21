@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
+import Header from '../../components/Header'
+import Indicator from '../../components/Indicator'
 import Layout from '../../components/layout'
 import Segments from '../../components/Segments'
 import getCityData from '../../components/wikidata'
-import cyclopolisData from '../../cyclopolisData'
-import Context from '../../components/Context'
-import Header from '../../components/Header'
-import Link from 'next/link'
-import Emoji from '../../components/Emoji'
-import Indicator from '../../components/Indicator'
 import correspondanceMétropoleVille from '../../correspondanceMétropoleVille'
+import cyclopolisData from '../../cyclopolisData'
 
 const frenchNumber = (number) =>
   number.toLocaleString('fr-FR', {
@@ -119,15 +116,11 @@ export default function Ville({ data }) {
           ))}
       </ul>
 
-      {false && (
-        <>
-          <h2>Les segments les plus fréquentés</h2>
-          <Segments
-            data={data}
-            city={correspondanceMétropoleVille[data.area] || data.area}
-          />
-        </>
-      )}
+      <h2>Les segments les plus fréquentés</h2>
+      <Segments
+        data={data}
+        city={correspondanceMétropoleVille[data.area] || data.area}
+      />
       <p>
         Taux de confiance des données :{' '}
         <span
