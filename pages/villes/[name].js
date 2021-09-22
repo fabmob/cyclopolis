@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import Indicator from '../../components/Indicator'
@@ -100,6 +101,9 @@ export default function Ville({ data }) {
 
   return (
     <Layout>
+      <Head>
+        <title>{data.area}</title>
+      </Head>
       <Header name={data.area} data={data} wikidata={wikidata} />
       <br />
       <ul
