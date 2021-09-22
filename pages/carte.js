@@ -3,10 +3,12 @@ import Layout, { siteDescription } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import Search, { getRegionCode } from '../components/Search'
 import data, { simplifyNames } from '../cyclopolisData'
-import geoData from '../geoData'
+import geoDataMetropolitaine from '../geoData'
+import geoDataOutreMer from '../geoDataOutreMer'
 import { useState } from 'react'
 import { Menu } from './index.js'
 import Link from 'next/link'
+const geoData = [...geoDataMetropolitaine, ...geoDataOutreMer]
 
 const departementLabel = (codeDepartement, codeRegion) => {
   console.log(codeDepartement, codeRegion)
@@ -91,7 +93,7 @@ export async function getStaticProps() {
 }
 
 export const Carte = ({
-  outreMer = false,
+  outreMer = true,
   setGeo = () => null,
   showRegion = false,
 }) => (
