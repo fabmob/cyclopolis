@@ -57,7 +57,7 @@ export default ({
           <Emoji e={icon} sizeRem="3" />
         </div>
         <h2>{label} </h2>
-        {indicator.includes('Distance moyenne') && (
+        {indicator.includes('distance') && (
           <div
             css={`
               width: 100%;
@@ -76,15 +76,15 @@ export default ({
           >
             <button
               css={`
-                ${indicator === 'Distance moyenne en semaine'
+                ${indicator === 'distance_semaine'
                   ? 'background: #333; color: white !important;'
                   : ''};
               `}
               onClick={(e) => {
                 setIndicator(
-                  indicator !== 'Distance moyenne en semaine'
-                    ? 'Distance moyenne en semaine'
-                    : 'Distance moyenne'
+                  indicator !== 'distance_semaine'
+                    ? 'distance_semaine'
+                    : 'distance'
                 )
                 e.preventDefault()
                 e.stopPropagation()
@@ -94,15 +94,15 @@ export default ({
             </button>
             <button
               css={`
-                ${indicator === 'Distance moyenne en week-end'
+                ${indicator === 'distance_weekend'
                   ? 'background: #333; color: white !important;'
                   : ''};
               `}
               onClick={(e) => {
                 setIndicator(
-                  indicator !== 'Distance moyenne en week-end'
-                    ? 'Distance moyenne en week-end'
-                    : 'Distance moyenne'
+                  indicator !== 'distance_weekend'
+                    ? 'distance_weekend'
+                    : 'distance'
                 )
 
                 e.preventDefault()
