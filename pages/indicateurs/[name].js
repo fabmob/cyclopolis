@@ -1,13 +1,12 @@
 import Link from 'next/link'
 import Context from '../../components/Context'
 import Layout from '../../components/layout'
-import Segments from '../../components/Segments'
+import Segments, { getSegments, SegmentName } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 import { TabButton } from '../index'
 
 export default function Indicateur({ key, data }) {
-  console.log(data, key)
   const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
   return (
     <Layout>
@@ -45,59 +44,89 @@ export default function Indicateur({ key, data }) {
             </TabButton>
           </li>
         ))}
+        <li key="segments">
+          <TabButton color="chartreuse">
+            <Link href={'/indicateurs/segments'}>Voies les + fréquentées</Link>
+          </TabButton>
+        </li>
       </ul>
       <h1>
-        {data.label}
-        <small css="font-size: 60%; margin-left: .6rem; font-weight: normal">
-          En {data.unit}
-        </small>
+        {data.label || 'Les voies les plus fréquentées par les cyclistes'}
+        {data.unit && (
+          <small css="font-size: 60%; margin-left: .6rem; font-weight: normal">
+            En {data.unit}
+          </small>
+        )}
       </h1>
       <p>{data.description}</p>
       <ul>
-        {data.values
-          .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
-          .map(([ville, valeur]) => {
-            const width = (rawToNumber(valeur) / max) * 80
-            return (
-              <li
-                css={`
-                  margin-bottom: 0.6rem;
-                `}
-              >
-                <Link href={'/villes/' + ville}>
-                  <a>
-                    <span
+        {data.key !== 'segments'
+          ? data.values
+              .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
+              .map(([ville, valeur]) => {
+                console.log('VILLE', ville)
+                const width = (rawToNumber(valeur) / max) * 80
+                return (
+                  <li
+                    css={`
+                      margin-bottom: 0.6rem;
+                    `}
+                  >
+                    <Link href={'/villes/' + ville}>
+                      <a>
+                        <span
+                          css={`
+                            margin-left: 0.3rem;
+                            line-height: 1.2rem;
+                            color: black;
+                            display: inline-block;
+                          `}
+                        >
+                          {simplifyNames(ville)}
+                        </span>
+                      </a>
+                    </Link>
+                    <div
                       css={`
-                        margin-left: 0.3rem;
-                        line-height: 1.2rem;
-                        color: black;
-                        display: inline-block;
+                        display: flex;
+                        align-items: center;
                       `}
                     >
-                      {simplifyNames(ville)}
-                    </span>
-                  </a>
-                </Link>
-                <div
+                      <span
+                        css={`
+                          width: ${width}%;
+                          display: inline-block;
+                          height: 1.5rem;
+                          background: ${data.color};
+                          margin-right: 0.4rem;
+                        `}
+                      ></span>
+                      <span>{formatInputNumber(valeur)}</span>
+                    </div>
+                  </li>
+                )
+              })
+          : data.values.map(([ville, segments]) => (
+              <li>
+                {ville}{' '}
+                <ul
                   css={`
                     display: flex;
-                    align-items: center;
+
+                    flex-wrap: wrap;
+                    li {
+                      margin: 0.1rem 1rem;
+                    }
                   `}
                 >
-                  <span
-                    css={`
-                      width: ${width}%;
-                      display: inline-block;
-                      height: 1.5rem;
-                      background: ${data.color};
-                      margin-right: 0.4rem;
-                    `}
-                  ></span>
-                  <span>{formatInputNumber(valeur)}</span>
-                </div>
+                  {segments.map(([_, segment]) => (
+                    <li>
+                      <SegmentName>{segment}</SegmentName>
+                    </li>
+                  ))}
+                </ul>
               </li>
-            )
-          })}
+            ))}
       </ul>
     </Layout>
   )
@@ -111,6 +140,19 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  if (params.name === 'segments') {
+    console.log('salut')
+    const yo = {
+      props: {
+        data: {
+          values: cyclopolisData.map((el) => [el.area, getSegments(el)]),
+          key: 'segments',
+        },
+      },
+    }
+    console.log('YIYI', JSON.stringify(yo))
+    return yo
+  }
   const indicateur = Object.entries(dataMeta).find(
     ([key, data]) => key === params.name
   )
@@ -124,11 +166,14 @@ export async function getStaticProps({ params }) {
 }
 
 export function getAllIndicateurs() {
-  return Object.keys(dataMeta).map((name) => {
-    return {
-      params: {
-        name,
-      },
-    }
-  })
+  return [
+    ...Object.keys(dataMeta).map((name) => {
+      return {
+        params: {
+          name,
+        },
+      }
+    }),
+    { params: { name: 'segments' } },
+  ]
 }

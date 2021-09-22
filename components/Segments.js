@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { TabButton } from '../pages'
 
 import Emoji from '../components/Emoji'
+import styled from 'styled-components'
+export const getSegments = (data) =>
+  Object.entries(data).filter(([key]) => key.includes('classement_'))
 
 const Segments = ({ data, city }) => {
   const [more, setMore] = useState(false)
-  const segments = Object.entries(data).filter(([key]) =>
-    key.includes('classement_')
-  )
-
+  const segments = getSegments(data)
   const medals = { 1: '🥇', 2: '🥈', 3: '🥉' }
   return (
     <div>
@@ -36,17 +36,7 @@ const Segments = ({ data, city }) => {
                       <Emoji color e={medals[i + 1]} />
                     </span>
                   }
-                  <span
-                    css={`
-                      box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
-                        0 1px 2px rgba(41, 117, 209, 0.24);
-                      margin-left: 0.6rem;
-                      border-radius: 0.5rem;
-                      padding: 0.1rem 1rem;
-                    `}
-                  >
-                    {v}
-                  </span>
+                  <SegmentName>{v}</SegmentName>
                 </li>
               </a>
             )
@@ -58,3 +48,11 @@ const Segments = ({ data, city }) => {
 }
 
 export default Segments
+
+export const SegmentName = styled.span`
+  box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
+    0 1px 2px rgba(41, 117, 209, 0.24);
+  margin-left: 0.6rem;
+  border-radius: 0.5rem;
+  padding: 0.1rem 1rem;
+`

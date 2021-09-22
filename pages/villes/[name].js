@@ -116,7 +116,7 @@ export default function Ville({ data }) {
           ))}
       </ul>
 
-      <h2>Les segments les plus fréquentés</h2>
+      <h2>Les voies fréquentées par les cyclistes</h2>
       <Segments
         data={data}
         city={correspondanceMétropoleVille[data.area] || data.area}
