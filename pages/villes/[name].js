@@ -126,22 +126,29 @@ export default function Ville({ data }) {
         city={correspondanceMétropoleVille[data.area] || data.area}
       />
       <p>
-        Taux de confiance des données :{' '}
-        <span
-          css={`
-            padding: 0.1rem 0.4rem;
-            background: ${{
-              A: '#2ecc71',
-              B: '#f1c40f',
-              C: '#d35400',
-              D: '#c0392b',
-              E: '#2c3e50',
-            }[data['Taux de confiance']]};
-            color: white;
-          `}
-        >
-          {data['Taux de confiance']}
-        </span>
+        <details>
+          <summary>
+            Taux de confiance des données :{' '}
+            <span
+              css={`
+                padding: 0.1rem 0.4rem;
+                background: ${{
+                  A: '#2ecc71',
+                  B: '#f1c40f',
+                  C: '#d35400',
+                  D: '#c0392b',
+                  E: '#2c3e50',
+                }[data['Taux de confiance']]};
+                color: white;
+              `}
+            >
+              {data['Taux de confiance']}
+            </span>
+          </summary>
+          Cet indice de confiance va de A (niveau de confiance élevé), à E
+          (indice de confiance faible). Il sera ré-évalué à chaque mise à jour
+          en fonction de l’évolution de l’usage constaté sur chaque territoire.
+        </details>
       </p>
     </Layout>
   )
