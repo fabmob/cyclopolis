@@ -56,6 +56,10 @@ export const SegmentName = styled.span`
   margin-left: 0.6rem;
   border-radius: 0.5rem;
   padding: 0.1rem 1rem;
+  @media (max-width: 800px) {
+    max-width: 12rem;
+    display: inline-block;
+  }
 `
 
 export const AllSegments = ({ data }) =>
