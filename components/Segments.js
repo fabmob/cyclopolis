@@ -3,13 +3,14 @@ import { TabButton } from '../pages'
 
 import Emoji from '../components/Emoji'
 import styled from 'styled-components'
+import Link from 'next/link'
 export const getSegments = (data) =>
   Object.entries(data).filter(([key]) => key.includes('classement_'))
 
+const medals = { 1: '🥇', 2: '🥈', 3: '🥉' }
 const Segments = ({ data, city }) => {
   const [more, setMore] = useState(false)
   const segments = getSegments(data)
-  const medals = { 1: '🥇', 2: '🥈', 3: '🥉' }
   return (
     <div>
       <ul
@@ -56,3 +57,32 @@ export const SegmentName = styled.span`
   border-radius: 0.5rem;
   padding: 0.1rem 1rem;
 `
+
+export const AllSegments = ({ data }) =>
+  data.values.map(([ville, segments]) => (
+    <li css="margin: 1rem">
+      <Link href={'/villes/' + ville}>{ville}</Link>
+      <ul
+        css={`
+          margin-top: 0.6rem;
+          display: flex;
+
+          flex-wrap: wrap;
+          li {
+            margin: 0.1rem 1rem;
+          }
+        `}
+      >
+        {segments.map(([_, segment], index) => (
+          <li>
+            {index < 3 ? (
+              <Emoji sizeRem="1.5" color e={medals[index + 1]} />
+            ) : (
+              <span css="width: 1.5rem; display: inline-block"></span>
+            )}
+            <SegmentName>{segment}</SegmentName>
+          </li>
+        ))}
+      </ul>
+    </li>
+  ))

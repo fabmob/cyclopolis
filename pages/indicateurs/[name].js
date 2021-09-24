@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import Context from '../../components/Context'
 import Layout from '../../components/layout'
-import Segments, { getSegments, SegmentName } from '../../components/Segments'
+import Segments, {
+  AllSegments,
+  getSegments,
+  SegmentName,
+} from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 import { TabButton } from '../index'
@@ -45,7 +49,7 @@ export default function Indicateur({ key, data }) {
           </li>
         ))}
         <li key="segments">
-          <TabButton color="chartreuse">
+          <TabButton color="#0652DD">
             <Link href={'/indicateurs/segments'}>Voies les + fréquentées</Link>
           </TabButton>
         </li>
@@ -60,73 +64,55 @@ export default function Indicateur({ key, data }) {
       </h1>
       <p>{data.description}</p>
       <ul>
-        {data.key !== 'segments'
-          ? data.values
-              .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
-              .map(([ville, valeur]) => {
-                console.log('VILLE', ville)
-                const width = (rawToNumber(valeur) / max) * 80
-                return (
-                  <li
-                    css={`
-                      margin-bottom: 0.6rem;
-                    `}
-                  >
-                    <Link href={'/villes/' + ville}>
-                      <a>
-                        <span
-                          css={`
-                            margin-left: 0.3rem;
-                            line-height: 1.2rem;
-                            color: black;
-                            display: inline-block;
-                          `}
-                        >
-                          {simplifyNames(ville)}
-                        </span>
-                      </a>
-                    </Link>
-                    <div
-                      css={`
-                        display: flex;
-                        align-items: center;
-                      `}
-                    >
-                      <span
-                        css={`
-                          width: ${width}%;
-                          display: inline-block;
-                          height: 1.5rem;
-                          background: ${data.color};
-                          margin-right: 0.4rem;
-                        `}
-                      ></span>
-                      <span>{formatInputNumber(valeur)}</span>
-                    </div>
-                  </li>
-                )
-              })
-          : data.values.map(([ville, segments]) => (
-              <li>
-                {ville}{' '}
-                <ul
+        {data.key !== 'segments' ? (
+          data.values
+            .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
+            .map(([ville, valeur]) => {
+              console.log('VILLE', ville)
+              const width = (rawToNumber(valeur) / max) * 80
+              return (
+                <li
                   css={`
-                    display: flex;
-
-                    flex-wrap: wrap;
-                    li {
-                      margin: 0.1rem 1rem;
-                    }
+                    margin-bottom: 0.6rem;
                   `}
                 >
-                  {segments.map(([_, segment]) => (
-                    <li>
-                      <SegmentName>{segment}</SegmentName>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
+                  <Link href={'/villes/' + ville}>
+                    <a>
+                      <span
+                        css={`
+                          margin-left: 0.3rem;
+                          line-height: 1.2rem;
+                          color: black;
+                          display: inline-block;
+                        `}
+                      >
+                        {simplifyNames(ville)}
+                      </span>
+                    </a>
+                  </Link>
+                  <div
+                    css={`
+                      display: flex;
+                      align-items: center;
+                    `}
+                  >
+                    <span
+                      css={`
+                        width: ${width}%;
+                        display: inline-block;
+                        height: 1.5rem;
+                        background: ${data.color};
+                        margin-right: 0.4rem;
+                      `}
+                    ></span>
+                    <span>{formatInputNumber(valeur)}</span>
+                  </div>
+                </li>
+              )
+            })
+        ) : (
+          <AllSegments data={data} />
+        )}
       </ul>
     </Layout>
   )
