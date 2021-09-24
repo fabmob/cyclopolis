@@ -48,7 +48,7 @@ const Images = () => (
       alt="Logo du club des villes et territoires cyclables"
     />
     <Image
-      src="/images/Logo-Géovélo-blanc-fond-vert.jpg" // Route of the image file
+      src="/images/logo-geovelo.jpg" // Route of the image file
       height={80} // Desired size with correct aspect ratio
       width={100} // Desired size with correct aspect ratio
       alt="Logo de Geovelo"
