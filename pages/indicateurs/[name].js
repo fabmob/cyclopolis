@@ -58,7 +58,7 @@ export default function Indicateur({ key, data }) {
         {data.label || 'Les voies les plus fréquentées par les cyclistes'}
         {data.unit && (
           <small css="font-size: 60%; margin-left: .6rem; font-weight: normal">
-            En {data.unit}
+            en {data.unit}
           </small>
         )}
       </h1>
