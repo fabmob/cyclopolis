@@ -14,7 +14,7 @@ export const LittleAbout = () => (
   <div>
     <Images />
     <p>
-      Lancée en septembre 2021, la plateforme Comment ça roule présente 7
+      Lancée en septembre 2021, la plateforme Comment ça roule présente 8
       indicateurs sur la circulation des vélos dans plusieurs territoires de
       France.
     </p>
@@ -64,7 +64,7 @@ export const About = () => (
 
     <Images />
     <p>
-      Lancée en septembre 2021, la plateforme Comment ça roule présente 7
+      Lancée en septembre 2021, la plateforme Comment ça roule présente 8
       indicateurs sur la circulation des vélos dans plusieurs territoires de
       France.
     </p>
