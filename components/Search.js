@@ -82,9 +82,13 @@ export default function Search({ data }) {
   )
 }
 
-const Region = ({ data, searchResultShown, input }) => {
+const Region = ({ data, searchResultShown, input}) => {
+  const [expanded, setExpanded] = useState(input !== "")
+  const toggle = () => { if (input === "") setExpanded(!expanded) }
+  useEffect(() => {if (input !== "") setExpanded(input !== "") })
+
   const filteredResults = searchResultShown.filter(
-    (el) => el.codeRegion == data.codeInsee
+      (el) => el.codeRegion == data.codeInsee
   )
   if (!filteredResults.length) return null
 
