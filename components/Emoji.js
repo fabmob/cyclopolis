@@ -3,7 +3,7 @@ import data from 'svgmoji/emoji.json'
 
 const openmoji = new Openmoji({ data, type: 'all' })
 
-export default ({ e, color = false, sizeRem = 2 }) =>
+const Emoji = ({ e, color = false, sizeRem = 2 }) =>
   e == undefined || e == '' ? null : (
     <img
       css={`
@@ -21,3 +21,5 @@ export default ({ e, color = false, sizeRem = 2 }) =>
       alt={e}
     />
   )
+
+  export default Emoji;
