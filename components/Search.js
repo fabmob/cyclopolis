@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import geoData from '../geoData'
 import { Carte } from '../pages/carte'
-import CarteDepartement from './CarteDepartement'
 import Emoji from '../components/Emoji'
 
 export const getRegionCode = (string) => string.split(' - ')[0]
@@ -16,7 +15,6 @@ const options = {
 export default function Search({ data }) {
   const [input, setInput] = useState('')
   const [fuse, setFuse] = useState(null)
-  let [ing, setSearching] = useState(true)
 
   let validInput = input.length > 2
 
@@ -30,7 +28,6 @@ export default function Search({ data }) {
   })
 
   useEffect(() => setFuse(new Fuse(data, options)), [])
-  console.log(searchResults)
 
   return (
     <div

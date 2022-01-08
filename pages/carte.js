@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout, { siteDescription } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import Search, { getRegionCode } from '../components/Search'
+import { getRegionCode } from '../components/Search'
 import data, { simplifyNames } from '../cyclopolisData'
 import geoDataMetropolitaine from '../geoData'
 import geoDataOutreMer from '../geoDataOutreMer'
