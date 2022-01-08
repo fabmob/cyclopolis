@@ -30,20 +30,7 @@ export default function Search({ data }) {
   useEffect(() => setFuse(new Fuse(data, options)), [])
 
   return (
-    <div
-      css={`
-        input {
-          border: 1px solid dark-blue;
-          border-radius: 0.3rem;
-          padding: 0.1rem 0.6rem;
-          font-size: 100%;
-          border-style: solid;
-          margin-left: 1rem;
-          max-width: 70%;
-          display: inline;
-        }
-      `}
-    >
+    <div>
       <div css="display: flex; align-items: center; justify-content: center">
         <Emoji e="🔎" /> &nbsp;
         <input
@@ -102,35 +89,14 @@ const Region = ({ data, searchResultShown, input }) => {
   if (!filteredResults.length) return null
 
   return (
-    <li
-      key={data.codeInsee}
-      css={`
-        margin-bottom: 2rem;
-        box-shadow: 0 1px 3px rgba(77, 21, 21, 0.12),
-          0 1px 2px rgba(47, 33, 33, 0.24);
-        background: #eeeeeea3;
-        border-radius: 0.6rem;
-        padding: 0 0.6rem 1rem;
-      `}
-    >
-      <div
-        css={`
-          display: flex;
-          align-items: center;
-        `}
-      >
+    <li key={data.codeInsee} className="region-cities">
+      <div onClick={toggle}>
         <div css="width: 3rem; margin-right: .6rem">
           <Carte showRegion={data.codeInsee} />
         </div>
         <h3>{data.nom}</h3>
       </div>
-      <ul
-        css={`
-          display: flex;
-          align-items: center;
-          flex-direction: column;
-        `}
-      >
+      {expanded && <ul>
         {filteredResults.map((city) => (
           <li key={city}>
             <Link href={'/villes/' + city.area}>
@@ -140,43 +106,13 @@ const Region = ({ data, searchResultShown, input }) => {
             </Link>
           </li>
         ))}
-      </ul>
+      </ul>}
     </li>
   )
 }
 
 const Item = ({ input, data, departement }) => (
-  <div
-    key={data['region']}
-    css={`
-      box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
-        0 1px 2px rgba(41, 117, 209, 0.24);
-      background: #fdfcff;
-      padding: 0.6rem 0.1rem;
-      margin: 0.3rem;
-      list-style-type: none;
-      border-radius: 0.6rem;
-      display: flex;
-      justify-content: start;
-      align-items: center;
-      > * {
-        margin: 0 1rem;
-      }
-      width: 20rem;
-      @media (max-width: 800px) {
-        width: 16rem;
-      }
-
-      h4 {
-        font-weight: 500;
-        color: #444;
-        text-transform: uppercase;
-        margin: 0.4rem;
-        font-size: 60%;
-        display: inline;
-      }
-    `}
-  >
+  <div key={data['region']} className="item" >
     <span>
       <Highlighter
         highlightStyle={{

@@ -1,3 +1,4 @@
+import '../styles/global.css'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
@@ -61,7 +62,7 @@ img {
 }
 ul {
 
-padding: 0; 
+padding: 0;
 
 list-style-type: none
 
