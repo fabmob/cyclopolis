@@ -43,15 +43,15 @@ export default function Indicateur({ key, data }) {
       >
         {Object.entries(dataMeta).map(([key, { color, label }]) => (
           <li key={label}>
-            <TabButton color={color}>
+            <button className="tab-button" style={{background: color}}>
               <Link href={'/indicateurs/' + key}>{label}</Link>
-            </TabButton>
+            </button>
           </li>
         ))}
         <li key="segments">
-          <TabButton color="#0652DD">
+          <button className="tab-button" style={{backgound: '#0652DD'}}>
             <Link href={'/indicateurs/segments'}>Voies les + fréquentées</Link>
-          </TabButton>
+          </button>
         </li>
       </ul>
       <h1>

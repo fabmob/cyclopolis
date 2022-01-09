@@ -4,23 +4,6 @@ import utilStyles from '../styles/utils.module.css'
 import Search from '../components/Search'
 import data from '../cyclopolisData'
 import Link from 'next/link'
-import styled from 'styled-components'
-
-export const TabButton = styled.button`
-  background: ${(props) => props.color || '#ae0917'};
-  box-shadow: #ae091733 0px 4px 14px 0px;
-  color: white;
-  padding: 0.2rem 0.6rem;
-  border-radius: 0.4rem;
-  border: none;
-  font-size: 90%;
-  margin: 0.4rem;
-  a {
-    color: inherit;
-  }
-  cursor: pointer;
-  text-transform: uppercase;
-`
 
 export default function Home({ data }) {
   return (
@@ -49,27 +32,18 @@ export async function getStaticProps() {
 }
 
 export const Menu = () => (
-  <div
-    css={`
-      display: flex;
-      justify-content: center;
-      margin: 1rem 0;
-      @media (max-width: 800px) {
-        font-size: 90%;
-      }
-    `}
-  >
-    <TabButton>
+  <div className="menu">
+    <button className="tab-button">
       <Link href="/">Vue liste</Link>
-    </TabButton>
-    <TabButton>
+    </button>
+    <button className="tab-button">
       <Link href="/carte">Vue carte</Link>
-    </TabButton>
-    <TabButton>
+    </button>
+    <button className="tab-button">
       <Link href="/indicateurs/vitesse">Vue indicateurs</Link>
-    </TabButton>
-    <TabButton>
+    </button>
+    <button className="tab-button">
       <Link href="/a-propos">À propos</Link>
-    </TabButton>
+    </button>
   </div>
 )
