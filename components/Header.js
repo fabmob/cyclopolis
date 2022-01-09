@@ -8,7 +8,7 @@ const toThumb = (url) => {
     : url.split('Fichier:')
   const fileName = paths[1]
   console.log(fileName)
-  const decoded = decodeURIComponent(fileName).replaceAll(' ', '_')
+  const decoded = decodeURIComponent(fileName).replace(/ /g, '_')
   const hash = MD5(unescape(encodeURIComponent(decoded)))
   console.log(decoded, hash)
 
