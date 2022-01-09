@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Logo from '../public/images/commentçaroule.svg'
 import { LittleAbout } from '../pages/a-propos'
 
 const Title = styled.h1`
@@ -37,7 +35,7 @@ export default function Layout({ children, home, noAbout }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
-        <Link href="/">
+        <Link href="/" passHref>
           <div
             css={`
               display: flex;
@@ -45,7 +43,7 @@ export default function Layout({ children, home, noAbout }) {
               cursor: pointer;
             `}
           >
-            <img
+            <Image
               css="width:4rem"
               src="/images/commentçaroule-2.svg"
               alt={name}
@@ -57,7 +55,7 @@ export default function Layout({ children, home, noAbout }) {
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
-            <a>← Retour à l'accueil</a>
+            <a>← Retour à l’accueil</a>
           </Link>
         </div>
       )}

@@ -27,7 +27,7 @@ export default function Search({ data }) {
     return { ...el, codeRegion: getRegionCode(el['REGION']) }
   })
 
-  useEffect(() => setFuse(new Fuse(data, options)), [])
+  useEffect(() => setFuse(new Fuse(data, options)), [data])
 
   return (
     <div>
@@ -44,7 +44,7 @@ export default function Search({ data }) {
       </div>
       {validInput && !searchResultShown.length && (
         <>
-          <p>Votre collectivité n'est pas renseignée. </p>
+          <p>Votre collectivité n’est pas renseignée. </p>
           <p>
             <a href="https://villes-cyclables.org/contactez-nous">
               Contactez-nous
@@ -85,7 +85,7 @@ export default function Search({ data }) {
 const Region = ({ data, searchResultShown, input}) => {
   const [expanded, setExpanded] = useState(input !== "")
   const toggle = () => { if (input === "") setExpanded(!expanded) }
-  useEffect(() => {if (input !== "") setExpanded(input !== "") })
+  useEffect(() => {if (input !== "") setExpanded(input !== "") }, [input])
 
   const filteredResults = searchResultShown.filter(
       (el) => el.codeRegion == data.codeInsee
@@ -102,7 +102,7 @@ const Region = ({ data, searchResultShown, input}) => {
       </div>
       {expanded && <ul>
         {filteredResults.map((city) => (
-          <li key={city}>
+          <li key={city.area}>
             <Link href={'/villes/' + city.area}>
               <a>
                 <Item data={city} input={input} />

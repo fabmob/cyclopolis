@@ -1,11 +1,12 @@
 import { Openmoji } from '@svgmoji/openmoji'
 import data from 'svgmoji/emoji.json'
+import Image from 'next/image'
 
 const openmoji = new Openmoji({ data, type: 'all' })
 
 const Emoji = ({ e, color = false, sizeRem = 2 }) =>
   e == undefined || e == '' ? null : (
-    <img
+    <Image
       css={`
         width: ${sizeRem}rem !important;
         height: ${sizeRem}rem !important;

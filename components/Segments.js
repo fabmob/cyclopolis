@@ -64,7 +64,7 @@ export const SegmentName = styled.span`
 
 export const AllSegments = ({ data }) =>
   data.values.map(([ville, segments]) => (
-    <li css="margin: 1rem">
+    <li key={ville} css="margin: 1rem">
       <Link href={'/villes/' + ville}>{ville}</Link>
       <ul
         css={`
@@ -78,7 +78,7 @@ export const AllSegments = ({ data }) =>
         `}
       >
         {segments.map(([_, segment], index) => (
-          <li>
+          <li key={index}>
             {index < 3 ? (
               <Emoji sizeRem="1.5" color e={medals[index + 1]} />
             ) : (

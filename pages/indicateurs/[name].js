@@ -72,6 +72,7 @@ export default function Indicateur({ key, data }) {
               const width = (rawToNumber(valeur) / max) * 80
               return (
                 <li
+                  key={ville}
                   css={`
                     margin-bottom: 0.6rem;
                   `}

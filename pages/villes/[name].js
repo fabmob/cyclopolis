@@ -116,7 +116,7 @@ export default function Ville({ data }) {
         {Object.entries(dataMeta)
           .filter(([, { sub }]) => !sub)
           .map((meta) => (
-            <Indicator meta={meta} data={data} />
+            <Indicator key={meta.label} meta={meta} data={data} />
           ))}
       </ul>
 

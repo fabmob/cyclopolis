@@ -4,7 +4,7 @@ import { formatInputNumber } from '../pages/villes/[name]'
 import Context from './Context'
 import { useState } from 'react'
 
-export default ({
+const Indicator = ({
   meta: [key, { color, label, icon, unit: unitRaw }],
   data,
 }) => {
@@ -12,7 +12,7 @@ export default ({
   const [number, unit] = formatInputNumber(data[indicator], unitRaw)
 
   return (
-    <Link href={'/indicateurs/' + indicator}>
+    <Link href={'/indicateurs/' + indicator} passHref>
       <li
         title="Comparer avec d'autres villes"
         css={`
@@ -125,3 +125,5 @@ export default ({
     </Link>
   )
 }
+
+export default Indicator;
