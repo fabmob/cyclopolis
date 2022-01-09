@@ -2,15 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'
 import Link from 'next/link'
-import styled from 'styled-components'
 import { LittleAbout } from '../pages/a-propos'
-
-const Title = styled.h1`
-  font-size: ${({ size }) => size || '250%'};
-  color: #ae0917;
-  margin: 0.2rem;
-  white-space: nowrap;
-`
 
 const name = 'Comment ça roule ?'
 export const siteDescription =
@@ -49,7 +41,7 @@ export default function Layout({ children, home, noAbout }) {
               src="/images/commentçaroule-2.svg"
               alt={name}
             />
-            <Title size={'160%'}>{name}</Title>
+            <h1>{name}</h1>
           </div>
         </Link>
       </header>

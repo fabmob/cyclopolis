@@ -72,3 +72,10 @@ Higlighter {
       font-size: 90%;
     }
 }
+
+h1 {
+    font-size: 160%;
+    color: #ae0917;
+    margin: 0.2rem;
+    white-space: nowrap;
+}
