@@ -7,9 +7,9 @@ const openmoji = new Openmoji({ data, type: 'all' })
 const Emoji = ({ e, color = false, sizeRem = 2 }) =>
   e == undefined || e == '' ? null : (
     <Image
+      width={18*sizeRem}
+      height={18*sizeRem}
       css={`
-        width: ${sizeRem}rem !important;
-        height: ${sizeRem}rem !important;
         vertical-align: middle !important;
         display: inline-block;
         ${!color

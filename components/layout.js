@@ -44,7 +44,8 @@ export default function Layout({ children, home, noAbout }) {
             `}
           >
             <Image
-              css="width:4rem"
+              width={18*4}
+              height={18*4}
               src="/images/commentçaroule-2.svg"
               alt={name}
             />

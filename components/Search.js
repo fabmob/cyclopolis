@@ -120,9 +120,7 @@ const Item = ({ input, data, departement }) => (
     <span>
       <Highlighter
         highlightStyle={{
-          background: '#88c13e',
-          color: 'white',
-          fontWeight: 400,
+
         }}
         searchWords={input.split(' ')}
         textToHighlight={data.area}
