@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import correspondanceMétropoleVille from '../correspondanceMétropoleVille'
 
 const toThumb = (url) => {
@@ -46,7 +45,7 @@ const Header = ({ name, wikidata, data }) => {
         }
       `}
     >
-      {imageURL && <CityImage src={thumbURL} />}
+      {imageURL && <img src={thumbURL} className="city-image"/>}
       <h1>{name}</h1>
       <div
         css={`
@@ -71,15 +70,6 @@ const Header = ({ name, wikidata, data }) => {
     </header>
   )
 }
-const CityImage = styled.img`
-  width: 100%;
-  position: absolute;
-  object-fit: cover;
-  max-height: 10rem;
-  @media (max-width: 800px) {
-    max-height: 6rem;
-  }
-`
 
 export default Header
 

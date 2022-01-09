@@ -79,3 +79,13 @@ h1 {
     margin: 0.2rem;
     white-space: nowrap;
 }
+
+.city-image {
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+    max-height: 10rem;
+    @media (max-width: 800px) {
+      max-height: 6rem;
+    }
+}
