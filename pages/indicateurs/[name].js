@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import Layout from '../../components/layout'
-import Segments, {
+import {
   AllSegments,
   getSegments,
-  SegmentName,
 } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'

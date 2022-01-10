@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { TabButton } from '../pages'
-
 import Emoji from '../components/Emoji'
 import Link from 'next/link'
 export const getSegments = (data) =>
