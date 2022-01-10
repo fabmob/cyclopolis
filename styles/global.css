@@ -63,12 +63,18 @@ ul {
     list-style-type: none;
 }
 
-h1 {
+header h1 {
     margin: .6rem 0 1rem;
     font-size: 160%;
     color: #ae0917;
     margin: 0.2rem;
     white-space: nowrap;
+}
+
+small {
+  font-size: 60%;
+  margin-left: .6rem;
+  font-weight: normal
 }
 
 .region-cities {
@@ -192,4 +198,99 @@ Higlighter {
 
 .tab-button a {
     color: white;
+}
+
+.indicateurs {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  padding-bottom: 1rem;
+
+  max-width: 14rem;
+
+  @media (max-width: 800px) {
+    max-width: 8rem;
+    h2 {
+      font-size: 90%;
+      text-align: center;
+      max-width: auto;
+      text-align: center;
+    }
+    .emoji {
+      font-size: 150%;
+    }
+  }
+  box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12), 0 1px 2px rgba(209, 41, 41, 0.24);
+  border: 2px solid black;
+  border-radius: 0.2rem;
+  margin: 0.6rem 0;
+}
+
+.indicateurs > h2 {
+    text-transform: uppercase;
+    font-weight: 300;
+    margin: 0.4rem;
+    font-size: 100%;
+    max-width: 8rem;
+    text-align: right;
+}
+
+.indicateurs > div {
+  display: flex;
+  flex-wrap : wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.indicateurs-list {
+    flex-wrap: wrap;
+    height: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: normal;
+    scrollbar-width: none;
+    display: flex;
+    list-style-type: none;
+    -moz-box-pack: center;
+    justify-content: center;
+    padding-left: 1.6rem;
+    @media (min-width: 800px) {
+      flex-wrap: wrap;
+      height: auto;
+    }
+}
+
+.indicateurs-list li {
+  padding: 0.1rem 0rem;
+  margin: 0.15rem 0.2rem;
+  border-radius: 0.2rem;
+  line-height: 1.6rem;
+  height: 1.8rem;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+div.progress-bar {
+  display: flex;
+  align-items: center;
+}
+
+span.progress-bar {
+  display: inline-block;
+  height: 1.5rem;
+  margin-right: 0.4rem;
+}
+
+.ville-indicateurs {
+  margin-left: 0.3rem;
+  line-height: 1.2rem;
+  color: black;
+  display: inline-block;
 }

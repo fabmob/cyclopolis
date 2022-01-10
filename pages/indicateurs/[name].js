@@ -8,39 +8,13 @@ import Segments, {
 } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
-import { TabButton } from '../index'
 
 export default function Indicateur({ key, data }) {
   const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
   return (
     <Layout>
       <br />
-      <ul
-        css={`
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          white-space: nowrap;
-          justify-content: normal;
-          height: 3rem;
-          scrollbar-width: none;
-          display: flex;
-          list-style-type: none;
-          -moz-box-pack: center;
-          justify-content: center;
-          padding-left: 1.6rem;
-          li {
-            padding: 0.1rem 0rem;
-            margin: 0.15rem 0.2rem;
-            border-radius: 0.2rem;
-            line-height: 1.6rem;
-            height: 1.8rem;
-          }
-          @media (min-width: 800px) {
-            flex-wrap: wrap;
-            height: auto;
-          }
-        `}
-      >
+      <ul className='indicateurs-list'>
         {Object.entries(dataMeta).map(([key, { color, label }]) => (
           <li key={label}>
             <button className="tab-button" style={{background: color}}>
@@ -57,7 +31,7 @@ export default function Indicateur({ key, data }) {
       <h1>
         {data.label || 'Les voies les plus fréquentées par les cyclistes'}
         {data.unit && (
-          <small css="font-size: 60%; margin-left: .6rem; font-weight: normal">
+          <small>
             en {data.unit}
           </small>
         )}
@@ -78,33 +52,13 @@ export default function Indicateur({ key, data }) {
                 >
                   <Link href={'/villes/' + ville}>
                     <a>
-                      <span
-                        css={`
-                          margin-left: 0.3rem;
-                          line-height: 1.2rem;
-                          color: black;
-                          display: inline-block;
-                        `}
-                      >
+                      <span className="ville-indicateurs">
                         {simplifyNames(ville)}
                       </span>
                     </a>
                   </Link>
-                  <div
-                    css={`
-                      display: flex;
-                      align-items: center;
-                    `}
-                  >
-                    <span
-                      css={`
-                        width: ${width}%;
-                        display: inline-block;
-                        height: 1.5rem;
-                        background: ${data.color};
-                        margin-right: 0.4rem;
-                      `}
-                    ></span>
+                  <div className="progress-bar">
+                    <span className="progress-bar" style={{width: `${width}%`, background: data.color}}/>
                     <span>{formatInputNumber(valeur)}</span>
                   </div>
                 </li>

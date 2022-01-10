@@ -28,13 +28,7 @@ export default function Layout({ children, home, noAbout }) {
       </Head>
       <header className={styles.header}>
         <Link href="/" passHref>
-          <div
-            css={`
-              display: flex;
-              align-items: center;
-              cursor: pointer;
-            `}
-          >
+          <div>
             <Image
               width={18*4}
               height={18*4}
