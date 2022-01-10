@@ -100,7 +100,7 @@ h1 {
     list-style-type: none;
     border-radius: 0.6rem;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     width: 20rem;
     @media (max-width: 800px) {
