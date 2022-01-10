@@ -22,7 +22,7 @@ const Indicator = ({
         title="Comparer avec d'autres villes"
         className="indicateurs"
       >
-        <div className="emoji" className="indicateur-emoji">
+        <div className="emoji indicateur-emoji">
           <Emoji e={icon} sizeRem="3" />
         </div>
         <h2>{label}</h2>
