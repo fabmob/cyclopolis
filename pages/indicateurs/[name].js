@@ -68,7 +68,6 @@ export default function Indicateur({ key, data }) {
           data.values
             .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
             .map(([ville, valeur]) => {
-              console.log('VILLE', ville)
               const width = (rawToNumber(valeur) / max) * 80
               return (
                 <li
@@ -122,13 +121,11 @@ export default function Indicateur({ key, data }) {
 export async function getStaticPaths() {
   // Return a list of possible value for id
   const paths = getAllIndicateurs()
-  console.log('PATH', paths)
   return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params }) {
   if (params.name === 'segments') {
-    console.log('salut')
     const yo = {
       props: {
         data: {
@@ -137,7 +134,6 @@ export async function getStaticProps({ params }) {
         },
       },
     }
-    console.log('YIYI', JSON.stringify(yo))
     return yo
   }
   const indicateur = Object.entries(dataMeta).find(

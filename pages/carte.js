@@ -11,7 +11,6 @@ import Link from 'next/link'
 const geoData = [...geoDataMetropolitaine, ...geoDataOutreMer]
 
 const departementLabel = (codeDepartement, codeRegion) => {
-  console.log(codeDepartement, codeRegion)
   const region = geoData.find((r) => r.codeInsee == codeRegion)
 
   if (!region) return {}

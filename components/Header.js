@@ -1,15 +1,12 @@
 import correspondanceMétropoleVille from '../correspondanceMétropoleVille'
 
 const toThumb = (url) => {
-  console.log(url)
   const paths = url.includes('FilePath/')
     ? url.split('FilePath/')
     : url.split('Fichier:')
   const fileName = paths[1]
-  console.log(fileName)
   const decoded = decodeURIComponent(fileName).replace(/ /g, '_')
   const hash = MD5(unescape(encodeURIComponent(decoded)))
-  console.log(decoded, hash)
 
   return `https://upload.wikimedia.org/wikipedia/commons/thumb/${hash[0]}/${hash[0]}${hash[1]}/${decoded}/700px-${fileName}`
 }
@@ -17,7 +14,6 @@ const toThumb = (url) => {
 const Header = ({ name, wikidata, data }) => {
   const imageURL = data['Image'] || wikidata?.pic.value
   const thumbURL = imageURL && toThumb(imageURL)
-  console.log(thumbURL)
 
   const population = data['Population '] || wikidata?.population?.value
   return (
