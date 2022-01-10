@@ -27,7 +27,7 @@ export default function Home({ data }) {
   const [geo, setGeo] = useState(null)
   const citiesFound = !geo
     ? []
-    : data.filter(({ REGION }) => getRegionCode(REGION) === geo.region)
+    : data.summer.filter(({ REGION }) => getRegionCode(REGION) === geo.region)
 
   const plural = citiesFound && citiesFound.length > 1 ? 's' : ''
   const { region, departement } = geo

@@ -17,7 +17,7 @@ export default function Home({ data }) {
       {/* Add this <section> tag below the existing <section> tag */}
       <Menu />
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <Search data={data} />
+        <Search data={data.summer} />
       </section>
     </Layout>
   )

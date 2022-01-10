@@ -36,7 +36,7 @@ const Segments = ({ data, city }) => {
 export default Segments
 
 export const AllSegments = ({ data }) =>
-  data.values.map(([ville, segments]) => (
+  data.map(([ville, segments]) => (
     <li key={ville} className="segments-list">
       <Link href={'/villes/' + ville}>{ville}</Link>
       <ul>

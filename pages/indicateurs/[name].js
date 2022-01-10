@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useState } from 'react'
 import Layout from '../../components/layout'
 import {
   AllSegments,
@@ -8,10 +9,19 @@ import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 
 export default function Indicateur({ key, data }) {
-  const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
+  const [period, setPeriod] = useState('summer');
+
+  const max = Math.max(...data.values[period].map(([, v]) => rawToNumber(v)))
   return (
     <Layout>
       <br />
+      <div>
+        <input type="radio" id="summer" name="period" value="summer" checked={period==='summer'} onClick={() => setPeriod('summer')} />
+        <label htmlFor="summer">Été</label>
+        <input type="radio" id="fall" name="period" value="fall" checked={period==='fall'} onClick={() => setPeriod('fall')} />
+        <label htmlFor="fall">Automne</label>
+      </div>
+
       <ul className='indicateurs-list'>
         {Object.entries(dataMeta).map(([key, { color, label }]) => (
           <li key={label}>
@@ -37,7 +47,7 @@ export default function Indicateur({ key, data }) {
       <p>{data.description}</p>
       <ul>
         {data.key !== 'segments' ? (
-          data.values
+          data.values[period]
             .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
             .map(([ville, valeur]) => {
               const width = (rawToNumber(valeur) / max) * 80
@@ -58,7 +68,7 @@ export default function Indicateur({ key, data }) {
               )
             })
         ) : (
-          <AllSegments data={data} />
+          <AllSegments data={data.values[period]} />
         )}
       </ul>
     </Layout>
@@ -76,7 +86,10 @@ export async function getStaticProps({ params }) {
     const yo = {
       props: {
         data: {
-          values: cyclopolisData.map((el) => [el.area, getSegments(el)]),
+          values: {
+            summer: cyclopolisData.summer.map((el) => [el.area, getSegments(el)]),
+            fall: cyclopolisData.fall.map((el) => [el.area, getSegments(el)]),
+          },
           key: 'segments',
         },
       },
@@ -87,10 +100,17 @@ export async function getStaticProps({ params }) {
     ([key, data]) => key === params.name
   )
 
-  const values = cyclopolisData.map((city) => [city.area, city[indicateur[0]]])
+  console.log(params)
+
   return {
     props: {
-      data: { values, key: params.name, ...indicateur[1] },
+      data: {
+        values: {
+          summer: cyclopolisData.summer.map((city) => [city.area, city[indicateur[0]]]),
+          fall: cyclopolisData.fall.map((city) => [city.area, city[indicateur[0]]]),
+        },
+        key: params.name, ...indicateur[1]
+      },
     },
   }
 }

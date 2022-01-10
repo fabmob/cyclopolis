@@ -1,9 +1,9 @@
-import cyclopolisData from '../cyclopolisData'
+import cyclopolis from '../cyclopolisData'
 import Emoji from './Emoji'
 
 import { rawToNumber } from '../pages/villes/[name]'
 const Context = ({ value, metric, color }) => {
-  const data = cyclopolisData.map((o) => rawToNumber(o[metric])),
+  const data = cyclopolis.summer.map((o) => rawToNumber(o[metric])),
     min = Math.min(...data),
     max = Math.max(...data),
     cursor = rawToNumber(value)
