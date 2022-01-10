@@ -56,7 +56,7 @@ const Images = () => (
   </div>
 )
 export const About = () => (
-  <div>
+  <div className="about">
     <Head>
       <title>Comment ça roule - À propos</title>
     </Head>
@@ -98,7 +98,7 @@ export const About = () => (
       Pour chacun des territoires couverts, les indicateurs présentés sont :
     </p>
 
-    <ul css="list-style-type: disc; padding-left: 2rem">
+    <ul>
       <li>La vitesse moyenne à vélo (variant de 13 à 19km/h)</li>
 
       <li>La distance moyenne des trajets effectués (de 6,5km à 26km)</li>
@@ -124,7 +124,7 @@ export const About = () => (
       Chaque jour, plusieurs milliers de trajets sont enregistrés avec
       l’application Geovelo. Les trajets enregistrés sont ceux :
     </p>
-    <ul css="list-style-type: disc; padding-left: 2rem">
+    <ul>
       <li>réalisés avec la fonctionnalité Navigation</li>
 
       <li>enregistrés manuellement grâce au bouton dédié</li>

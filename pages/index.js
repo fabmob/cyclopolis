@@ -12,7 +12,7 @@ export default function Home({ data }) {
         <title>{siteDescription}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p css="text-align: center">{siteDescription}</p>
+        <p>{siteDescription}</p>
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
       <Menu />

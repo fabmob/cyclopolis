@@ -39,25 +39,15 @@ export default Segments
 
 export const AllSegments = ({ data }) =>
   data.values.map(([ville, segments]) => (
-    <li key={ville} css="margin: 1rem">
+    <li key={ville} className="segments-list">
       <Link href={'/villes/' + ville}>{ville}</Link>
-      <ul
-        css={`
-          margin-top: 0.6rem;
-          display: flex;
-
-          flex-wrap: wrap;
-          li {
-            margin: 0.1rem 1rem;
-          }
-        `}
-      >
+      <ul>
         {segments.map(([_, segment], index) => (
           <li key={index}>
             {index < 3 ? (
               <Emoji sizeRem="1.5" color e={medals[index + 1]} />
             ) : (
-              <span css="width: 1.5rem; display: inline-block"></span>
+              <span style={{width: '1.5rem', display: 'inline-block'}}></span>
             )}
             <span className="segment">{segment}</span>
           </li>

@@ -39,8 +39,8 @@ export default function Home({ data }) {
         <title>{siteDescription}</title>
       </Head>
       <Menu />
-      <section className={utilStyles.headingMd}>
-        <p css="text-align: center">
+      <section className="carte-section">
+        <p>
           Cliquez sur une zone de la carte pour découvrir les villes et
           territoires concernés.{' '}
         </p>

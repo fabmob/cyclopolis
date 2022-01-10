@@ -43,12 +43,7 @@ export default function Indicateur({ key, data }) {
             .map(([ville, valeur]) => {
               const width = (rawToNumber(valeur) / max) * 80
               return (
-                <li
-                  key={ville}
-                  css={`
-                    margin-bottom: 0.6rem;
-                  `}
-                >
+                <li key={ville}>
                   <Link href={'/villes/' + ville}>
                     <a>
                       <span className="ville-indicateurs">

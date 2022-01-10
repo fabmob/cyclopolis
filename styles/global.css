@@ -170,6 +170,20 @@ Higlighter {
     }
 }
 
+.segments-list li {
+  margin: 1rem;
+}
+
+.segments-list ul {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.segments-list ul li {
+  margin: 0.1rem 1rem;
+}
+
 .segment {
     box-shadow: 0 1px 3px rgba(209, 41, 41, 0.12),
     0 1px 2px rgba(41, 117, 209, 0.24);
@@ -276,6 +290,7 @@ Higlighter {
   border-radius: 0.2rem;
   line-height: 1.6rem;
   height: 1.8rem;
+  margin-bottom: 0.6rem;
 }
 
 .indicateur {
@@ -417,4 +432,29 @@ main header h1 {
 
 .default-emoji {
   filter: invert(13%) sepia(47%) saturate(6805%) hue-rotate(346deg) brightness(92%) contrast(106%);
+}
+
+.carte-section {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.carte-section p {
+  text-align: center;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-map {
+  width: 3rem;
+  margin-right: .6rem
+}
+
+.about > ul {
+  list-style-type: disc;
+  padding-left: 2rem;
 }

@@ -31,7 +31,7 @@ export default function Search({ data }) {
 
   return (
     <div>
-      <div css="display: flex; align-items: center; justify-content: center">
+      <div className="search">
         <Emoji e="🔎" /> &nbsp;
         <input
           value={input}
@@ -95,7 +95,7 @@ const Region = ({ data, searchResultShown, input}) => {
   return (
     <li key={data.codeInsee} className="region-cities">
       <div onClick={toggle}>
-        <div css="width: 3rem; margin-right: .6rem">
+        <div className="mini-map">
           <Carte showRegion={data.codeInsee} />
         </div>
         <h3>{data.nom}</h3>
