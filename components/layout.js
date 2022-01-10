@@ -26,7 +26,7 @@ export default function Layout({ children, home, noAbout }) {
         <meta name="og:title" content={siteDescription} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
+      <header id="header">
         <Link href="/" passHref>
           <div>
             <Image
@@ -48,14 +48,7 @@ export default function Layout({ children, home, noAbout }) {
       )}
       <main>{children}</main>
       {!noAbout && (
-        <footer
-          css={`
-            margin-top: 2rem;
-            background: #5f6062;
-            padding: 1rem;
-            color: white;
-          `}
-        >
+        <footer>
           <LittleAbout />
         </footer>
       )}

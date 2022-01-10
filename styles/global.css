@@ -77,6 +77,13 @@ small {
   font-weight: normal
 }
 
+footer {
+  margin-top: 2rem;
+  background: #5f6062;
+  padding: 1rem;
+  color: white;
+}
+
 .region-cities {
     margin-bottom: 2rem;
     box-shadow: 0 1px 3px rgba(77, 21, 21, 0.12),
@@ -271,7 +278,32 @@ Higlighter {
   height: 1.8rem;
 }
 
-header div {
+.indicateur {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.indicateur button {
+  cursor: zoom-in;
+  margin: 0 0.4rem;
+  border: 1px solid #444;
+  padding: 0 0.2rem;
+  line-height: 1rem;
+  border-radius: 0.2rem;
+  color: #444;
+}
+
+.indicateur-emoji {
+  margin: 0 .6rem;
+}
+
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#header div {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -293,4 +325,96 @@ span.progress-bar {
   line-height: 1.2rem;
   color: black;
   display: inline-block;
+}
+
+.context {
+  width: 100%;
+  height: 1rem;
+  bottom: 0;
+  position: absolute;
+}
+
+.context-pin {
+  position: absolute;
+  bottom: -0.1rem;
+}
+
+.emoji-image {
+  vertical-align: middle !important;
+  display: inline-block;
+}
+
+main header {
+  position: relative;
+  margin-bottom: 1rem;
+  height: 9rem; /* dunno why this is necessary to not overlap content*/
+  @media (max-width: 800px) {
+    height: 4rem;
+  }
+}
+
+main header h1 {
+  position: absolute;
+  z-index: 1;
+  background: #00000075;
+  color: white;
+  padding: 0 0.6rem;
+  font-size: 200%;
+  @media (max-width: 800px) {
+    font-size: 180%;
+  }
+  margin: 0;
+  top: 0;
+}
+
+.city-stats {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+  background: #00000085;
+  color: white;
+}
+
+.city-stats p {
+  padding: 0 0.6rem;
+  margin: 0;
+}
+
+.city-indicators-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.confiance {
+  padding: 0.1rem 0.4rem;
+  color: white;
+}
+
+.about-images {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.medals ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.medals > li {
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+
+.emoji-medal {
+  display: inline-block;
+  text-align: center;
+  width: 2rem;
+  font-size: 130%;
+}
+
+.default-emoji {
+  filter: invert(13%) sepia(47%) saturate(6805%) hue-rotate(346deg) brightness(92%) contrast(106%);
 }

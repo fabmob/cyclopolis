@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Context from '../../components/Context'
 import Layout from '../../components/layout'
 import Segments, {
   AllSegments,

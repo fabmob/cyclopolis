@@ -9,13 +9,7 @@ const Emoji = ({ e, color = false, sizeRem = 2 }) =>
     <Image
       width={18*sizeRem}
       height={18*sizeRem}
-      css={`
-        vertical-align: middle !important;
-        display: inline-block;
-        ${!color
-          ? 'filter: invert(13%) sepia(47%) saturate(6805%) hue-rotate(346deg) brightness(92%) contrast(106%);'
-          : ''}
-      `}
+      className={!color ? 'default-emoji emoji-image' : 'emoji-image' }
       src={`https://openmoji.org/data/${color ? 'color' : 'black'}/svg/${
         openmoji.find(e).hexcode
       }.svg`}

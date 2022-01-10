@@ -10,23 +10,8 @@ const Context = ({ value, metric, color }) => {
   const position = ((cursor - min) / (max - min)) * 100
 
   return (
-    <div
-      css={`
-        width: 100%;
-        height: 1rem;
-        bottom: 0;
-        position: absolute;
-
-        background: linear-gradient(90deg, white 0%, ${color} 100%);
-      `}
-    >
-      <span
-        css={`
-          position: absolute;
-          left: ${position * 0.9}%;
-          bottom: -0.1rem;
-        `}
-      >
+    <div className="context" style={{background: `linear-gradient(90deg, white 0%, ${color} 100%)`}}>
+      <span className="context-pin" style={{ left: `${position * 0.9}%`}}>
         <Emoji e="📍" color />
       </span>
     </div>

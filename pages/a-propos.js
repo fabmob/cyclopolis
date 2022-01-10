@@ -40,7 +40,7 @@ export const LittleAbout = () => (
 )
 
 const Images = () => (
-  <div css="display: flex; justify-content: space-evenly">
+  <div className="about-images">
     <Image
       src="/images/logo-villes-territoires-cyclables.png" // Route of the image file
       height={100} // Desired size with correct aspect ratio

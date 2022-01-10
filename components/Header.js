@@ -17,50 +17,13 @@ const Header = ({ name, wikidata, data }) => {
 
   const population = data['Population '] || wikidata?.population?.value
   return (
-    <header
-      css={`
-        position: relative;
-        margin-bottom: 1rem;
-        height: 9rem; /* dunno why this is necessary to not overlap content*/
-        @media (max-width: 800px) {
-          height: 4rem;
-        }
-
-        h1 {
-          position: absolute;
-          z-index: 1;
-          background: #00000075;
-          color: white;
-          padding: 0 0.6rem;
-          font-size: 200%;
-          @media (max-width: 800px) {
-            font-size: 180%;
-          }
-          margin: 0;
-          top: 0;
-        }
-      `}
-    >
+    <header>
       {imageURL && <img src={thumbURL} className="city-image"/>}
       <h1>{name}</h1>
-      <div
-        css={`
-          p {
-            padding: 0 0.6rem;
-            margin: 0;
-          }
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          position: absolute;
-          z-index: 1;
-          background: #00000085;
-          color: white;
-        `}
-      >
-        {population && <p>{(+population).toLocaleString()} hab.</p>}
+      <div className="city-stats">
+        {population && <p>{(+population).toLocaleString('fr-FR')} hab.</p>}
         {wikidata?.area && !correspondanceMétropoleVille[data.area] && (
-          <p>{(+wikidata.area.value).toLocaleString()} km².</p>
+          <p>{(+wikidata.area.value).toLocaleString('fr-FR')} km².</p>
         )}
       </div>
     </header>

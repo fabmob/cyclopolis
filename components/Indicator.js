@@ -11,39 +11,25 @@ const Indicator = ({
   const [indicator, setIndicator] = useState(key)
   const [number, unit] = formatInputNumber(data[indicator], unitRaw)
 
+  const selected = {
+    background: '#333',
+    color: 'white'
+  }
+
   return (
     <Link href={'/indicateurs/' + indicator} passHref>
       <li
         title="Comparer avec d'autres villes"
         className="indicateurs"
       >
-        <div className="emoji" css=" margin: 0 .6rem;">
+        <div className="emoji" className="indicateur-emoji">
           <Emoji e={icon} sizeRem="3" />
         </div>
         <h2>{label}</h2>
         {indicator.includes('distance') && (
-          <div
-            css={`
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              button {
-                cursor: zoom-in;
-                margin: 0 0.4rem;
-                border: 1px solid #444;
-                padding: 0 0.2rem;
-                line-height: 1rem;
-                border-radius: 0.2rem;
-                color: #444;
-              }
-            `}
-          >
+          <div className="indicateur">
             <button
-              css={`
-                ${indicator === 'distance_semaine'
-                  ? 'background: #333; color: white !important;'
-                  : ''};
-              `}
+              style={indicator == 'distance_semaine' ? selected : {}}
               onClick={(e) => {
                 setIndicator(
                   indicator !== 'distance_semaine'
@@ -57,11 +43,7 @@ const Indicator = ({
               semaine
             </button>
             <button
-              css={`
-                ${indicator === 'distance_weekend'
-                  ? 'background: #333; color: white !important;'
-                  : ''};
-              `}
+              style={indicator == 'distance_weekend' ? selected : {}}
               onClick={(e) => {
                 setIndicator(
                   indicator !== 'distance_weekend'
@@ -79,11 +61,13 @@ const Indicator = ({
         )}
 
         <div>
-          <span style={{'font-size': '200%'}}>{number}</span>
+          <span style={{fontSize: '200%'}}>{number}</span>
           <span style={{marginLeft: '.4rem'}}>{unit}</span>
         </div>
         <Context
-          {...{ value: data[indicator], metric: indicator, color: color }}
+          value={data[indicator]}
+          metric={indicator}
+          color={color}
         />
       </li>
     </Link>
