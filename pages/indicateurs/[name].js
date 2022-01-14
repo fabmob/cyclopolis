@@ -8,7 +8,7 @@ import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 export default function Indicateur({ key, data }) {
   const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
   return (
-    <Layout>
+    <Layout page="indicateurs">
       <br />
 
       <ul className="indicateurs-list">

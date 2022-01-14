@@ -221,6 +221,14 @@ Higlighter {
     color: white;
 }
 
+.menu .tab-button {
+  background: #724647;
+}
+
+.menu .active-page {
+  background: #ae0917;;
+}
+
 .indicateurs {
   cursor: pointer;
   display: flex;

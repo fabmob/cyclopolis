@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 
 export default function Apropos() {
   return (
-    <Layout noAbout>
+    <Layout page="a-propos" noAbout>
       <About />
     </Layout>
   )

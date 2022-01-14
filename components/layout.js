@@ -2,13 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'
 import Link from 'next/link'
+import Menu from './menu'
 import { LittleAbout } from '../pages/a-propos'
 
 const name = 'Comment ça roule ?'
 export const siteDescription =
   'Découvrez les chiffres de la circulation vélo dans les collectivités du Club des villes et territoires cyclables.'
 
-export default function Layout({ children, home, noAbout }) {
+export default function Layout({ children, page, noAbout }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -39,13 +40,7 @@ export default function Layout({ children, home, noAbout }) {
           </div>
         </Link>
       </header>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Retour à l’accueil</a>
-          </Link>
-        </div>
-      )}
+      <Menu page={page} />
       <main>{children}</main>
       {!noAbout && (
         <footer>

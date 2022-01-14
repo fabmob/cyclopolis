@@ -3,7 +3,6 @@ import Layout, { siteDescription } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import Search from '../components/Search'
 import data from '../cyclopolisData'
-import Link from 'next/link'
 import Carte from '../components/Carte'
 import { useState } from 'react'
 
@@ -17,7 +16,7 @@ export default function Home({ data }) {
     }
   }
   return (
-    <Layout home>
+    <Layout page="territoires">
       <Head>
         <title>{siteDescription}</title>
       </Head>
@@ -25,7 +24,6 @@ export default function Home({ data }) {
         <p>{siteDescription}</p>
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
-      <Menu />
       <Carte hover setGeo={regionClicked} />
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <Search data={data} activeRegion={activeRegion} />
@@ -41,17 +39,3 @@ export async function getStaticProps() {
     },
   }
 }
-
-export const Menu = () => (
-  <div className="menu">
-    <button className="tab-button">
-      <Link href="/">Territoires</Link>
-    </button>
-    <button className="tab-button">
-      <Link href="/indicateurs/vitesse">Indicateurs</Link>
-    </button>
-    <button className="tab-button">
-      <Link href="/a-propos">À propos</Link>
-    </button>
-  </div>
-)
