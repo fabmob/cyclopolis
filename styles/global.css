@@ -84,6 +84,11 @@ footer {
   color: white;
 }
 
+section {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
 .region-cities {
     margin-bottom: 2rem;
     box-shadow: 0 1px 3px rgba(77, 21, 21, 0.12),
@@ -442,14 +447,6 @@ main header h1 {
   filter: invert(13%) sepia(47%) saturate(6805%) hue-rotate(346deg) brightness(92%) contrast(106%);
 }
 
-.carte-section {
-  font-size: 1.2rem;
-  line-height: 1.5;
-}
-
-.carte-section p {
-  text-align: center;
-}
 
 .search {
   display: flex;

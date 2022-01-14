@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout, { siteDescription } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
 import Search from '../components/Search'
 import data from '../cyclopolisData'
 import Carte from '../components/Carte'
@@ -20,12 +19,12 @@ export default function Home({ data }) {
       <Head>
         <title>{siteDescription}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section>
         <p>{siteDescription}</p>
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
       <Carte hover setGeo={regionClicked} />
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <section>
         <Search data={data} activeRegion={activeRegion} />
       </section>
     </Layout>
