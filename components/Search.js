@@ -117,7 +117,7 @@ const Region = ({ data, searchResultShown, input, active}) => {
   )
 }
 
-const Item = ({ input, data, departement }) => (
+const Item = ({ input, data}) => (
   <div key={data['region']} className="item" >
     <span>
       <Highlighter
@@ -127,7 +127,6 @@ const Item = ({ input, data, departement }) => (
         searchWords={input.split(' ')}
         textToHighlight={data.area}
       />
-      {departement && <h4>{departement && departement.nom}</h4>}
     </span>
   </div>
 )
