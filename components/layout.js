@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './layout.module.css'
 import Link from 'next/link'
 import Menu from './menu'
 import { LittleAbout } from '../pages/a-propos'
@@ -11,7 +10,7 @@ export const siteDescription =
 
 export default function Layout({ children, page, noAbout }) {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta

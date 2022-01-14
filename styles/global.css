@@ -486,3 +486,9 @@ main header h1 {
 #france path.active {
   fill: #ae0917;
 }
+
+.container {
+  max-width: 40rem;
+  padding: 0 1rem;
+  margin: 0.6rem auto 6rem;
+}
