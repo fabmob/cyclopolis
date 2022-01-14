@@ -28,7 +28,7 @@ export default function Home({ data }) {
       <Menu />
       <Carte hover setGeo={regionClicked}/>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <Search data={data.summer} activeRegion={activeRegion} />
+        <Search data={data} activeRegion={activeRegion} />
       </section>
     </Layout>
   )

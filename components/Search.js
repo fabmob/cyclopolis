@@ -24,7 +24,7 @@ export default function Search({ data, activeRegion }) {
     ? searchResults.map((el) => el.item)
     : data
   ).map((el) => {
-    return { ...el, codeRegion: getRegionCode(el['REGION']) }
+    return { ...el, codeRegion: getRegionCode(el['Région']) }
   })
 
   useEffect(() => setFuse(new Fuse(data, options)), [data])
@@ -58,10 +58,10 @@ export default function Search({ data, activeRegion }) {
           .sort((a, b) =>
             validInput
               ? searchResultShown.findIndex(
-                  (r) => getRegionCode(r.REGION) === a.codeInsee
+                  (r) => getRegionCode(r[Région]) === a.codeInsee
                 ) -
                 searchResultShown.findIndex(
-                  (r) => getRegionCode(r.REGION) === b.codeInsee
+                  (r) => getRegionCode(r[Région]) === b.codeInsee
                 )
               : a.nom < b.nom
               ? -1

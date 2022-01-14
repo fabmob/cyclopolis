@@ -149,7 +149,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const data = cyclopolisData.summer.find((city) => city.area === params.name)
+  const data = cyclopolisData.find((city) => city.area === params.name)
   return {
     props: {
       data,
@@ -158,7 +158,7 @@ export async function getStaticProps({ params }) {
 }
 
 export function getAllCityNames() {
-  return cyclopolisData.summer.map(({ area }) => {
+  return cyclopolisData.map(({ area }) => {
     return {
       params: {
         name: area,

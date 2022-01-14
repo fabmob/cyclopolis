@@ -1,6 +1,4 @@
-import summer from './cyclopolisData.csv'
-import fall from './cyclopolisData_automne.csv'
-
+import data from './cyclopolisData.csv'
 
 export const simplifyNames = (name) =>
   name
@@ -10,4 +8,4 @@ export const simplifyNames = (name) =>
     .replace("communauté d'agglo", 'CA')
     .replace("Communauté d'agglo", 'CA')
 
-export default {summer, fall}
+export default data

@@ -18,10 +18,7 @@ const Indicator = ({
 
   return (
     <Link href={'/indicateurs/' + indicator} passHref>
-      <li
-        title="Comparer avec d'autres villes"
-        className="indicateurs"
-      >
+      <li className="indicateurs" >
         <div className="emoji indicateur-emoji">
           <Emoji e={icon} sizeRem="3" />
         </div>

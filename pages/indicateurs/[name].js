@@ -9,9 +9,7 @@ import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 
 export default function Indicateur({ key, data }) {
-  const [period, setPeriod] = useState('summer');
-
-  const max = Math.max(...data.values[period].map(([, v]) => rawToNumber(v)))
+  const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
   return (
     <Layout>
       <br />
@@ -41,7 +39,7 @@ export default function Indicateur({ key, data }) {
       <p>{data.description}</p>
       <ul>
         {data.key !== 'segments' ? (
-          data.values[period]
+          data.values
             .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
             .map(([ville, valeur]) => {
               const width = (rawToNumber(valeur) / max) * 80
@@ -62,7 +60,7 @@ export default function Indicateur({ key, data }) {
               )
             })
         ) : (
-          <AllSegments data={data.values[period]} />
+          <AllSegments data={data.values} />
         )}
       </ul>
     </Layout>
@@ -80,10 +78,7 @@ export async function getStaticProps({ params }) {
     const yo = {
       props: {
         data: {
-          values: {
-            summer: cyclopolisData.summer.map((el) => [el.area, getSegments(el)]),
-            fall: cyclopolisData.fall.map((el) => [el.area, getSegments(el)]),
-          },
+          values: cyclopolisData.map((el) => [el.area, getSegments(el)]),
           key: 'segments',
         },
       },
@@ -99,10 +94,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       data: {
-        values: {
-          summer: cyclopolisData.summer.map((city) => [city.area, city[indicateur[0]]]),
-          fall: cyclopolisData.fall.map((city) => [city.area, city[indicateur[0]]]),
-        },
+        values: cyclopolisData.map((city) => [city.area, city[indicateur[0]]]),
         key: params.name, ...indicateur[1]
       },
     },
