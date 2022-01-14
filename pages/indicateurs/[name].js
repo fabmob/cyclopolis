@@ -1,10 +1,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import Layout from '../../components/layout'
-import {
-  AllSegments,
-  getSegments,
-} from '../../components/Segments'
+import { AllSegments, getSegments } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 
@@ -14,27 +11,23 @@ export default function Indicateur({ key, data }) {
     <Layout>
       <br />
 
-      <ul className='indicateurs-list'>
+      <ul className="indicateurs-list">
         {Object.entries(dataMeta).map(([key, { color, label }]) => (
           <li key={label}>
-            <button className="tab-button" style={{background: color}}>
+            <button className="tab-button" style={{ background: color }}>
               <Link href={'/indicateurs/' + key}>{label}</Link>
             </button>
           </li>
         ))}
         <li key="segments">
-          <button className="tab-button" style={{backgound: '#0652DD'}}>
+          <button className="tab-button" style={{ backgound: '#0652DD' }}>
             <Link href={'/indicateurs/segments'}>Voies les + fréquentées</Link>
           </button>
         </li>
       </ul>
       <h1>
         {data.label || 'Les voies les plus fréquentées par les cyclistes'}
-        {data.unit && (
-          <small>
-            en {data.unit}
-          </small>
-        )}
+        {data.unit && <small>en {data.unit}</small>}
       </h1>
       <p>{data.description}</p>
       <ul>
@@ -53,7 +46,10 @@ export default function Indicateur({ key, data }) {
                     </a>
                   </Link>
                   <div className="progress-bar">
-                    <span className="progress-bar" style={{width: `${width}%`, background: data.color}}/>
+                    <span
+                      className="progress-bar"
+                      style={{ width: `${width}%`, background: data.color }}
+                    />
                     <span>{formatInputNumber(valeur)}</span>
                   </div>
                 </li>
@@ -95,7 +91,8 @@ export async function getStaticProps({ params }) {
     props: {
       data: {
         values: cyclopolisData.map((city) => [city.area, city[indicateur[0]]]),
-        key: params.name, ...indicateur[1]
+        key: params.name,
+        ...indicateur[1],
       },
     },
   }

@@ -7,7 +7,7 @@ module.exports = {
       test: /\.csv/,
       use: [
         {
-          loader: "csv-loader",
+          loader: 'csv-loader',
           options: {
             dynamicTyping: true,
             header: true,
@@ -15,15 +15,15 @@ module.exports = {
           },
         },
       ],
-    });
+    })
     config.module.rules.push({
       test: /\.svg/,
-      use: ["@svgr/webpack"],
-    });
+      use: ['@svgr/webpack'],
+    })
 
-    return config;
+    return config
   },
   images: {
     domains: ['openmoji.org'],
   },
-};
+}

@@ -20,9 +20,8 @@ export default function Search({ data, activeRegion }) {
 
   const searchResults = validInput ? fuse.search(input) : []
 
-  const searchResultShown = (validInput
-    ? searchResults.map((el) => el.item)
-    : data
+  const searchResultShown = (
+    validInput ? searchResults.map((el) => el.item) : data
   ).map((el) => {
     return { ...el, codeRegion: getRegionCode(el['Région']) }
   })
@@ -73,7 +72,7 @@ export default function Search({ data, activeRegion }) {
                 searchResultShown,
                 data: region,
                 input,
-                active: region.slug === activeRegion
+                active: region.slug === activeRegion,
               }}
               key={region.codeInsee}
             />
@@ -83,14 +82,20 @@ export default function Search({ data, activeRegion }) {
   )
 }
 
-const Region = ({ data, searchResultShown, input, active}) => {
-  const [expanded, setExpanded] = useState(input !== "")
-  const toggle = () => { if (input === "") setExpanded(!expanded) }
-  useEffect(() => {if (input !== "") setExpanded(input !== "") }, [input])
-  useEffect(() => { setExpanded(active) }, [active])
+const Region = ({ data, searchResultShown, input, active }) => {
+  const [expanded, setExpanded] = useState(input !== '')
+  const toggle = () => {
+    if (input === '') setExpanded(!expanded)
+  }
+  useEffect(() => {
+    if (input !== '') setExpanded(input !== '')
+  }, [input])
+  useEffect(() => {
+    setExpanded(active)
+  }, [active])
 
   const filteredResults = searchResultShown.filter(
-      (el) => el.codeRegion == data.codeInsee
+    (el) => el.codeRegion == data.codeInsee
   )
   if (!filteredResults.length) return null
 
@@ -102,28 +107,28 @@ const Region = ({ data, searchResultShown, input, active}) => {
         </div>
         <h3>{data.nom}</h3>
       </div>
-      {expanded && <ul>
-        {filteredResults.map((city) => (
-          <li key={city.area}>
-            <Link href={'/villes/' + city.area}>
-              <a>
-                <Item data={city} input={input} />
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>}
+      {expanded && (
+        <ul>
+          {filteredResults.map((city) => (
+            <li key={city.area}>
+              <Link href={'/villes/' + city.area}>
+                <a>
+                  <Item data={city} input={input} />
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </li>
   )
 }
 
-const Item = ({ input, data}) => (
-  <div key={data['region']} className="item" >
+const Item = ({ input, data }) => (
+  <div key={data['region']} className="item">
     <span>
       <Highlighter
-        highlightStyle={{
-
-        }}
+        highlightStyle={{}}
         searchWords={input.split(' ')}
         textToHighlight={data.area}
       />

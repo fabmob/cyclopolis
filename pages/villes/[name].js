@@ -105,7 +105,7 @@ export default function Ville({ data }) {
     C: '#d35400',
     D: '#c0392b',
     E: '#2c3e50',
-  }[data['Taux de confiance']];
+  }[data['Taux de confiance']]
 
   return (
     <Layout>
@@ -130,13 +130,13 @@ export default function Ville({ data }) {
       <details>
         <summary>
           Taux de confiance des données :{' '}
-          <span style={{background}} className="confiance" >
+          <span style={{ background }} className="confiance">
             {data['Taux de confiance']}
           </span>
         </summary>
-        Cet indice de confiance va de A (niveau de confiance élevé), à E
-        (indice de confiance faible). Il sera ré-évalué à chaque mise à jour
-        en fonction de l’évolution de l’usage constaté sur chaque territoire.
+        Cet indice de confiance va de A (niveau de confiance élevé), à E (indice
+        de confiance faible). Il sera ré-évalué à chaque mise à jour en fonction
+        de l’évolution de l’usage constaté sur chaque territoire.
       </details>
     </Layout>
   )

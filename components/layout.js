@@ -30,8 +30,8 @@ export default function Layout({ children, home, noAbout }) {
         <Link href="/" passHref>
           <div>
             <Image
-              width={18*4}
-              height={18*4}
+              width={18 * 4}
+              height={18 * 4}
               src="/images/commentçaroule-2.svg"
               alt={name}
             />

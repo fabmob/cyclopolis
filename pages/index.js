@@ -26,7 +26,7 @@ export default function Home({ data }) {
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
       <Menu />
-      <Carte hover setGeo={regionClicked}/>
+      <Carte hover setGeo={regionClicked} />
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <Search data={data} activeRegion={activeRegion} />
       </section>

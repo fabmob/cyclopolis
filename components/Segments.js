@@ -28,7 +28,15 @@ const Segments = ({ data, city }) => {
             )
         )}
       </ul>
-      {!more && <button style={{color: 'white'}} className="tab-button" onClick={() => setMore(true)}>Voir plus</button>}
+      {!more && (
+        <button
+          style={{ color: 'white' }}
+          className="tab-button"
+          onClick={() => setMore(true)}
+        >
+          Voir plus
+        </button>
+      )}
     </div>
   )
 }
@@ -45,7 +53,7 @@ export const AllSegments = ({ data }) =>
             {index < 3 ? (
               <Emoji sizeRem="1.5" color e={medals[index + 1]} />
             ) : (
-              <span style={{width: '1.5rem', display: 'inline-block'}}></span>
+              <span style={{ width: '1.5rem', display: 'inline-block' }}></span>
             )}
             <span className="segment">{segment}</span>
           </li>

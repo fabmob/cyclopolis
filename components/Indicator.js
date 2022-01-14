@@ -5,11 +5,11 @@ import Context from './Context'
 import { useState } from 'react'
 
 function evolution(current, previous) {
-  if(previous === '') {
+  if (previous === '') {
     return null
   } else {
     const val = rawToNumber(previous)
-    const pct = Math.round((current - val) * 100 / current)
+    const pct = Math.round(((current - val) * 100) / current)
     const sign = pct > 0 ? '+' : ''
     return `(${sign}${pct} %)`
   }
@@ -25,12 +25,12 @@ const Indicator = ({
 
   const selected = {
     background: '#333',
-    color: 'white'
+    color: 'white',
   }
 
   return (
     <Link href={'/indicateurs/' + indicator} passHref>
-      <li className="indicateurs" >
+      <li className="indicateurs">
         <div className="emoji indicateur-emoji">
           <Emoji e={icon} sizeRem="3" />
         </div>
@@ -70,18 +70,14 @@ const Indicator = ({
         )}
 
         <div>
-          <span style={{fontSize: '200%'}}>{number}</span>
-          <span style={{marginLeft: '.4rem'}}>{unit}</span>
-          <span style={{fontSize: '50%'}}>{evol}</span>
+          <span style={{ fontSize: '200%' }}>{number}</span>
+          <span style={{ marginLeft: '.4rem' }}>{unit}</span>
+          <span style={{ fontSize: '50%' }}>{evol}</span>
         </div>
-        <Context
-          value={data[indicator]}
-          metric={indicator}
-          color={color}
-        />
+        <Context value={data[indicator]} metric={indicator} color={color} />
       </li>
     </Link>
   )
 }
 
-export default Indicator;
+export default Indicator

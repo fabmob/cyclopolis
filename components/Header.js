@@ -18,7 +18,7 @@ const Header = ({ name, wikidata, data }) => {
   const population = data['Population '] || wikidata?.population?.value
   return (
     <header>
-      {imageURL && <img src={thumbURL} className="city-image"/>}
+      {imageURL && <img src={thumbURL} className="city-image" />}
       <h1>{name}</h1>
       <div className="city-stats">
         {population && <p>{(+population).toLocaleString('fr-FR')} hab.</p>}
