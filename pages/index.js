@@ -45,13 +45,10 @@ export async function getStaticProps() {
 export const Menu = () => (
   <div className="menu">
     <button className="tab-button">
-      <Link href="/">Vue liste</Link>
+      <Link href="/">Territoires</Link>
     </button>
     <button className="tab-button">
-      <Link href="/carte">Vue carte</Link>
-    </button>
-    <button className="tab-button">
-      <Link href="/indicateurs/vitesse">Vue indicateurs</Link>
+      <Link href="/indicateurs/vitesse">Indicateurs</Link>
     </button>
     <button className="tab-button">
       <Link href="/a-propos">À propos</Link>

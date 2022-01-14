@@ -15,12 +15,6 @@ export default function Indicateur({ key, data }) {
   return (
     <Layout>
       <br />
-      <div>
-        <input type="radio" id="summer" name="period" value="summer" checked={period==='summer'} onClick={() => setPeriod('summer')} />
-        <label htmlFor="summer">Été</label>
-        <input type="radio" id="fall" name="period" value="fall" checked={period==='fall'} onClick={() => setPeriod('fall')} />
-        <label htmlFor="fall">Automne</label>
-      </div>
 
       <ul className='indicateurs-list'>
         {Object.entries(dataMeta).map(([key, { color, label }]) => (

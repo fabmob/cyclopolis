@@ -16,6 +16,7 @@ const Carte = ({regionSlug = null, hover = false, setGeo = () => null}) => {
     >
     {geoData.map(region =>
       <path
+        key={region.id}
         transform={region.transform}
         id={region.id}
         d={region.d}
