@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import geoData from '../geoData'
-import { Carte } from '../pages/carte'
+import Carte from './Carte'
 import Emoji from '../components/Emoji'
 
 export const getRegionCode = (string) => string.split(' - ')[0]
@@ -12,7 +12,7 @@ const options = {
   keys: ['area'],
   threshold: 0.4,
 }
-export default function Search({ data }) {
+export default function Search({ data, activeRegion }) {
   const [input, setInput] = useState('')
   const [fuse, setFuse] = useState(null)
 
@@ -73,6 +73,7 @@ export default function Search({ data }) {
                 searchResultShown,
                 data: region,
                 input,
+                active: region.slug === activeRegion
               }}
               key={region.codeInsee}
             />
@@ -82,10 +83,11 @@ export default function Search({ data }) {
   )
 }
 
-const Region = ({ data, searchResultShown, input}) => {
+const Region = ({ data, searchResultShown, input, active}) => {
   const [expanded, setExpanded] = useState(input !== "")
   const toggle = () => { if (input === "") setExpanded(!expanded) }
   useEffect(() => {if (input !== "") setExpanded(input !== "") }, [input])
+  useEffect(() => { setExpanded(active) }, [active])
 
   const filteredResults = searchResultShown.filter(
       (el) => el.codeRegion == data.codeInsee
@@ -93,10 +95,10 @@ const Region = ({ data, searchResultShown, input}) => {
   if (!filteredResults.length) return null
 
   return (
-    <li key={data.codeInsee} className="region-cities">
-      <div onClick={toggle}>
+    <li key={data.slug} className="region-cities">
+      <div onClick={toggle} id={'search' + data.slug}>
         <div className="mini-map">
-          <Carte showRegion={data.codeInsee} />
+          <Carte regionSlug={data.slug} />
         </div>
         <h3>{data.nom}</h3>
       </div>

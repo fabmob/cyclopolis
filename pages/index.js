@@ -4,8 +4,18 @@ import utilStyles from '../styles/utils.module.css'
 import Search from '../components/Search'
 import data from '../cyclopolisData'
 import Link from 'next/link'
+import Carte from '../components/Carte'
+import { useState } from 'react'
 
 export default function Home({ data }) {
+  const [activeRegion, setActiveRegion] = useState(null)
+  function regionClicked(slug) {
+    const div = document.getElementById('search' + slug)
+    if (div) {
+      setActiveRegion(slug)
+      document.getElementById('search' + slug).scrollIntoView()
+    }
+  }
   return (
     <Layout home>
       <Head>
@@ -16,8 +26,9 @@ export default function Home({ data }) {
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
       <Menu />
+      <Carte hover setGeo={regionClicked}/>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <Search data={data.summer} />
+        <Search data={data.summer} activeRegion={activeRegion} />
       </section>
     </Layout>
   )
