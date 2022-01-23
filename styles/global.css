@@ -348,14 +348,17 @@ div.progress-bar {
 span.progress-bar {
   display: inline-block;
   height: 1.5rem;
-  margin-right: 0.4rem;
   color: white;
-  text-align: right;
   border-radius: 5px;
 }
 
 .progress-bar span {
-  padding-right: 0.4rem;
+  text-align: right;
+  overflow: hidden;
+}
+
+.label {
+  padding-right: 0.3rem;
 }
 
 .ville-indicateurs {

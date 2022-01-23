@@ -35,7 +35,8 @@ export default function Indicateur({ key, data }) {
           data.values
             .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
             .map(([ville, valeur]) => {
-              const width = (rawToNumber(valeur) / max) * 90
+              const width = (rawToNumber(valeur) / max) * 100
+              const rest = 100 - width
               return (
                 <li key={ville}>
                   <Link href={'/villes/' + ville}>
@@ -50,9 +51,9 @@ export default function Indicateur({ key, data }) {
                       className="progress-bar"
                       style={{ width: `${width}%`, background: data.color }}
                     >
-                      {formatInputNumber(valeur)}
+                      <span className="label">{formatInputNumber(valeur)}</span>
                     </span>
-                    <span>{formatInputNumber(max)}</span>
+                    <span style={{width: `${rest}%`}}><span className="label">{formatInputNumber(max)}</span></span>
                   </div>
                 </li>
               )
