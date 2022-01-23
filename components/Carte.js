@@ -6,12 +6,12 @@ const Carte = ({ regionSlug = null, hover = false, setGeo = () => null }) => {
   if (hover) classes.push('hover')
   return (
     <svg
-      width="743.21442"
-      height="585.96008"
+      width="927.17279"
+      height="758.78992"
       strokeLinecap="round"
       strokeLinejoin="round"
       id="france"
-      viewBox="0 0 743.21442 585.96008"
+      viewBox="0 0 927.17279 758.78992"
       xmlns="http://www.w3.org/2000/svg"
       className={hover ? 'hover' : ''}
     >
