@@ -1,12 +1,13 @@
 import Link from 'next/link'
-import { useState } from 'react'
 import Layout from '../../components/layout'
 import { AllSegments, getSegments } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 
-export default function Indicateur({ key, data }) {
-  const max = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
+export default function Indicateur({ data }) {
+  const max_cur = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
+  const max_prec = Math.max(...data.values.map(([, ,v]) => rawToNumber(v)))
+  const max = Math.max(max_cur, max_prec)
   return (
     <Layout page="indicateurs">
       <br />
@@ -30,13 +31,17 @@ export default function Indicateur({ key, data }) {
         {data.unit && <small>en {data.unit}</small>}
       </h1>
       <p>{data.description}</p>
+      <small>Les valeurs entre parenthèses correspondent au trimestre précédent</small>
       <ul>
         {data.key !== 'segments' ? (
           data.values
             .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
-            .map(([ville, valeur]) => {
-              const width = (rawToNumber(valeur) / max) * 100
-              const rest = 100 - width
+            .map(([ville, valeur, valeur_prec]) => {
+              const width_cur = (rawToNumber(valeur) / max_cur) * 100
+              const width_prec = (rawToNumber(valeur_prec) / max_prec) * 100
+              const width_max = (rawToNumber(max_cur)/max) * 100
+              const width_max_prec = (rawToNumber(max_prec)/max) * 100
+
               return (
                 <li key={ville}>
                   <Link href={'/villes/' + ville}>
@@ -46,14 +51,23 @@ export default function Indicateur({ key, data }) {
                       </span>
                     </a>
                   </Link>
-                  <div className="progress-bar">
+                  <div className="progress-bar" style={{width: `${width_max}%` }}>
                     <span
                       className="progress-bar"
-                      style={{ width: `${width}%`, background: data.color }}
+                      style={{ width: `${width_cur}%`, background: data.color }}
                     >
                       <span className="label">{formatInputNumber(valeur)}</span>
                     </span>
-                    <span style={{width: `${rest}%`}}><span className="label">{formatInputNumber(max)}</span></span>
+                    <span style={{width: `${100-width_cur}%`}}><span className="label">{formatInputNumber(max_cur)}</span></span>
+                  </div>
+                  <div className="progress-bar small"  style={{width: `${width_max_prec}%` }}>
+                    <span
+                      className="progress-bar"
+                      style={{ width: `${width_prec}%`, background: data.color }}
+                    >
+                      <span className="label small">({formatInputNumber(valeur_prec)})</span>
+                    </span>
+                    <span style={{width: `${100-width_prec}%`}}><span className="label small">({formatInputNumber(max_prec)})</span></span>
                   </div>
                 </li>
               )
@@ -74,7 +88,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   if (params.name === 'segments') {
-    const yo = {
+    return {
       props: {
         data: {
           values: cyclopolisData.map((el) => [el.area, getSegments(el)]),
@@ -82,20 +96,14 @@ export async function getStaticProps({ params }) {
         },
       },
     }
-    return yo
   }
-  const indicateur = Object.entries(dataMeta).find(
-    ([key, data]) => key === params.name
-  )
-
-  console.log(params)
 
   return {
     props: {
       data: {
-        values: cyclopolisData.map((city) => [city.area, city[indicateur[0]]]),
+        values: cyclopolisData.map((city) => [city.area, city[params.name], city[params.name + '_prec']]),
         key: params.name,
-        ...indicateur[1],
+        ...dataMeta[params.name],
       },
     },
   }
