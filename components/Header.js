@@ -18,12 +18,12 @@ const Header = ({ name, wikidata, data }) => {
   const population = data['Population '] || wikidata?.population?.value
   return (
     <header>
-      {imageURL && <img src={thumbURL} className="city-image" />}
-      <h1>{name}</h1>
+      <div><h1>{name}</h1></div>
+      <div className="city-image">{imageURL && <img src={thumbURL} className="city-image" />}</div>
       <div className="city-stats">
-        {population && <p>{(+population).toLocaleString('fr-FR')} hab.</p>}
+        {population && <div className="population">{(+population).toLocaleString('fr-FR')} habitants</div>}
         {wikidata?.area && !correspondanceMétropoleVille[data.area] && (
-          <p>{(+wikidata.area.value).toLocaleString('fr-FR')} km².</p>
+          <div className="area">{(+wikidata.area.value).toLocaleString('fr-FR')} km²</div>
         )}
       </div>
     </header>
