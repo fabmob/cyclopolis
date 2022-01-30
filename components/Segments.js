@@ -11,32 +11,20 @@ const Segments = ({ data, city }) => {
   return (
     <div>
       <ul className="medals">
-        {segments.map(
-          ([, v], i) =>
-            (more || i < 3) && (
-              <a
-                key={v}
-                href={`https://www.openstreetmap.org/search?query=${v}, ${city}`}
-              >
-                <li className="medals">
-                  <span className="emoji-medal">
-                    <Emoji color e={medals[i + 1]} />
-                  </span>
-                  <span className="segment">{v}</span>
-                </li>
-              </a>
-            )
-        )}
+        {segments.map(([, v], i) => (
+          <a
+            key={v}
+            href={`https://www.openstreetmap.org/search?query=${v}, ${city}`}
+          >
+            <li className="medals">
+              <span className="emoji-medal">
+                <Emoji color e={medals[i + 1]} />
+              </span>
+              <span className="segment">{v}</span>
+            </li>
+          </a>
+        ))}
       </ul>
-      {!more && (
-        <button
-          style={{ color: 'white' }}
-          className="tab-button"
-          onClick={() => setMore(true)}
-        >
-          Voir plus
-        </button>
-      )}
     </div>
   )
 }

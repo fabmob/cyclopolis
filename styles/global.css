@@ -424,7 +424,6 @@ main header h1 {
   text-align: center;
 }
 
-
 .city-image {
   border-radius: 0 0 20px 20px;
   position: relative;
@@ -443,7 +442,6 @@ main header h1 {
   text-align: right;
   padding-right: 2rem;
 }
-
 
 .city-indicators-list {
   display: flex;
