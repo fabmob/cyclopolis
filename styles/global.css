@@ -226,12 +226,24 @@ Higlighter {
     color: white;
 }
 
-.menu .tab-button {
-  background: #724647;
+.menu div {
+  padding: 0.2rem 2rem;
+  font-size: 150%;
+  font-weight: bold;
 }
 
-.menu .active-page {
-  background: #ae0917;;
+.menu a {
+  color: #4f4f4f;
+}
+
+.active-page a {
+  color: #000;
+}
+
+.active-page div {
+  background-color: #ec3131;
+  border-radius: 5px;
+  height: 0.1rem;
 }
 
 .indicateurs {
