@@ -13,10 +13,7 @@ export default function Layout({ children, page, noAbout }) {
     <div className="container">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Indicateurs de circulation vélo"
-        />
+        <meta name="description" content="Indicateurs de circulation vélo" />
         <meta name="og:title" content={siteDescription} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>

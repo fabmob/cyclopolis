@@ -6,7 +6,7 @@ import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
 
 export default function Indicateur({ data }) {
   const max_cur = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
-  const max_prec = Math.max(...data.values.map(([, ,v]) => rawToNumber(v)))
+  const max_prec = Math.max(...data.values.map(([, , v]) => rawToNumber(v)))
   const max = Math.max(max_cur, max_prec)
   return (
     <Layout page="indicateurs">
@@ -31,7 +31,9 @@ export default function Indicateur({ data }) {
         {data.unit && <small>en {data.unit}</small>}
       </h1>
       <p>{data.description}</p>
-      <small>Les valeurs entre parenthèses correspondent au trimestre précédent</small>
+      <small>
+        Les valeurs entre parenthèses correspondent au trimestre précédent
+      </small>
       <ul>
         {data.key !== 'segments' ? (
           data.values
@@ -39,8 +41,8 @@ export default function Indicateur({ data }) {
             .map(([ville, valeur, valeur_prec]) => {
               const width_cur = (rawToNumber(valeur) / max_cur) * 100
               const width_prec = (rawToNumber(valeur_prec) / max_prec) * 100
-              const width_max = (rawToNumber(max_cur)/max) * 100
-              const width_max_prec = (rawToNumber(max_prec)/max) * 100
+              const width_max = (rawToNumber(max_cur) / max) * 100
+              const width_max_prec = (rawToNumber(max_prec) / max) * 100
 
               return (
                 <li key={ville}>
@@ -51,23 +53,42 @@ export default function Indicateur({ data }) {
                       </span>
                     </a>
                   </Link>
-                  <div className="progress-bar" style={{width: `${width_max}%` }}>
+                  <div
+                    className="progress-bar"
+                    style={{ width: `${width_max}%` }}
+                  >
                     <span
                       className="progress-bar"
                       style={{ width: `${width_cur}%`, background: data.color }}
                     >
                       <span className="label">{formatInputNumber(valeur)}</span>
                     </span>
-                    <span style={{width: `${100-width_cur}%`}}><span className="label">{formatInputNumber(max_cur)}</span></span>
+                    <span style={{ width: `${100 - width_cur}%` }}>
+                      <span className="label">
+                        {formatInputNumber(max_cur)}
+                      </span>
+                    </span>
                   </div>
-                  <div className="progress-bar small"  style={{width: `${width_max_prec}%` }}>
+                  <div
+                    className="progress-bar small"
+                    style={{ width: `${width_max_prec}%` }}
+                  >
                     <span
                       className="progress-bar"
-                      style={{ width: `${width_prec}%`, background: data.color }}
+                      style={{
+                        width: `${width_prec}%`,
+                        background: data.color,
+                      }}
                     >
-                      <span className="label small">({formatInputNumber(valeur_prec)})</span>
+                      <span className="label small">
+                        ({formatInputNumber(valeur_prec)})
+                      </span>
                     </span>
-                    <span style={{width: `${100-width_prec}%`}}><span className="label small">({formatInputNumber(max_prec)})</span></span>
+                    <span style={{ width: `${100 - width_prec}%` }}>
+                      <span className="label small">
+                        ({formatInputNumber(max_prec)})
+                      </span>
+                    </span>
                   </div>
                 </li>
               )
@@ -101,7 +122,11 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       data: {
-        values: cyclopolisData.map((city) => [city.area, city[params.name], city[params.name + '_prec']]),
+        values: cyclopolisData.map((city) => [
+          city.area,
+          city[params.name],
+          city[params.name + '_prec'],
+        ]),
         key: params.name,
         ...dataMeta[params.name],
       },
