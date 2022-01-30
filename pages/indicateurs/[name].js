@@ -3,6 +3,7 @@ import Layout from '../../components/layout'
 import { AllSegments, getSegments } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
+import ProgressBar from '../../components/ProgressBar'
 
 export default function Indicateur({ data }) {
   const max_cur = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
@@ -53,43 +54,8 @@ export default function Indicateur({ data }) {
                       </span>
                     </a>
                   </Link>
-                  <div
-                    className="progress-bar"
-                    style={{ width: `${width_max}%` }}
-                  >
-                    <span
-                      className="progress-bar"
-                      style={{ width: `${width_cur}%`, background: data.color }}
-                    >
-                      <span className="label">{formatInputNumber(valeur)}</span>
-                    </span>
-                    <span style={{ width: `${100 - width_cur}%` }}>
-                      <span className="label">
-                        {formatInputNumber(max_cur)}
-                      </span>
-                    </span>
-                  </div>
-                  <div
-                    className="progress-bar small"
-                    style={{ width: `${width_max_prec}%` }}
-                  >
-                    <span
-                      className="progress-bar"
-                      style={{
-                        width: `${width_prec}%`,
-                        background: data.color,
-                      }}
-                    >
-                      <span className="label small">
-                        ({formatInputNumber(valeur_prec)})
-                      </span>
-                    </span>
-                    <span style={{ width: `${100 - width_prec}%` }}>
-                      <span className="label small">
-                        ({formatInputNumber(max_prec)})
-                      </span>
-                    </span>
-                  </div>
+                  <ProgressBar value={valeur} max={max_cur} globalMax={max} color={data.color} />
+                  <ProgressBar value={valeur_prec} max={max_prec} globalMax={max} color={data.color} small />
                 </li>
               )
             })
