@@ -7,6 +7,7 @@ import Segments from '../../components/Segments'
 import getCityData from '../../components/wikidata'
 import correspondanceMétropoleVille from '../../correspondanceMétropoleVille'
 import cyclopolisData from '../../cyclopolisData'
+import ProgressBar from '../../components/ProgressBar'
 
 const frenchNumber = (number) =>
   number.toLocaleString('fr-FR', {
@@ -23,8 +24,8 @@ export const formatInputNumber = (string, unit) => {
     return [frenchNumber(number * 60), 'secondes']
   }
 
-  if (unit === 'kgCO2' && number > 1000) {
-    return [Math.round(number / 1000), 'tonnes CO2']
+  if (unit === 'kgCO₂' && number > 1000) {
+    return [frenchNumber(number / 1000), ' tonnes de CO₂']
   }
   return [frenchNumber(number), unit]
 }
@@ -81,9 +82,9 @@ export const dataMeta = {
       "Cette durée correspond à la durée moyenne des trajets qui sont enregistrés avec l'application Geovelo sur le territoire concerné. ",
   },
   co2: {
-    label: 'CO2 économisé',
+    label: 'économisé par les cyclistes Géovélo',
     icon: '🌍️',
-    unit: 'kgCO2',
+    unit: 'kgCO₂',
     color: '#006266',
     description:
       "Cet indicateur mesure la quantité de CO2 qui aurait été émise si tous les trajets enregistrés avec l'application Geovelo avaient été réalisés en voiture individuelle plutôt qu'en vélo. ",
@@ -107,20 +108,56 @@ export default function Ville({ data }) {
     E: '#2c3e50',
   }[data['Taux de confiance']]
 
+
+  const values = (indicator) => cyclopolisData.map(val => rawToNumber(val[indicator]))
+  const maxs = {}
+  Object.keys(dataMeta).forEach(indicator => maxs[indicator] = Math.max(...values(indicator)))
+
+  const evol = (indicator, data) => {
+    const current = rawToNumber(data[indicator])
+    const prev = rawToNumber(data[indicator + '_prec'])
+    if(prev == NaN) {
+      return 'pas de données antérieures'
+    }
+    const val = (current - prev) * 100 / prev;
+    if(val > 0) {
+      return '+' + frenchNumber(val) + ' %'
+    }
+    return frenchNumber(val) + ' %'
+  }
+
   return (
     <Layout>
       <Head>
         <title>{data.area}</title>
       </Head>
       <Header name={data.area} data={data} wikidata={wikidata} />
-      <br />
-      <ul className="city-indicators-list">
-        {Object.entries(dataMeta)
-          .filter(([, { sub }]) => !sub)
-          .map((meta) => (
-            <Indicator key={meta.label} meta={meta} data={data} />
-          ))}
-      </ul>
+      <div id="city-indicators">
+        <div>
+          <h2 style={{color: '#81b5dc'}}>{dataMeta.distance.label}</h2>
+          <span>en {dataMeta.distance.unit}</span>
+        </div>
+        <ProgressBar value={data.distance} max={maxs.distance} color='#81b5dc' />
+        <span>Évolution : {evol('distance', data)}</span>
+        <ProgressBar value={data.distance_semaine} max={maxs.distance_semaine} color='#81b5dc' label="semaine" />
+        <ProgressBar value={data.distance_weekend} max={maxs.distance_weekend} color='#81b5dc' label="week-end" />
+
+        <div>
+          <h2 style={{color: '#cb5454'}}>{dataMeta.vitesse.label}</h2>
+          <span>en {dataMeta.vitesse.unit}</span>
+        </div>
+        <ProgressBar value={data.vitesse} max={maxs.vitesse} color='#cb5454' />
+        <span>Évolution : {evol('vitesse', data)}</span>
+
+        <div>
+          <h2 style={{color: '#cb5454'}}>{dataMeta.arrêt.label}</h2>
+          <span>en {dataMeta.arrêt.unit}</span>
+        </div>
+        <ProgressBar value={data.arrêt} max={maxs.arrêt} color='#cb5454' />
+        <span>Évolution : {evol('arrêt', data)}</span>
+
+        <div class="co2-saved">{formatInputNumber(data.co2, dataMeta.co2.unit)} {dataMeta.co2.label}</div>
+      </div>
 
       <h2>Les voies fréquentées par les cyclistes</h2>
       <Segments

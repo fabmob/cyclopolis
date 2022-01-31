@@ -1,6 +1,8 @@
 import { rawToNumber, formatInputNumber } from '../pages/villes/[name].js'
 
-const ProgressBar = ({value, max, globalMax, color, small}) => {
+const ProgressBar = ({value, max, globalMax, color, small, label}) => {
+    globalMax = globalMax || max
+    label = label || formatInputNumber(max)
     const width = (rawToNumber(value) / max) * 100
     const width_max = (rawToNumber(max) / globalMax) * 100
     let className = "progress-bar"
@@ -19,7 +21,7 @@ style={{ width: `${width_max}%` }}
 </span>
 <span style={{ width: `${100 - width}%` }}>
   <span className="label">
-    {formatInputNumber(max)}
+    {label}
   </span>
 </span>
 </div>
