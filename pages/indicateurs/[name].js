@@ -54,8 +54,19 @@ export default function Indicateur({ data }) {
                       </span>
                     </a>
                   </Link>
-                  <ProgressBar value={valeur} max={max_cur} globalMax={max} color={data.color} />
-                  <ProgressBar value={valeur_prec} max={max_prec} globalMax={max} color={data.color} small />
+                  <ProgressBar
+                    value={valeur}
+                    max={max_cur}
+                    globalMax={max}
+                    color={data.color}
+                  />
+                  <ProgressBar
+                    value={valeur_prec}
+                    max={max_prec}
+                    globalMax={max}
+                    color={data.color}
+                    small
+                  />
                 </li>
               )
             })

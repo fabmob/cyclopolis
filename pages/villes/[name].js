@@ -108,19 +108,21 @@ export default function Ville({ data }) {
     E: '#2c3e50',
   }[data['Taux de confiance']]
 
-
-  const values = (indicator) => cyclopolisData.map(val => rawToNumber(val[indicator]))
+  const values = (indicator) =>
+    cyclopolisData.map((val) => rawToNumber(val[indicator]))
   const maxs = {}
-  Object.keys(dataMeta).forEach(indicator => maxs[indicator] = Math.max(...values(indicator)))
+  Object.keys(dataMeta).forEach(
+    (indicator) => (maxs[indicator] = Math.max(...values(indicator)))
+  )
 
   const evol = (indicator, data) => {
     const current = rawToNumber(data[indicator])
     const prev = rawToNumber(data[indicator + '_prec'])
-    if(prev == NaN) {
+    if (prev == NaN) {
       return 'pas de données antérieures'
     }
-    const val = (current - prev) * 100 / prev;
-    if(val > 0) {
+    const val = ((current - prev) * 100) / prev
+    if (val > 0) {
       return '+' + frenchNumber(val) + ' %'
     }
     return frenchNumber(val) + ' %'
@@ -134,29 +136,45 @@ export default function Ville({ data }) {
       <Header name={data.area} data={data} wikidata={wikidata} />
       <div id="city-indicators">
         <div>
-          <h2 style={{color: '#81b5dc'}}>{dataMeta.distance.label}</h2>
+          <h2 style={{ color: '#81b5dc' }}>{dataMeta.distance.label}</h2>
           <span>en {dataMeta.distance.unit}</span>
         </div>
-        <ProgressBar value={data.distance} max={maxs.distance} color='#81b5dc' />
+        <ProgressBar
+          value={data.distance}
+          max={maxs.distance}
+          color="#81b5dc"
+        />
         <span>Évolution : {evol('distance', data)}</span>
-        <ProgressBar value={data.distance_semaine} max={maxs.distance_semaine} color='#81b5dc' label="semaine" />
-        <ProgressBar value={data.distance_weekend} max={maxs.distance_weekend} color='#81b5dc' label="week-end" />
+        <ProgressBar
+          value={data.distance_semaine}
+          max={maxs.distance_semaine}
+          color="#81b5dc"
+          label="semaine"
+        />
+        <ProgressBar
+          value={data.distance_weekend}
+          max={maxs.distance_weekend}
+          color="#81b5dc"
+          label="week-end"
+        />
 
         <div>
-          <h2 style={{color: '#cb5454'}}>{dataMeta.vitesse.label}</h2>
+          <h2 style={{ color: '#cb5454' }}>{dataMeta.vitesse.label}</h2>
           <span>en {dataMeta.vitesse.unit}</span>
         </div>
-        <ProgressBar value={data.vitesse} max={maxs.vitesse} color='#cb5454' />
+        <ProgressBar value={data.vitesse} max={maxs.vitesse} color="#cb5454" />
         <span>Évolution : {evol('vitesse', data)}</span>
 
         <div>
-          <h2 style={{color: '#cb5454'}}>{dataMeta.arrêt.label}</h2>
+          <h2 style={{ color: '#cb5454' }}>{dataMeta.arrêt.label}</h2>
           <span>en {dataMeta.arrêt.unit}</span>
         </div>
-        <ProgressBar value={data.arrêt} max={maxs.arrêt} color='#cb5454' />
+        <ProgressBar value={data.arrêt} max={maxs.arrêt} color="#cb5454" />
         <span>Évolution : {evol('arrêt', data)}</span>
 
-        <div class="co2-saved">{formatInputNumber(data.co2, dataMeta.co2.unit)} {dataMeta.co2.label}</div>
+        <div class="co2-saved">
+          {formatInputNumber(data.co2, dataMeta.co2.unit)} {dataMeta.co2.label}
+        </div>
       </div>
 
       <h2>Les voies fréquentées par les cyclistes</h2>
