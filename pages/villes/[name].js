@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import Indicator from '../../components/Indicator'
 import Layout from '../../components/layout'
 import Segments from '../../components/Segments'
 import getCityData from '../../components/wikidata'
@@ -172,7 +171,7 @@ export default function Ville({ data }) {
         <ProgressBar value={data.arrêt} max={maxs.arrêt} color="#cb5454" />
         <span>Évolution : {evol('arrêt', data)}</span>
 
-        <div class="co2-saved">
+        <div className="co2-saved">
           {formatInputNumber(data.co2, dataMeta.co2.unit)} {dataMeta.co2.label}
         </div>
       </div>
