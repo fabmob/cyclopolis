@@ -15,6 +15,7 @@ const Segments = ({ data, city }) => {
           <a
             key={v}
             target="_blank"
+            rel="noreferrer"
             href={`https://www.openstreetmap.org/search?query=${v}, ${city}`}
           >
             <li className="medals">
