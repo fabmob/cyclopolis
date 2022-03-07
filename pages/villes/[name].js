@@ -176,22 +176,21 @@ export default function Ville({ data }) {
         </div>
       </div>
 
+      <h2>Taux de confiance des données</h2>
+      <div style={{ background }} className="confiance">
+        {data['Taux de confiance']}
+      </div>
+      <small>
+      Cet indice de confiance va de A (niveau de confiance élevé), à E (indice
+      de confiance faible). Il sera ré-évalué à chaque mise à jour en fonction
+      de l’évolution de l’usage constaté sur chaque territoire.
+      </small>
+
       <h2>Les voies fréquentées par les cyclistes</h2>
       <Segments
         data={data}
         city={correspondanceMétropoleVille[data.area] || data.area}
       />
-      <details>
-        <summary>
-          Taux de confiance des données :{' '}
-          <span style={{ background }} className="confiance">
-            {data['Taux de confiance']}
-          </span>
-        </summary>
-        Cet indice de confiance va de A (niveau de confiance élevé), à E (indice
-        de confiance faible). Il sera ré-évalué à chaque mise à jour en fonction
-        de l’évolution de l’usage constaté sur chaque territoire.
-      </details>
     </Layout>
   )
 }
