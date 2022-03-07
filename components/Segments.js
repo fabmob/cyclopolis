@@ -14,6 +14,7 @@ const Segments = ({ data, city }) => {
         {segments.map(([, v], i) => (
           <a
             key={v}
+            target="_blank"
             href={`https://www.openstreetmap.org/search?query=${v}, ${city}`}
           >
             <li className="medals">
