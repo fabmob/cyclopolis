@@ -1,0 +1,10 @@
+{
+    "vitesse": [14.8, 14.1],
+    "arrêt": [44.1, 50.5],
+    "durée": [26.4, 32.6],
+    "distance_semaine": [6.6,7.8],
+    "distance_weekend": [8.1, 10.4],
+    "distance": [6.9, 8.4],
+    "co2": [26.8, 30.1],
+    "territoirs_referencés": [82.0, 75.0]
+}

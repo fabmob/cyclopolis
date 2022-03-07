@@ -450,8 +450,13 @@ main header h1 {
 }
 
 .confiance {
-  padding: 0.1rem 0.4rem;
   color: white;
+  width: 2rem;
+  text-align: center;
+  border-radius: 5px;
+  margin: auto;
+  font-size: 120%;
+  font-weight: bold;
 }
 
 .about-images {
@@ -523,7 +528,7 @@ main header h1 {
   margin: 0.6rem auto 6rem;
 }
 
-#city-indicators h2 {
+h2 {
   margin-bottom: 0.3rem;
 }
 
@@ -548,4 +553,16 @@ main header h1 {
   padding: 2rem 4rem 2rem 4rem;
   margin-top: 2rem;
   border-radius: 20px;
+}
+
+#national-indicators {
+  text-align: center;
+}
+#national-indicators > h2 {
+  margin-bottom: 0.1rem;
+}
+
+#national-indicators > p {
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
 }

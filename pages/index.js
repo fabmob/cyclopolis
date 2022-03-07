@@ -2,8 +2,18 @@ import Head from 'next/head'
 import Layout, { siteDescription } from '../components/layout'
 import Search from '../components/Search'
 import data from '../cyclopolisData'
+import national from '../national.json'
+import {dataMeta, frenchNumber, formatInputNumber} from './villes/[name].js'
 import Carte from '../components/Carte'
 import { useState } from 'react'
+
+const evol = (current, prev) => {
+  const val = ((current - prev) * 100) / prev
+  if (val > 0) {
+    return '+' + frenchNumber(val) + ' %'
+  }
+  return frenchNumber(val) + ' %'
+}
 
 export default function Home({ data }) {
   const [activeRegion, setActiveRegion] = useState(null)

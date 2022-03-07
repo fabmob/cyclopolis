@@ -8,14 +8,15 @@ import correspondanceMétropoleVille from '../../correspondanceMétropoleVille'
 import cyclopolisData from '../../cyclopolisData'
 import ProgressBar from '../../components/ProgressBar'
 
-const frenchNumber = (number) =>
-  number.toLocaleString('fr-FR', {
+export function frenchNumber(number) {
+  return number.toLocaleString('fr-FR', {
     maximumSignificantDigits: 2,
   })
+}
 
 export const rawToNumber = (string) =>
   typeof string === 'string' ? +string.replace(',', '.') : string
-export const formatInputNumber = (string, unit) => {
+export function formatInputNumber(string, unit) {
   if (string == undefined) return 'N/A'
   const number = rawToNumber(string)
 
