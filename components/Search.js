@@ -57,10 +57,10 @@ export default function Search({ data, activeRegion }) {
           .sort((a, b) =>
             validInput
               ? searchResultShown.findIndex(
-                  (r) => getRegionCode(r[Région]) === a.codeInsee
+                  (r) => getRegionCode(r['Région']) === a.codeInsee
                 ) -
                 searchResultShown.findIndex(
-                  (r) => getRegionCode(r[Région]) === b.codeInsee
+                  (r) => getRegionCode(r['Région']) === b.codeInsee
                 )
               : a.nom < b.nom
               ? -1
