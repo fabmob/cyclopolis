@@ -144,7 +144,7 @@ export default function Ville({ data }) {
       <Head>
         <title>{data.area}</title>
       </Head>
-      <Header className={data.area} data={data} wikidata={wikidata} />
+      <Header name={data.area} data={data} wikidata={wikidata} />
       <div id="city-indicators">
         <div>
           <h2 style={{ color: '#81b5dc' }}>{dataMeta.distance.label}</h2>

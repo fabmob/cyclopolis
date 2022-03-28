@@ -12,7 +12,7 @@ const Header = ({ name, wikidata, data }) => {
         <h1>{name}</h1>
       </div>
       <div className="city-image">
-        {imageURL && <Image src={imageURL} className="city-image" alt="Panorama de la ville"/>}
+        {imageURL && <Image src={imageURL} className="city-image" alt="Panorama de la ville" height="180" width="720" />}
       </div>
       <div className="city-stats">
         {population && (

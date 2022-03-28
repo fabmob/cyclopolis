@@ -24,6 +24,6 @@ module.exports = {
     return config
   },
   images: {
-    domains: ['openmoji.org'],
+    domains: ['openmoji.org', 'upload.wikimedia.org'],
   },
 }
