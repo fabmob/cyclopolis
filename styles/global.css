@@ -356,6 +356,12 @@ div.progress-bar {
 span.progress-bar {
   color: white;
   border-radius: 5px;
+  font-weight: bold;
+}
+
+span.right {
+  color: grey;
+  font-weight: normal;
 }
 
 .progress-bar span {
@@ -537,10 +543,15 @@ h2 {
   justify-content: space-between;
 }
 
+.evol,
 #city-indicators > div > h2 + span {
   font-size: 90%;
   color: grey;
   align-self: flex-end;
+}
+
+.evol {
+  padding-bottom: 1rem;
 }
 
 .co2-saved {

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Layout from '../../components/layout'
 import { AllSegments, getSegments } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
-import { rawToNumber, dataMeta, formatInputNumber } from '../villes/[name].js'
+import { rawToNumber, dataMeta } from '../villes/[name].js'
 import ProgressBar from '../../components/ProgressBar'
 
 export default function Indicateur({ data }) {
@@ -40,11 +40,6 @@ export default function Indicateur({ data }) {
           data.values
             .sort(([, a], [, b]) => rawToNumber(b) - rawToNumber(a))
             .map(([ville, valeur, valeur_prec]) => {
-              const width_cur = (rawToNumber(valeur) / max_cur) * 100
-              const width_prec = (rawToNumber(valeur_prec) / max_prec) * 100
-              const width_max = (rawToNumber(max_cur) / max) * 100
-              const width_max_prec = (rawToNumber(max_prec) / max) * 100
-
               return (
                 <li key={ville}>
                   <Link href={'/villes/' + ville}>

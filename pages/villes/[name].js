@@ -7,11 +7,20 @@ import getCityData from '../../components/wikidata'
 import correspondanceMétropoleVille from '../../correspondanceMétropoleVille'
 import cyclopolisData from '../../cyclopolisData'
 import ProgressBar from '../../components/ProgressBar'
+import national from '../../national.json'
 
 export function frenchNumber(number) {
   return number.toLocaleString('fr-FR', {
     maximumSignificantDigits: 2,
   })
+}
+
+export function evolSimple(current, prev) {
+  const val = ((current - prev) * 100) / prev
+  if (val > 0) {
+    return '+' + frenchNumber(val) + ' %'
+  }
+  return frenchNumber(val) + ' %'
 }
 
 export const rawToNumber = (string) =>
@@ -118,7 +127,7 @@ export default function Ville({ data }) {
   const evol = (indicator, data) => {
     const current = rawToNumber(data[indicator])
     const prev = rawToNumber(data[indicator + '_prec'])
-    if (prev == NaN) {
+    if (prev === null) {
       return 'pas de données antérieures'
     }
     const val = ((current - prev) * 100) / prev
@@ -127,6 +136,8 @@ export default function Ville({ data }) {
     }
     return frenchNumber(val) + ' %'
   }
+
+  const maxDistance = Math.max(maxs.distance, maxs.distance_semaine, maxs.distance_weekend)
 
   return (
     <Layout>
@@ -141,21 +152,29 @@ export default function Ville({ data }) {
         </div>
         <ProgressBar
           value={data.distance}
-          max={maxs.distance}
+          max={maxDistance}
           color="#81b5dc"
         />
-        <span>Évolution : {evol('distance', data)}</span>
+        <div class="evol">Évolution/période précédente : {evol('distance', data)}</div>
         <ProgressBar
           value={data.distance_semaine}
-          max={maxs.distance_semaine}
+          max={maxDistance}
           color="#81b5dc"
           label="semaine"
         />
         <ProgressBar
           value={data.distance_weekend}
-          max={maxs.distance_weekend}
+          max={maxDistance}
           color="#81b5dc"
           label="week-end"
+        />
+        <ProgressBar
+          value={national.distance[0]}
+          previous={evolSimple(national.distance[0], national.distance[1])}
+          max={maxDistance}
+          color="#bbb"
+          opacity="0.5"
+          label="🇫🇷"
         />
 
         <div>
@@ -163,14 +182,30 @@ export default function Ville({ data }) {
           <span>en {dataMeta.vitesse.unit}</span>
         </div>
         <ProgressBar value={data.vitesse} max={maxs.vitesse} color="#cb5454" />
-        <span>Évolution : {evol('vitesse', data)}</span>
+        <div class="evol">Évolution : {evol('vitesse', data)}</div>
+        <ProgressBar
+          value={national.vitesse[0]}
+          previous={evolSimple(national.vitesse[0], national.vitesse[1])}
+          max={maxs.vitesse}
+          color="#bbb"
+          opacity="0.5"
+          label="🇫🇷"
+        />
 
         <div>
           <h2 style={{ color: '#cb5454' }}>{dataMeta.arrêt.label}</h2>
           <span>en {dataMeta.arrêt.unit}</span>
         </div>
         <ProgressBar value={data.arrêt} max={maxs.arrêt} color="#cb5454" />
-        <span>Évolution : {evol('arrêt', data)}</span>
+        <div class="evol">Évolution : {evol('arrêt', data)}</div>
+        <ProgressBar
+          value={national.arrêt[0]}
+          previous={evolSimple(national.arrêt[0], national.arrêt[1])}
+          max={maxs.arrêt}
+          color="#bbb"
+          opacity="0.5"
+          label="🇫🇷"
+        />
 
         <div className="co2-saved">
           {formatInputNumber(data.co2, dataMeta.co2.unit)} {dataMeta.co2.label}

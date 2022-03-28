@@ -6,7 +6,6 @@ export const getSegments = (data) =>
 
 const medals = { 1: '🥇', 2: '🥈', 3: '🥉' }
 const Segments = ({ data, city }) => {
-  const [more, setMore] = useState(false)
   const segments = getSegments(data)
   return (
     <div>

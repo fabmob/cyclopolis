@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Head from 'next/head'
 import Layout from '../components/layout'
+import { frenchNumber, evolSimple } from './villes/[name].js'
+import national from '../national.json'
 
 export default function Apropos() {
   return (
@@ -24,7 +26,7 @@ export const LittleAbout = () => (
     </p>
     <p>
       Les données affichées pour chacun des territoires sont calculées sur la
-      base des utilisateur.rice.s Geovelo qui enregistrent leurs trajets avec
+      base des utilisateur·rice·s Geovelo qui enregistrent leurs trajets avec
       l’application.
     </p>
     <p>
@@ -67,6 +69,10 @@ export const About = () => (
       Lancée en septembre 2021, la plateforme Comment ça roule présente 8
       indicateurs sur la circulation des vélos dans plusieurs territoires de
       France.
+    </p>
+    <h2 style={{ color: '#6c9571' }}>Nombre de territoirs référencés</h2>
+    <p>{frenchNumber(national.territoirs_referencés[0])}
+      <small>Évolution : {evolSimple(national.territoirs_referencés[0], national.territoirs_referencés[1])}</small>
     </p>
     <p>
       Cette plateforme est développée par le Club des villes et territoires
