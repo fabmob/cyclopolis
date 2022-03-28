@@ -32,9 +32,10 @@ export default function Indicateur({ data }) {
         {data.unit && <small>en {data.unit}</small>}
       </h1>
       <p>{data.description}</p>
-      <small>
-        Les valeurs entre parenthèses correspondent au trimestre précédent
-      </small>
+      <p>
+        Les valeurs données correspondent à <em>l’automne 2021</em>.<br/>
+        En dessous sont indiquées les valeurs pour <em>hiver 2021/2022</em>.
+      </p>
       <ul>
         {data.key !== 'segments' ? (
           data.values

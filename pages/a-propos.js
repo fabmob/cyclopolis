@@ -70,9 +70,8 @@ export const About = () => (
       indicateurs sur la circulation des vélos dans plusieurs territoires de
       France.
     </p>
-    <h2 style={{ color: '#6c9571' }}>Nombre de territoirs référencés</h2>
-    <p>{frenchNumber(national.territoirs_referencés[0])}
-      <small>Évolution : {evolSimple(national.territoirs_referencés[0], national.territoirs_referencés[1])}</small>
+    <p>La plateforme référence <em>{frenchNumber(national.territoirs_referencés[0])} territoires</em>,
+    soit une évolution de {evolSimple(national.territoirs_referencés[0], national.territoirs_referencés[1])} par rapport à la période précédente.
     </p>
     <p>
       Cette plateforme est développée par le Club des villes et territoires
