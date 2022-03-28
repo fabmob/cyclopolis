@@ -1,4 +1,5 @@
 import correspondanceMétropoleVille from '../correspondanceMétropoleVille'
+import Image from 'next/image'
 
 const Header = ({ name, wikidata, data }) => {
 
@@ -11,7 +12,7 @@ const Header = ({ name, wikidata, data }) => {
         <h1>{name}</h1>
       </div>
       <div className="city-image">
-        {imageURL && <img src={imageURL} className="city-image" />}
+        {imageURL && <Image src={imageURL} className="city-image" alt="Panorama de la ville"/>}
       </div>
       <div className="city-stats">
         {population && (

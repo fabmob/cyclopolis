@@ -144,7 +144,7 @@ export default function Ville({ data }) {
       <Head>
         <title>{data.area}</title>
       </Head>
-      <Header name={data.area} data={data} wikidata={wikidata} />
+      <Header className={data.area} data={data} wikidata={wikidata} />
       <div id="city-indicators">
         <div>
           <h2 style={{ color: '#81b5dc' }}>{dataMeta.distance.label}</h2>
@@ -155,7 +155,7 @@ export default function Ville({ data }) {
           max={maxDistance}
           color="#81b5dc"
         />
-        <div class="evol">Évolution/période précédente : {evol('distance', data)}</div>
+        <div className="evol">Évolution/période précédente : {evol('distance', data)}</div>
         <ProgressBar
           value={data.distance_semaine}
           max={maxDistance}
@@ -182,7 +182,7 @@ export default function Ville({ data }) {
           <span>en {dataMeta.vitesse.unit}</span>
         </div>
         <ProgressBar value={data.vitesse} max={maxs.vitesse} color="#cb5454" />
-        <div class="evol">Évolution : {evol('vitesse', data)}</div>
+        <div className="evol">Évolution : {evol('vitesse', data)}</div>
         <ProgressBar
           value={national.vitesse[0]}
           previous={evolSimple(national.vitesse[0], national.vitesse[1])}
@@ -197,7 +197,7 @@ export default function Ville({ data }) {
           <span>en {dataMeta.arrêt.unit}</span>
         </div>
         <ProgressBar value={data.arrêt} max={maxs.arrêt} color="#cb5454" />
-        <div class="evol">Évolution : {evol('arrêt', data)}</div>
+        <div className="evol">Évolution : {evol('arrêt', data)}</div>
         <ProgressBar
           value={national.arrêt[0]}
           previous={evolSimple(national.arrêt[0], national.arrêt[1])}
