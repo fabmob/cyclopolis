@@ -4,6 +4,7 @@ import { AllSegments, getSegments } from '../../components/Segments'
 import cyclopolisData, { simplifyNames } from '../../cyclopolisData'
 import { rawToNumber, dataMeta } from '../villes/[name].js'
 import ProgressBar from '../../components/ProgressBar'
+import national from '../../national.json'
 
 export default function Indicateur({ data }) {
   const max_cur = Math.max(...data.values.map(([, v]) => rawToNumber(v)))
@@ -33,8 +34,8 @@ export default function Indicateur({ data }) {
       </h1>
       <p>{data.description}</p>
       <p>
-        Les valeurs données correspondent à <em>l’automne 2021</em>.<br/>
-        En dessous sont indiquées les valeurs pour <em>hiver 2021/2022</em>.
+        Les valeurs données correspondent à <em>{national.période}</em>.<br/>
+        En dessous sont indiquées les valeurs pour <em>{national.période_précédente}</em>.
       </p>
       <ul>
         {data.key !== 'segments' ? (

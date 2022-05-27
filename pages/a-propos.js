@@ -46,7 +46,7 @@ const Images = () => (
     <Image
       src="/images/logo-villes-territoires-cyclables.png" // Route of the image file
       height={100} // Desired size with correct aspect ratio
-      width={80} // Desired size with correct aspect ratio
+      width={179} // Desired size with correct aspect ratio
       alt="Logo du club des villes et territoires cyclables"
     />
     <Image
@@ -104,13 +104,10 @@ export const About = () => (
     </p>
 
     <ul>
-      <li>La vitesse moyenne à vélo (variant de 13 à 19km/h)</li>
-
-      <li>La distance moyenne des trajets effectués (de 6,5km à 26km)</li>
-
-      <li>La durée moyenne des trajets (de 25min à 1h16)</li>
-
-      <li>temps d’arrêt moyen par kilomètre parcouru (de 25sec à 1min20)</li>
+      <li>La vitesse moyenne à vélo</li>
+      <li>La distance moyenne des trajets effectués</li>
+      <li>La durée moyenne des trajets</li>
+      <li>temps d’arrêt moyen par kilomètre parcouru</li>
     </ul>
 
     <p>
@@ -153,7 +150,7 @@ export const About = () => (
     </p>
     <h2>Code</h2>
     <p>
-      Le code est open source, il est hébergé par la Fabrique des Mobilités sur{' '}
+      Le code est ouvert et hubergé sur{' '}
       <a href="https://github.com/fabmob/cyclopolis">Github</a>.
     </p>
   </div>

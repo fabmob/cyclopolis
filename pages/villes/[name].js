@@ -145,27 +145,38 @@ export default function Ville({ data }) {
         <title>{data.area}</title>
       </Head>
       <Header name={data.area} data={data} wikidata={wikidata} />
+      <h2>Taux de confiance des données</h2>
+      <div className="confidence">
+        <div style={{ background }} className="confiance">
+          {data['Taux de confiance']}
+        </div>
+        <small>
+        Cet indice de confiance va de A (niveau de confiance élevé), à E (indice
+        de confiance faible). Il sera ré-évalué à chaque mise à jour en fonction
+        de l’évolution de l’usage constaté sur chaque territoire.
+        </small>
+      </div>
       <div id="city-indicators">
         <div>
-          <h2 style={{ color: '#81b5dc' }}>{dataMeta.distance.label}</h2>
+          <h2 style={{ color: dataMeta.distance.color }}>{dataMeta.distance.label}</h2>
           <span>en {dataMeta.distance.unit}</span>
         </div>
         <ProgressBar
           value={data.distance}
           max={maxDistance}
-          color="#81b5dc"
+          color={dataMeta.distance.color}
         />
-        <div className="evol">Évolution/période précédente : {evol('distance', data)}</div>
+        <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('distance', data)}</div>
         <ProgressBar
           value={data.distance_semaine}
           max={maxDistance}
-          color="#81b5dc"
+          color={dataMeta.distance.color}
           label="semaine"
         />
         <ProgressBar
           value={data.distance_weekend}
           max={maxDistance}
-          color="#81b5dc"
+          color={dataMeta.distance.color}
           label="week-end"
         />
         <ProgressBar
@@ -178,11 +189,11 @@ export default function Ville({ data }) {
         />
 
         <div>
-          <h2 style={{ color: '#cb5454' }}>{dataMeta.vitesse.label}</h2>
+          <h2 style={{ color: dataMeta.vitesse.color }}>{dataMeta.vitesse.label}</h2>
           <span>en {dataMeta.vitesse.unit}</span>
         </div>
-        <ProgressBar value={data.vitesse} max={maxs.vitesse} color="#cb5454" />
-        <div className="evol">Évolution : {evol('vitesse', data)}</div>
+        <ProgressBar value={data.vitesse} max={maxs.vitesse} color={dataMeta.vitesse.color} />
+        <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('vitesse', data)}</div>
         <ProgressBar
           value={national.vitesse[0]}
           previous={evolSimple(national.vitesse[0], national.vitesse[1])}
@@ -193,11 +204,11 @@ export default function Ville({ data }) {
         />
 
         <div>
-          <h2 style={{ color: '#cb5454' }}>{dataMeta.arrêt.label}</h2>
+          <h2 style={{ color: dataMeta.arrêt.color }}>{dataMeta.arrêt.label}</h2>
           <span>en {dataMeta.arrêt.unit}</span>
         </div>
-        <ProgressBar value={data.arrêt} max={maxs.arrêt} color="#cb5454" />
-        <div className="evol">Évolution : {evol('arrêt', data)}</div>
+        <ProgressBar value={data.arrêt} max={maxs.arrêt} color={dataMeta.arrêt.color} />
+        <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('arrêt', data)}</div>
         <ProgressBar
           value={national.arrêt[0]}
           previous={evolSimple(national.arrêt[0], national.arrêt[1])}
@@ -212,20 +223,10 @@ export default function Ville({ data }) {
         </div>
       </div>
 
-      <h2>Taux de confiance des données</h2>
-      <div style={{ background }} className="confiance">
-        {data['Taux de confiance']}
-      </div>
-      <small>
-      Cet indice de confiance va de A (niveau de confiance élevé), à E (indice
-      de confiance faible). Il sera ré-évalué à chaque mise à jour en fonction
-      de l’évolution de l’usage constaté sur chaque territoire.
-      </small>
-
       <h2>Les voies fréquentées par les cyclistes</h2>
       <Segments
         data={data}
-        city={correspondanceMétropoleVille[data.area] || data.area}
+        city={correspondanceMétropoleVille[data.area] || data['Ville centre de référence'] ||  data.area}
       />
     </Layout>
   )

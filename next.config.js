@@ -24,6 +24,6 @@ module.exports = {
     return config
   },
   images: {
-    domains: ['openmoji.org', 'upload.wikimedia.org'],
+    domains: ['openmoji.org', 'upload.wikimedia.org', 'www.est-ensemble.fr'],
   },
 }
