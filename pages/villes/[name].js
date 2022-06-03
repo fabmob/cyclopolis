@@ -181,12 +181,13 @@ export default function Ville({ data }) {
         />
         <ProgressBar
           value={national.distance[0]}
-          previous={evolSimple(national.distance[0], national.distance[1])}
+          previous={evolSimple(national.distance[0], data.distance)}
           max={maxDistance}
           color="#bbb"
           opacity="0.5"
           label="🇫🇷"
         />
+        <div className="evol">Écart à la moyenne nationale</div>
 
         <div>
           <h2 style={{ color: dataMeta.vitesse.color }}>{dataMeta.vitesse.label}</h2>
@@ -196,12 +197,13 @@ export default function Ville({ data }) {
         <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('vitesse', data)}</div>
         <ProgressBar
           value={national.vitesse[0]}
-          previous={evolSimple(national.vitesse[0], national.vitesse[1])}
+          previous={evolSimple(national.vitesse[0], data.vitesse)}
           max={maxs.vitesse}
           color="#bbb"
           opacity="0.5"
           label="🇫🇷"
         />
+        <div className="evol">Écart à la moyenne nationale</div>
 
         <div>
           <h2 style={{ color: dataMeta.arrêt.color }}>{dataMeta.arrêt.label}</h2>
@@ -211,12 +213,13 @@ export default function Ville({ data }) {
         <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('arrêt', data)}</div>
         <ProgressBar
           value={national.arrêt[0]}
-          previous={evolSimple(national.arrêt[0], national.arrêt[1])}
+          previous={evolSimple(national.arrêt[0], data.arrêt)}
           max={maxs.arrêt}
           color="#bbb"
           opacity="0.5"
           label="🇫🇷"
         />
+        <div className="evol">Écart à la moyenne nationale</div>
 
         <div className="co2-saved">
           {formatInputNumber(data.co2, dataMeta.co2.unit)} {dataMeta.co2.label}

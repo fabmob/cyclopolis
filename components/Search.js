@@ -94,14 +94,34 @@ const Region = ({ data, searchResultShown, input, active }) => {
     setExpanded(active)
   }, [active])
 
+  const priority = {
+    VILLE: 0,
+    CU: 1.5,
+    CA: 1,
+    EPT: 2,
+    SMO: 2.5,
+    METRO: 3,
+    DEPARTEMENT: 4,
+    REGION: 5
+  }
+
+  function compareSize(a, b) {
+    const typeDelta = priority[b['Type de territoire']] - priority[a['Type de territoire']]
+    if (typeDelta == 0) {
+      return b['Habitants'] - a ['Habitants']
+    } else {
+      return typeDelta
+    }
+  }
   const filteredResults = searchResultShown.filter(
     (el) => el.codeRegion == data.codeInsee
-  )
+  ).sort(compareSize)
   if (!filteredResults.length) return null
+
 
   return (
     <li key={data.slug} className="region-cities">
-      <div onClick={toggle} id={'search' + data.slug}>
+      <div onClick={toggle} id={'search' + data.slug} className="pointer">
         <div className="mini-map">
           <Carte regionSlug={data.slug} />
         </div>

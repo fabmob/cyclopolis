@@ -44,14 +44,14 @@ export const LittleAbout = () => (
 const Images = () => (
   <div className="about-images">
     <Image
-      src="/images/logo-villes-territoires-cyclables.png" // Route of the image file
+      src="/images/logo-club.jpg" // Route of the image file
       height={100} // Desired size with correct aspect ratio
-      width={179} // Desired size with correct aspect ratio
+      width={100} // Desired size with correct aspect ratio
       alt="Logo du club des villes et territoires cyclables"
     />
     <Image
       src="/images/logo-geovelo.jpg" // Route of the image file
-      height={80} // Desired size with correct aspect ratio
+      height={100} // Desired size with correct aspect ratio
       width={100} // Desired size with correct aspect ratio
       alt="Logo de Geovelo"
     />

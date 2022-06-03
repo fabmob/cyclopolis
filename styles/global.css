@@ -591,3 +591,22 @@ h2 {
   margin-top: 0.1rem;
   margin-bottom: 0.1rem;
 }
+
+.national {
+  background-color: #89c08f;
+  border-radius: 20px;
+  padding: 0.1rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.national h3, .national p {
+  margin: 0.5rem 0;
+}
+
+.national ul {
+  margin-left: 3rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
