@@ -150,7 +150,7 @@ export const About = () => (
     </p>
     <h2>Code</h2>
     <p>
-      Le code est ouvert et hubergé sur{' '}
+      Le code est ouvert et hébergé sur{' '}
       <a href="https://github.com/fabmob/cyclopolis">Github</a>.
     </p>
   </div>
