@@ -1,12 +1,12 @@
 {
-    "vitesse": [14.8, 14.1],
-    "arrêt": [44.1, 50.5],
-    "durée": [26.4, 32.6],
-    "distance_semaine": [6.6,7.8],
-    "distance_weekend": [8.1, 10.4],
-    "distance": [6.9, 8.4],
-    "co2": [26.8, 30.1],
-    "territoirs_referencés": [82.0, 75.0],
-    "période": "hiver 2021/2022",
-    "période_précédente": "automne 2021"
+    "vitesse": [14.65, 14.1],
+    "arrêt": [45.87, 50.5],
+    "durée": [27.66, 32.6],
+    "distance_semaine": [6.87, 7.8],
+    "distance_weekend": [8.15, 10.4],
+    "distance": [7.17, 8.4],
+    "co2": [20.98, 22.38],
+    "territoirs_referencés": [80, 75.0],
+    "période": "printemps 2022",
+    "période_précédente": "printemps 2021"
 }

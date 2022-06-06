@@ -33,10 +33,10 @@ export default function Indicateur({ data }) {
         {data.unit && <small>en {data.unit}</small>}
       </h1>
       <p>{data.description}</p>
-      <p>
+      {/*<p>
         Les valeurs données correspondent à <em>{national.période}</em>.<br/>
         En dessous sont indiquées les valeurs pour <em>{national.période_précédente}</em>.
-      </p>
+        </p>*/}
       <ul>
         {data.key !== 'segments' ? (
           data.values
@@ -57,13 +57,13 @@ export default function Indicateur({ data }) {
                     globalMax={max}
                     color={data.color}
                   />
-                  <ProgressBar
+                  {/*<ProgressBar
                     value={valeur_prec}
                     max={max_prec}
                     globalMax={max}
                     color={data.color}
                     small
-                  />
+              />*/}
                 </li>
               )
             })

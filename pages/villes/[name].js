@@ -166,7 +166,7 @@ export default function Ville({ data }) {
           max={maxDistance}
           color={dataMeta.distance.color}
         />
-        <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('distance', data)}</div>
+        {/*<div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('distance', data)}</div>*/}
         <ProgressBar
           value={data.distance_semaine}
           max={maxDistance}
@@ -194,7 +194,7 @@ export default function Ville({ data }) {
           <span>en {dataMeta.vitesse.unit}</span>
         </div>
         <ProgressBar value={data.vitesse} max={maxs.vitesse} color={dataMeta.vitesse.color} />
-        <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('vitesse', data)}</div>
+        {/*<div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('vitesse', data)}</div> */}
         <ProgressBar
           value={national.vitesse[0]}
           previous={evolSimple(national.vitesse[0], data.vitesse)}
@@ -210,7 +210,7 @@ export default function Ville({ data }) {
           <span>en {dataMeta.arrêt.unit}</span>
         </div>
         <ProgressBar value={data.arrêt} max={maxs.arrêt} color={dataMeta.arrêt.color} />
-        <div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('arrêt', data)}</div>
+        {/*<div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('arrêt', data)}</div>*/}
         <ProgressBar
           value={national.arrêt[0]}
           previous={evolSimple(national.arrêt[0], data.arrêt)}
@@ -227,10 +227,7 @@ export default function Ville({ data }) {
       </div>
 
       <h2>Les voies fréquentées par les cyclistes</h2>
-      <Segments
-        data={data}
-        city={correspondanceMétropoleVille[data.area] || data['Ville centre de référence'] ||  data.area}
-      />
+      <Segments data={data} />
     </Layout>
   )
 }
