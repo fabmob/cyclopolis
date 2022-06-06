@@ -206,6 +206,22 @@ export default function Ville({ data }) {
         <div className="evol">Écart à la moyenne nationale</div>
 
         <div>
+          <h2 style={{ color: dataMeta.durée.color }}>{dataMeta.durée.label}</h2>
+          <span>en {dataMeta.durée.unit}</span>
+        </div>
+        <ProgressBar value={data.durée} max={maxs.durée} color={dataMeta.durée.color} />
+        {/*<div className="evol">Évolution entre {national.période_précédente} et {national.période} : {evol('durée', data)}</div>*/}
+        <ProgressBar
+          value={national.durée[0]}
+          previous={evolSimple(national.durée[0], data.durée)}
+          max={maxs.durée}
+          color="#bbb"
+          opacity="0.5"
+          label="🇫🇷"
+        />
+        <div className="evol">Écart à la moyenne nationale</div>
+
+        <div>
           <h2 style={{ color: dataMeta.arrêt.color }}>{dataMeta.arrêt.label}</h2>
           <span>en {dataMeta.arrêt.unit}</span>
         </div>
