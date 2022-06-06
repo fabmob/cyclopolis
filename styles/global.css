@@ -152,20 +152,13 @@ Higlighter {
   font-weight: 400;
 }
 
-.menu {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-  @media (max-width: 800px) {
-    font-size: 90%;
-  }
-}
-
 .city-image {
   width: 100%;
   position: absolute;
   object-fit: cover;
   max-height: 10rem;
+  border-radius: 0 0 20px 20px;
+  position: relative;
   @media (max-width: 800px) {
     max-height: 6rem;
   }
@@ -201,9 +194,6 @@ Higlighter {
   display: flex;
   justify-content: center;
   margin: 1rem 0;
-  @media (max-width: 800px) {
-    font-size: 90%;
-  }
 }
 
 .tab-button {
@@ -227,6 +217,9 @@ Higlighter {
   font-size: 150%;
   font-weight: bold;
 }
+
+
+
 
 .menu a {
   color: #4f4f4f;
@@ -411,9 +404,6 @@ span.right {
 main header {
   margin-bottom: 1rem;
   height: 16rem; /* dunno why this is necessary to not overlap content*/
-  @media (max-width: 800px) {
-    height: 4rem;
-  }
 }
 
 main header h1 {
@@ -430,11 +420,6 @@ main header h1 {
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.city-image {
-  border-radius: 0 0 20px 20px;
-  position: relative;
 }
 
 .city-stats {
@@ -580,18 +565,6 @@ h2 {
   border-radius: 20px;
 }
 
-#national-indicators {
-  text-align: center;
-}
-#national-indicators > h2 {
-  margin-bottom: 0.1rem;
-}
-
-#national-indicators > p {
-  margin-top: 0.1rem;
-  margin-bottom: 0.1rem;
-}
-
 .national {
   background-color: #89c08f;
   border-radius: 20px;
@@ -609,4 +582,24 @@ h2 {
 
 .pointer {
   cursor: pointer;
+}
+
+
+@media (max-width: 800px) {
+  .menu div {
+    padding: 0.1rem 0.5rem;
+    font-size: 100%;
+  }
+
+  .national {
+    padding: 0.2rem 0.5rem;
+  }
+
+  .national ul {
+    margin-left: 0;
+  }
+
+  main header {
+    height: 10rem;
+  }
 }
