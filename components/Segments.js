@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Emoji from '../components/Emoji'
 import Link from 'next/link'
 export const getSegments = (data) => [
@@ -43,14 +42,14 @@ export const AllSegments = ({ data }) =>
     <li key={ville} className="segments-list">
       <Link href={'/villes/' + ville}>{ville}</Link>
       <ul>
-        {segments.map(([_, segment], index) => (
+        {segments.map(({name, city}, index) => (
           <li key={index}>
             {index < 3 ? (
               <Emoji sizeRem="1.5" color e={medals[index + 1]} />
             ) : (
               <span style={{ width: '1.5rem', display: 'inline-block' }}></span>
             )}
-            <span className="segment">{segment}</span>
+            <span className="segment">{name}({city})</span>
           </li>
         ))}
       </ul>
