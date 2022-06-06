@@ -23,7 +23,7 @@ export default function Layout({ children, page, noAbout }) {
             <Image
               width={18 * 4}
               height={18 * 4}
-              src="/images/commentçaroule-2.svg"
+              src="/images/commentcaroule-2.svg"
               alt={name}
             />
             <h1>{name}</h1>
