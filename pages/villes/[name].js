@@ -244,6 +244,7 @@ export default function Ville({ data }) {
 
       <h2>Les voies fréquentées par les cyclistes</h2>
       <Segments data={data} />
+      <p>* données récoltées sur le deuxième trimestre 2022, moyenne nationale sur l’année 2021 / 2022</p>
     </Layout>
   )
 }

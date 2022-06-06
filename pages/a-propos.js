@@ -22,7 +22,7 @@ export const LittleAbout = () => (
     </p>
     <p>
       Cette plateforme est développée par le Club des villes et territoires
-      cyclables (CVTC), dans le cadre d’un partenariat avec Geovelo.
+      cyclables et marchables (CVTC), dans le cadre d’un partenariat avec Geovelo.
     </p>
     <p>
       Les données affichées pour chacun des territoires sont calculées sur la
@@ -47,7 +47,7 @@ const Images = () => (
       src="/images/logo-club.jpg" // Route of the image file
       height={100} // Desired size with correct aspect ratio
       width={100} // Desired size with correct aspect ratio
-      alt="Logo du club des villes et territoires cyclables"
+      alt="Logo du club des villes et territoires cyclables et marchables"
     />
     <Image
       src="/images/logo-geovelo.jpg" // Route of the image file
@@ -75,7 +75,7 @@ export const About = () => (
     </p>
     <p>
       Cette plateforme est développée par le Club des villes et territoires
-      cyclables (CVTC), dans le cadre d’un partenariat avec Geovelo.
+      cyclables et marchables (CVTC), dans le cadre d’un partenariat avec Geovelo.
     </p>
 
     <p>

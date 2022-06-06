@@ -6,7 +6,7 @@ import { LittleAbout } from '../pages/a-propos'
 
 const name = 'Comment ça roule ?'
 export const siteDescription =
-  'Découvrez les chiffres de la circulation vélo dans les collectivités du Club des villes et territoires cyclables.'
+  'Découvrez les chiffres de la circulation vélo dans les collectivités du Club des villes et territoires cyclables et marchables.'
 
 export default function Layout({ children, page, noAbout }) {
   return (
